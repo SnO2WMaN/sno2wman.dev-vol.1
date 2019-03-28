@@ -44,7 +44,9 @@ export default {
 	},
 	mounted() {
 		this.$nextTick(() => {
-			this.$el.classList.add('animated')
+			setTimeout(() => {
+				this.$el.classList.add('animated')
+			}, 500)
 		})
 	}
 }
