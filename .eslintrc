@@ -10,6 +10,47 @@
 		"airbnb-base",
 		"plugin:node/recommended",
 		"plugin:eslint-comments/recommended",
-		"plugin:prettier/recommended"
-	]
+		"plugin:prettier/recommended",
+		"plugin:@typescript-eslint/recommended",
+		"prettier/@typescript-eslint",
+		"plugin:vue/recommended",
+		"prettier/vue"
+	],
+	"parserOptions": {
+		"parser": "@typescript-eslint/parser"
+	},
+	"settings": {
+		"import/resolver": {
+			"node": {
+				"extensions": [".js", ".json", ".ts", ".vue"]
+			},
+			"babel-module": {
+				"root": ".",
+				"alias": {
+					"~": "./src",
+					"@": "./src",
+					"~~": ".",
+					"@@": "."
+				}
+			}
+		}
+	},
+	"rules": {
+		"class-methods-use-this": 0,
+		"node/no-unsupported-features/es-syntax": 0,
+		"vue/component-name-in-template-casing": [
+			"error",
+			"PascalCase",
+			{
+				"ignores": [
+					"nuxt",
+					"nuxt-link",
+					"n-link",
+					"nuxt-child",
+					"no-ssr",
+					"svg-icon"
+				]
+			}
+		]
+	}
 }
