@@ -1,0 +1,63 @@
+{
+	"engines": {
+		"node": "^12"
+	},
+	"dependencies": {},
+	"devDependencies": {
+		"@commitlint/cli": "^8.0.0",
+		"commitizen": "^3.1.1",
+		"commitlint": "^8.0.0",
+		"commitlint-config-cz": "^0.12.0",
+		"cz-cli": "^1.0.0",
+		"cz-conventional-changelog": "^2.1.0",
+		"cz-customizable": "^6.2.0",
+		"eslint": "^6.0.1",
+		"eslint-config-airbnb-base": "^13.1.0",
+		"eslint-config-prettier": "^6.0.0",
+		"eslint-plugin-eslint-comments": "^3.1.2",
+		"eslint-plugin-import": "^2.18.0",
+		"eslint-plugin-json": "^1.4.0",
+		"eslint-plugin-markdown": "^1.0.0",
+		"eslint-plugin-node": "^9.1.0",
+		"eslint-plugin-prettier": "^3.1.0",
+		"husky": "^2.7.0",
+		"lint-staged": "^8.2.1",
+		"npm-run-all": "^4.1.5",
+		"prettier": "^1.18.2",
+		"stylelint": "^10.1.0",
+		"stylelint-config-prettier": "^5.2.0",
+		"stylelint-config-recommended-scss": "^3.3.0",
+		"stylelint-scss": "^3.8.0"
+	},
+	"name": "sno2wman.dev",
+	"version": "1.0.0",
+	"license": "MIT",
+	"private": true,
+	"author": {
+		"name": "SnO2WMaN",
+		"email": "sno2wman.official@gmail.com",
+		"url": "https://sno2wman.dev"
+	},
+	"repository": {
+		"url": "https://github.com/SnO2WMaN/sno2wman.dev.git",
+		"type": "git"
+	},
+	"husky": {
+		"hooks": {
+			"commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+			"pre-commit": "lint-staged"
+		}
+	},
+	"config": {
+		"commitizen": {
+			"path": "node_modules/cz-customizable"
+		}
+	},
+	"scripts": {
+		"commit": "git-cz",
+		"lint": "npm-run-all -p lint:*",
+		"lint:eslint": "eslint src --ext .vue,.ts,.js --fix",
+		"lint:stylelint": "stylelint src/**/*.scss src/**/*.vue --fix",
+		"fmt": "prettier *.md src/**/*.{html,js,json,css,scss,md} --write -c"
+	}
+}

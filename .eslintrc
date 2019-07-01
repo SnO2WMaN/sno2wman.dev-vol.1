@@ -1,0 +1,15 @@
+{
+	"root": true,
+	"env": {
+		"browser": true,
+		"es6": true
+	},
+	"plugins": ["json", "markdown"],
+	"extends": [
+		"eslint:recommended",
+		"airbnb-base",
+		"plugin:node/recommended",
+		"plugin:eslint-comments/recommended",
+		"plugin:prettier/recommended"
+	]
+}

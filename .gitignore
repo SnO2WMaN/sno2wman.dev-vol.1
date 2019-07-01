@@ -1,0 +1,21 @@
+# dependencies
+node_modules
+
+# logs
+*.log
+
+# private files
+.npmrc
+
+# configs
+.vscode
+.atom
+.netlify
+
+# generated directories
+.nuxt
+.cache
+dist
+
+# generated files
+sw.js
