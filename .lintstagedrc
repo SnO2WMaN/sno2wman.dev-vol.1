@@ -1,0 +1,6 @@
+{
+	"*.{gql}": ["prettier --write", "git add"],
+	"*.{js,json}": ["prettier --write", "eslint --fix", "git add"],
+	"*.{css,scss}": ["prettier --write", "stylelint --fix", "git add"],
+	"*.md": ["prettier", "eslint --fix", "git add"]
+}
