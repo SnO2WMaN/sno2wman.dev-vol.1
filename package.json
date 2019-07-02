@@ -23,6 +23,7 @@
 		"@commitlint/cli": "^8.0.0",
 		"@typescript-eslint/eslint-plugin": "^1.10.2",
 		"@typescript-eslint/parser": "^1.10.2",
+		"babel-plugin-module-resolver": "^3.2.0",
 		"commitizen": "^3.1.1",
 		"commitlint": "^8.0.0",
 		"commitlint-config-cz": "^0.12.0",
