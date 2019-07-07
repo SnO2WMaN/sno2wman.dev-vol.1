@@ -1,0 +1,14 @@
+.aboutme-enter-active,
+.aboutme-leave-active {
+	transition: opacity 0.5s, transform 1.5s;
+}
+
+.aboutme-enter {
+	opacity: 0;
+	transform: translateX(10%);
+}
+
+.aboutme-leave-active {
+	opacity: 0;
+	transform: translateX(-100%);
+}

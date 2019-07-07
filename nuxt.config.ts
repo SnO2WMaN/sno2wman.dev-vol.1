@@ -3,10 +3,35 @@ import NuxtConfiguration from '@nuxt/config'
 const nuxtConfig: NuxtConfiguration = {
 	mode: 'universal',
 	srcDir: 'src/',
-	modules: ['@nuxtjs/pwa', '@nuxtjs/svg-sprite', '@nuxtjs/style-resources'],
+	loading: false,
+	modules: [
+		'@bazzite/nuxt-optimized-images',
+		'@nuxtjs/pwa',
+		'@nuxtjs/svg-sprite',
+		'@nuxtjs/style-resources'
+	],
 	css: ['minireset.css'],
 	styleResources: {
-		sass: ['mathsass']
+		sass: ['~/assets/main.scss', 'mathsass']
+	},
+	optimizedImages: {
+		optimizeImages: true
+	},
+	manifest: {
+		lang: 'ja',
+		name: 'sno2wman.dev',
+		short_name: 'sno2wman.dev', // eslint-disable-line @typescript-eslint/camelcase
+		description: '@SnO2WMaN Website',
+		orientation: 'portrait'
+	},
+	head: {
+		titleTemplate: '%s - sno2wman.dev'
+	},
+	meta: {
+		ogImage: 'https://gravatar.com/avatar/9a828752a7771c3bf43e3bea39d9cf57',
+		twitterCard: 'summary',
+		twitterSite: '@SnO2WMaN',
+		twitterCreator: '@SnO2WMaN'
 	},
 	workbox: {
 		runtimeCaching: [
