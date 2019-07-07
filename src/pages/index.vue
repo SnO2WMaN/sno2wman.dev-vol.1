@@ -46,7 +46,7 @@
 					<p animate>{{ text }}</p>
 				</li>
 			</div>
-			<div class="button">
+			<div class="button" @click="move">
 				<div class="pattern" animate></div>
 				<div class="outlines">
 					<div v-for="i in 8" :key="i" class="outline" animate></div>
@@ -60,15 +60,19 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'nuxt-property-decorator'
-
-import Badge from '~/components/Badge.vue'
+import { Vue, Component, Provide } from 'nuxt-property-decorator'
 
 @Component({
 	name: 'Page.Index',
-	components: {
-		Badge
-	},
+	transition: 'index',
+	head: {
+		titleTemplate: 'sno2wman.dev'
+	}
+})
+export default class extends Vue {
+	@Provide()
+	finished = false
+
 	mounted() {
 		this.$nextTick(() => {
 			const animators = Array.from(this.$el.querySelectorAll('[animate]'))
@@ -85,39 +89,26 @@ import Badge from '~/components/Badge.vue'
 			).then(() => {
 				finishs.forEach($e => {
 					$e.classList.add('finished')
+					this.finished = true
 				})
 			})
 		})
 	}
-})
-export default class extends Vue {
-	get oh() {
-		return 100
+
+	move() {
+		if (this.finished) this.$router.push('/aboutme')
 	}
 }
 </script>
-
-<style lang="scss">
-:root {
-	$accent-hue: 168;
-	--accent-color: hsl(#{$accent-hue}, 98%, 53%);
-	--base-black: hsl(#{90 + $accent-hue}, 9%, 15%);
-	--text-black: hsl(#{90 + $accent-hue}, 4%, 55%);
-	--bg: hsl(#{60 + $accent-hue}, 13%, 10%);
-}
-</style>
 
 <style lang="scss" scoped>
 $rdb: 0.4s;
 
 section {
-	width: 100%;
-	height: 100vh;
 	user-select: none;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: var(--bg);
 }
 
 .covers {
@@ -132,6 +123,7 @@ section {
 		left: 0;
 		animation-fill-mode: both;
 		animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+		animation-play-state: paused;
 		$delaybase: $rdb + 0.7s;
 		$duration: 0.3s;
 		$glitchdelay: 0.1s;
@@ -436,6 +428,7 @@ section {
 		background-color: var(--accent-color);
 		animation-fill-mode: both;
 		z-index: 1;
+		animation-play-state: paused;
 		&.animated {
 			animation-play-state: running;
 		}
@@ -478,6 +471,13 @@ section {
 	overflow: hidden;
 	position: relative;
 	cursor: pointer;
+	& > .link {
+		position: absolute;
+		size: 100%;
+		left: 0;
+		top: 0;
+		z-index: 50;
+	}
 	& > .pattern {
 		$size: 16;
 		content: '';
@@ -556,6 +556,7 @@ section {
 		$bd: 0.16s;
 		$go: 0.4s;
 		$delaybase: $rdb + 1.45s;
+		z-index: 1;
 		@for $i from 1 through 4 {
 			&:nth-of-type(#{$i}) {
 				transition-duration: $bd;
@@ -576,7 +577,7 @@ section {
 		left: 0;
 		top: 0;
 		transition: border-width 0.125s;
-		border: 1px solid var(--base-black);
+		border: 1px solid var(--text-black);
 		visibility: hidden;
 		&.finished {
 			visibility: visible;
@@ -584,7 +585,7 @@ section {
 	}
 	&:hover {
 		& > .hoverer {
-			border-width: 8px;
+			border-width: 4px;
 		}
 	}
 }
