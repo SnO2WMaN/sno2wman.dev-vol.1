@@ -29,6 +29,7 @@
 						c
 					}}</span>
 				</h1>
+				<div class="border" animate></div>
 			</div>
 			<div class="positions">
 				<li
@@ -60,7 +61,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Provide } from 'nuxt-property-decorator'
+import { Vue, Component } from 'nuxt-property-decorator'
 
 @Component({
 	name: 'Page.Index',
@@ -70,39 +71,51 @@ import { Vue, Component, Provide } from 'nuxt-property-decorator'
 	}
 })
 export default class extends Vue {
-	@Provide()
-	finished = false
-
 	mounted() {
 		this.$nextTick(() => {
 			const animators = Array.from(this.$el.querySelectorAll('[animate]'))
 			const finishs = Array.from(this.$el.querySelectorAll('[finish]'))
-			Promise.all(
-				animators.map(
-					$e =>
-						new Promise(resolve => {
-							$e.classList.add('animated')
-							$e.addEventListener('transitionend', resolve)
-							$e.addEventListener('animationend', resolve)
-						})
-				)
-			).then(() => {
+			if (this.$store.getters.isAnimated('index')) {
+				animators.forEach($e => {
+					$e.classList.add('animated', 'quick')
+				})
 				finishs.forEach($e => {
 					$e.classList.add('finished')
-					this.finished = true
 				})
-			})
+			} else {
+				Promise.all(
+					animators.map(
+						$e =>
+							new Promise(resolve => {
+								$e.classList.add('animated')
+								$e.addEventListener('transitionend', resolve)
+								$e.addEventListener('animationend', resolve)
+							})
+					)
+				).then(() => {
+					finishs.forEach($e => {
+						$e.classList.add('finished')
+						this.$store.commit('animated', 'index')
+					})
+				})
+			}
 		})
 	}
 
 	move() {
-		if (this.finished) this.$router.push('/aboutme')
+		this.$router.push('/aboutme')
 	}
 }
 </script>
 
 <style lang="scss" scoped>
 $rdb: 0.4s;
+
+.animated.quick {
+	transition-duration: 0s !important;
+	transition-delay: 0s !important;
+	animation-play-state: paused !important;
+}
 
 section {
 	user-select: none;
@@ -125,8 +138,8 @@ section {
 		animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 		animation-play-state: paused;
 		$delaybase: $rdb + 0.7s;
-		$duration: 0.3s;
-		$glitchdelay: 0.1s;
+		$duration: 0.4s;
+		$glitchdelay: 0.12s;
 		&.animated {
 			animation-play-state: running;
 		}
@@ -267,8 +280,8 @@ section {
 		transform: translateY(100%);
 	}
 	transition: transform;
-	$bd: 0.32s;
-	$go: 0.6s;
+	$bd: 0.3s;
+	$go: 0.75s;
 	$delaybase: $rdb;
 	@for $i from 1 through 4 {
 		&:nth-of-type(#{$i}) {
@@ -349,14 +362,16 @@ section {
 	h1 {
 		color: var(--text-black);
 		font-size: 2rem;
-		font-family: 'Barlow', sans-serif;
-		letter-spacing: 0.05em;
+		font-family: 'Roboto', sans-serif;
+		font-weight: 100;
+		letter-spacing: 0.1em;
 		line-height: 1em;
 		overflow: hidden;
 		& > span {
 			display: inline-block;
 			transform: translateY(100%);
 			opacity: 0;
+			transition-property: transform, opacity;
 			transition-timing-function: cubic-bezier(0.25, 0.84, 0.33, 0.945);
 			&.animated {
 				transform: translateY(0);
@@ -370,25 +385,24 @@ section {
 			}
 		}
 	}
-	&::after {
-		content: '';
+
+	.border {
 		position: absolute;
 		bottom: 0;
 		left: 0;
 		right: 0;
 		margin: 0 auto;
-		border-bottom: 1px solid var(--base-black);
+		border-bottom: 1px solid var(--text-black);
 		width: 50%;
 		transform: scaleX(0);
 		transition: transform 0.3s cubic-bezier(1, 0, 0, 1);
 		transition-delay: $delaybase + 0.1s;
-	}
-	&.animated {
-		&::after {
+		&.animated {
 			transform: scaleX(1);
 		}
 	}
 }
+
 .positions {
 	display: flex;
 	flex-direction: column;
@@ -407,8 +421,9 @@ section {
 	}
 	& > p {
 		color: var(--text-black);
-		font-size: 0.9rem;
-		font-family: 'IBM Plex Mono', monospace;
+		font-size: 0.8rem;
+		font-family: 'Roboto Mono', monospace;
+		font-weight: 300;
 		transition: transform 0.5s, opacity 0.75s;
 		transition-timing-function: cubic-bezier(0.39, 0.575, 0.565, 1);
 		opacity: 0;
@@ -489,6 +504,7 @@ section {
 		background-image: url('~assets/stripe_'+$size+'_white.png');
 		opacity: 0;
 		animation: card-pattern 1s linear infinite;
+		animation-play-state: running !important;
 		@keyframes card-pattern {
 			from {
 				transform: translateY(0);
@@ -505,7 +521,8 @@ section {
 	}
 	& > p {
 		color: var(--text-black);
-		font-family: 'IBM Plex Mono', monospace;
+		font-family: 'Roboto Mono', monospace;
+		font-weight: 300;
 		line-height: 1em;
 		font-size: 0.9rem;
 		margin-right: 6px;

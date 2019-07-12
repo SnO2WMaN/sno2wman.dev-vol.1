@@ -21,23 +21,16 @@
 	},
 	"settings": {
 		"import/resolver": {
-			"node": {
-				"extensions": [".js", ".json", ".ts", ".vue"]
-			},
-			"babel-module": {
-				"root": ".",
-				"alias": {
-					"~": "./src",
-					"@": "./src",
-					"~~": ".",
-					"@@": "."
-				}
+			"nuxt": {
+				"nuxtSrcDir": "src",
+				"extensions": [".js", ".ts", ".json", ".vue"]
 			}
 		}
 	},
 	"rules": {
 		"class-methods-use-this": 0,
 		"node/no-unsupported-features/es-syntax": 0,
+		"@typescript-eslint/explicit-function-return-type": 0,
 		"vue/component-name-in-template-casing": [
 			"error",
 			"PascalCase",
@@ -52,5 +45,13 @@
 				]
 			}
 		]
-	}
+	},
+	"overrides": [
+		{
+			"files": ["*.d.ts"],
+			"rules": {
+				"import/no-extraneous-dependencies": 0
+			}
+		}
+	]
 }
