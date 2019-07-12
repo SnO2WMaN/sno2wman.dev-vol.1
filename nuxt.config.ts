@@ -12,7 +12,7 @@ const nuxtConfig: NuxtConfiguration = {
 	],
 	css: ['minireset.css'],
 	styleResources: {
-		sass: ['~/assets/main.scss', 'mathsass']
+		sass: ['~/assets/main.scss', 'mathsass', '@brandcolors/sass']
 	},
 	optimizedImages: {
 		optimizeImages: true

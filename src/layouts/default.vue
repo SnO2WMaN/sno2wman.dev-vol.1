@@ -15,11 +15,11 @@ export default class extends Vue {}
 
 <style lang="scss">
 :root {
-	$accent-hue: 174;
-	--accent-color: hsl(#{$accent-hue}, 98%, 53%);
-	--base-black: hsl(#{60 + $accent-hue}, 9%, 15%);
-	--text-black: hsl(#{60 + $accent-hue}, 4%, 55%);
-	--bg: hsl(#{30 + $accent-hue}, 13%, 10%);
+	$accent-hue: 175;
+	--accent-color: hsl(#{$accent-hue}, 99%, 53%);
+	--base-black: hsl(#{30 + $accent-hue}, 25%, 22%);
+	--text-black: hsl(#{45 + $accent-hue}, 8%, 85%);
+	--bg: hsl(#{35 + $accent-hue}, 8%, 15%);
 }
 
 body,
@@ -33,10 +33,9 @@ html {
 	width: 100vw;
 	height: 100vh;
 	overflow: hidden;
-}
-
-.nuxt {
-	width: 100%;
-	min-height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
 </style>

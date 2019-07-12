@@ -1,0 +1,8 @@
+{
+	"rules": {
+		"no-shadow": 0,
+		"no-param-reassign": 0,
+		"@typescript-eslint/no-empty-interface": 1,
+		"import/no-extraneous-dependencies": 0
+	}
+}
