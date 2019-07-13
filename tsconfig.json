@@ -15,7 +15,6 @@
 		},
 		"esModuleInterop": true,
 		"resolveJsonModule": true,
-		"experimentalDecorators": true,
-		"types": ["@types/node", "@nuxt/vue-app", "./src/types"]
+		"experimentalDecorators": true
 	}
 }

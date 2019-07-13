@@ -4,6 +4,7 @@
 			<div class="title">
 				<h1>PROFILE</h1>
 			</div>
+			<p>ここに本文を入力</p>
 		</section>
 		<section class="social">
 			<div class="title">
@@ -11,19 +12,171 @@
 			</div>
 			<ul class="social-links">
 				<li
-					v-for="i in ['twitter', 'github', 'steam', 'discord']"
+					v-for="i in [
+						'twitter',
+						'github',
+						'steam',
+						'discord',
+						'spotify',
+						'pixiv',
+						'patreon',
+						'soundcloud'
+					]"
 					:key="i"
 					class="social-link"
 				>
-					<div class="social-link-icon">
-						<FontAwesomeIcon :icon="brandicons[i]" />
+					<div class="icon">
+						<svg-icon
+							v-if="typeof brandicons[i] === 'string'"
+							class="svg"
+							:name="brandicons[i]"
+						/>
+						<FontAwesomeIcon v-else :icon="brandicons[i]" fixed-width />
 					</div>
 				</li>
 			</ul>
 		</section>
-		<section class="history">
+		<section class="donate">
 			<div class="title">
-				<h1>HISTORY</h1>
+				<h1>DONATE</h1>
+			</div>
+			<ul class="donate-ways">
+				<li class="donate-way">
+					<div class="icon">
+						<svg-icon class="svg" :name="brandicons['kyash']" />
+					</div>
+					<div class="contents">
+						<p>Kyash</p>
+						<strong>sno2wman</strong>
+					</div>
+				</li>
+				<li class="donate-way">
+					<div class="icon">
+						<FontAwesomeIcon :icon="brandicons['bitcoin']" />
+					</div>
+					<div class="contents">
+						<p>Bitcoin</p>
+						<strong>13EKexdZYnjKaQQAVSrbtwegAN9iAeLBiG</strong>
+					</div>
+				</li>
+				<li class="donate-way">
+					<div class="icon">
+						<FontAwesomeIcon :icon="brandicons['amazon']" />
+					</div>
+					<div class="contents">
+						<p>Amazon Wishlist</p>
+						<div class="icons">
+							<FontAwesomeIcon
+								v-for="key in [
+									'book',
+									'glass-cirtus',
+									'cookie-bite',
+									'theater-masks',
+									'pills'
+								]"
+								:key="key"
+								class="icon"
+								:icon="icons[key]"
+								fixed-width
+							/>
+						</div>
+					</div>
+				</li>
+				<li class="donate-way">
+					<div class="icon">
+						<FontAwesomeIcon :icon="brandicons['steam']" />
+					</div>
+					<div class="contents">
+						<p>Steam Wishlist</p>
+						<div class="icons">
+							<FontAwesomeIcon
+								class="icon"
+								:icon="icons['gamepad']"
+								fixed-width
+							/>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</section>
+		<section class="skills">
+			<div class="title">
+				<h1>SKILL</h1>
+			</div>
+			<div
+				v-for="(category, categoryName) in badges"
+				:key="categoryName"
+				class="skills-category"
+			>
+				<div class="skills-category-title">
+					<h1>{{ categoryName.toUpperCase() }}</h1>
+				</div>
+				<ul class="skill-badges">
+					<li v-for="(badge, i) in category" :key="i" class="skill-badge">
+						<div
+							class="icon"
+							:style="{
+								'background-color': `#${
+									Array.isArray(badge)
+										? badge.length == 2
+											? badge[0].hex
+											: badge[1]
+										: badge.hex
+								}`
+							}"
+							:class="{
+								black:
+									0.72 <
+									luminosity(
+										`#${
+											Array.isArray(badge)
+												? badge.length == 2
+													? badge[0].hex
+													: badge[1]
+												: badge.hex
+										}`
+									)
+							}"
+						>
+							<svg-icon
+								v-if="Array.isArray(badge) && typeof badge[0] === 'string'"
+								class="svg"
+								:name="badge[0]"
+							/>
+							<FontAwesomeIcon
+								v-else-if="Array.isArray(badge) && badge.length !== 2"
+								:icon="badge[0]"
+							/>
+							<!-- eslint-disable vue/no-v-html-->
+							<div
+								v-else-if="Array.isArray(badge)"
+								class="svg"
+								v-html="badge[0].svg"
+							/>
+							<div v-else class="svg" v-html="badge.svg" />
+							<!-- eslint-enable -->
+						</div>
+						<div class="text">
+							<p>
+								{{
+									Array.isArray(badge)
+										? badge.length === 2
+											? badge[0].title
+											: badge[2]
+										: badge.title
+								}}
+							</p>
+						</div>
+						<span
+							v-if="
+								Array.isArray(badge) &&
+									(badge.length === 2 || badge.length === 4)
+							"
+							class="perfect"
+							>*</span
+						>
+					</li>
+				</ul>
 			</div>
 		</section>
 	</article>
@@ -34,11 +187,49 @@ import { Vue, Component, Provide } from 'nuxt-property-decorator'
 import {
 	faTwitter,
 	faGithub,
+	faDiscord,
+	faPatreon,
+	faSpotify,
+	faSoundcloud,
+	faVuejs,
+	faBitcoin,
+	faAmazon,
 	faSteam,
-	faDiscord
+	IconDefinition,
+	faNodeJs
 } from '@fortawesome/free-brands-svg-icons'
+import {
+	faBook,
+	faGamepad,
+	faGlassCitrus,
+	faCookieBite,
+	faTheaterMasks,
+	faPills
+} from '@fortawesome/pro-solid-svg-icons'
+
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import * as sno2wman from 'sno2wman'
+
+import Color from 'color'
+
+import iconHTML from 'simple-icons/icons/html5'
+import iconCSS from 'simple-icons/icons/css3'
+import iconSASS from 'simple-icons/icons/sass'
+import iconESLint from 'simple-icons/icons/eslint'
+import iconVue from 'simple-icons/icons/vue-dot-js'
+import iconNuxt from 'simple-icons/icons/nuxt-dot-js'
+import iconJS from 'simple-icons/icons/javascript'
+import iconTS from 'simple-icons/icons/typescript'
+import iconNode from 'simple-icons/icons/node-dot-js'
+import iconPrettier from 'simple-icons/icons/prettier'
+import iconNetlify from 'simple-icons/icons/netlify'
+import iconFirebase from 'simple-icons/icons/firebase'
+import iconVSCode from 'simple-icons/icons/visualstudiocode'
+import iconTravisCI from 'simple-icons/icons/travisci'
+import iconCircleCI from 'simple-icons/icons/circleci'
+import iconGit from 'simple-icons/icons/git'
+import iconGithub from 'simple-icons/icons/github'
+import iconYarn from 'simple-icons/icons/yarn'
+import iconWebpack from 'simple-icons/icons/webpack'
 
 @Component({
 	name: 'Page.Aboutme',
@@ -52,26 +243,104 @@ export default class extends Vue {
 		twitter: faTwitter,
 		github: faGithub,
 		steam: faSteam,
-		discord: faDiscord
+		discord: faDiscord,
+		patreon: faPatreon,
+		spotify: faSpotify,
+		pixiv: 'pixiv',
+		kyash: 'kyash',
+		soundcloud: faSoundcloud,
+		bitcoin: faBitcoin,
+		amazon: faAmazon
 	}
 
 	@Provide()
-	sno2wman = sno2wman
+	icons = {
+		book: faBook,
+		gamepad: faGamepad,
+		'glass-cirtus': faGlassCitrus,
+		'cookie-bite': faCookieBite,
+		'theater-masks': faTheaterMasks,
+		pills: faPills
+	}
+
+	@Provide()
+	socials = {
+		twitter: 'https://twitter.com/SnO2WMaN',
+		github: 'https://github.com/SnO2WMaN',
+		spotify: 'https://open.spotify.com/user/sno2wman',
+		steam: 'https://steamcommunity.com/id/SnO2WMaN',
+		discord: 'SnO2WMaN#9459',
+		patreon: 'https://www.patreon.com/SnO2WMaN',
+		annict: 'https://annict.jp/@SnO2WMaN',
+		soundcloud: 'https://soundcloud.com/sno2wman'
+	}
+
+	@Provide()
+	badges: {
+		[key in string]: (
+			| { hex: string; title: string; svg: string }
+			| [IconDefinition | string, string, string, true?]
+			| [{ hex: string; title: string; svg: string }, true])[]
+	} = {
+		lang: [
+			iconHTML,
+			['pug', 'a86454', 'Pug', true],
+			iconCSS,
+			iconSASS,
+			['postcss', 'dd3a0a', 'PostCSS'],
+			iconJS,
+			iconTS
+		],
+		build: [iconWebpack, ['parcel', 'e7dacb', 'Parcel']],
+		framework: [
+			[faNodeJs, iconNode.hex, iconNode.title],
+			[faVuejs, iconVue.hex, iconVue.title],
+			iconNuxt
+		],
+		tools: [
+			iconESLint,
+			iconPrettier,
+			['stylelint', '1f1f1f', 'Stylelint'],
+			['editorconfig', 'fefefe', 'EditorConfig'],
+			iconYarn,
+			['lerna', '1f1f1f', 'lerna', true],
+			['renovate', 'ffe42e', 'Renovate']
+		],
+		ci: [iconCircleCI, [iconTravisCI, true]],
+		platform: [iconNetlify, [iconFirebase, true]],
+		versioning: [iconGit, iconGithub, ['gitkraken', '1d958a', 'GitKraken']],
+		editor: [iconVSCode],
+		software: [['affinity', '4ecdfa', 'Affinity Designer']]
+	}
+
+	luminosity(color: string) {
+		return Color(color).luminosity()
+	}
 }
 </script>
 
 <style lang="scss" scoped>
 article {
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
 	display: grid;
-	grid-template-rows: auto 1fr;
-	grid-template-columns: auto 1fr;
+	width: 100%;
+	max-width: 640px;
+	padding-top: 15vh;
+	padding-bottom: 10vh;
+	grid-template-columns: 1fr auto;
 	grid-template-areas:
-		'profile history'
-		'social  history';
+		'profile social'
+		'profile donate'
+		'skills  skills';
+	grid-column-gap: 16px;
+	grid-row-gap: 16px;
 }
 
 section {
-	@each $area in (profile, social, history) {
+	@each $area in (profile, social, skills, history, donate) {
 		&.#{$area} {
 			grid-area: $area;
 		}
@@ -80,6 +349,7 @@ section {
 
 .title {
 	user-select: none;
+	margin-bottom: 12px;
 	h1 {
 		color: var(--text-black);
 		font-size: 1.25rem;
@@ -87,6 +357,149 @@ section {
 		letter-spacing: 0.05em;
 		line-height: 1em;
 		overflow: hidden;
+	}
+}
+
+.donate-ways {
+	display: flex;
+	flex-direction: column;
+}
+
+.donate-way {
+	display: flex;
+	& > .icon {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
+		size: 48px;
+		font-size: 24px;
+		color: white;
+		fill: white;
+		.svg {
+			size: 24px;
+		}
+	}
+	.contents {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: center;
+		p {
+			font-size: 0.8rem;
+			font-family: 'Roboto', serif;
+			color: var(--text-black);
+			line-height: 1em;
+			margin-bottom: 6px;
+			user-select: none;
+		}
+		strong {
+			color: var(--text-black);
+			font-size: 0.75rem;
+			font-family: 'Roboto', serif;
+			line-height: 1em;
+			font-weight: 300;
+		}
+		& > .icons {
+			display: flex;
+			color: var(--text-black);
+			font-size: 1rem;
+			& > .icon:not(:last-of-type) {
+				margin-right: 4px;
+			}
+		}
+	}
+}
+
+.social-links {
+	display: grid;
+	grid-template-columns: repeat(4, 48px);
+}
+
+.social-link {
+	height: 48px;
+	.icon {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		size: 100%;
+		font-size: 24px;
+		color: white;
+		fill: white;
+		.svg {
+			size: 24px;
+		}
+	}
+}
+
+.skills-category {
+	margin-bottom: 16px;
+}
+
+.skills-category-title {
+	margin-bottom: 12px;
+	user-select: none;
+	h1 {
+		font-family: 'Barlow', sans-serif;
+		font-size: 0.8rem;
+		font-weight: 300;
+		color: var(--text-black);
+		letter-spacing: 2px;
+	}
+}
+
+.skill-badges {
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: -8px;
+}
+
+.skill-badge {
+	display: flex;
+	align-items: center;
+	user-select: none;
+	overflow: hidden;
+	margin-right: 8px;
+	margin-bottom: 8px;
+	padding-right: 8px;
+	background-color: #2f2f2f;
+	.icon {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		size: 24px;
+		font-size: 16px;
+		color: white;
+		fill: white;
+		& > .svg {
+			size: 16px;
+			font-size: 0;
+		}
+		&.black {
+			color: #1f1f1f;
+			fill: #1f1f1f;
+		}
+	}
+	.text {
+		flex-grow: 2;
+		color: white;
+		padding-left: 8px;
+		background-color: #2f2f2f;
+		& > p {
+			font-weight: 300;
+			font-family: 'Roboto', sans-serif;
+			font-size: 0.8rem;
+			line-height: 1em;
+		}
+	}
+
+	.perfect {
+		display: block;
+		color: white;
+		font-size: 0.8rem;
+		font-family: 'Roboto', sans-serif;
+		margin-left: 4px;
+		line-height: 1em;
 	}
 }
 </style>

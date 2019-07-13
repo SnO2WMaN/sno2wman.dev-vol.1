@@ -120,6 +120,8 @@ $rdb: 0.4s;
 section {
 	user-select: none;
 	display: flex;
+	width: 100%;
+	height: 100vh;
 	justify-content: center;
 	align-items: center;
 }
