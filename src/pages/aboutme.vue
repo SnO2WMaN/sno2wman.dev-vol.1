@@ -1,10 +1,45 @@
 <template>
 	<article>
 		<section class="profile">
-			<div class="title">
+			<div class="title center">
 				<h1>PROFILE</h1>
 			</div>
-			<p>ここに本文を入力</p>
+			<div class="profile-text">
+				<h1>近影</h1>
+				<img src="~/assets/icon.gif" />
+				<h1>これは何ですか？</h1>
+				<p>フロントエンド方面の活動をしていて、学生をやっているらしいです。</p>
+				<p>ピクセルアートや、ボクセルアートをしたりもしています。</p>
+				<p>得意なことはツイッターで、苦手なことはフェイスブックです。</p>
+				<h1>趣味</h1>
+				<p>主に表現の強いゲームが好きで、例えばこんなゲームが好きです。</p>
+				<ul>
+					<li><p>Hyper Light Drifter</p></li>
+					<li><p>Hotline Miami</p></li>
+					<li><p>RUINER</p></li>
+					<li><p>Katana ZERO</p></li>
+					<li><p>Doki Doki Literature Club</p></li>
+					<li><p>Factorio</p></li>
+				</ul>
+				<h1>音楽</h1>
+				<p>
+					主にエレクトロニックミュージックが好きで、例えばこんな曲が好きです。
+				</p>
+				<ul>
+					<li><p>Electrocado - Piddle Smell</p></li>
+					<li><p>Mr.Bill &amp; Loom In Essance - Abba Ridge</p></li>
+					<li><p>Tha Trickaz - Cloud City</p></li>
+					<li><p>Vulpey - Sever</p></li>
+					<li><p>Virtual Riot - Lunar</p></li>
+					<li><p>Gorillaz - Feel Good Inc.</p></li>
+					<li><p>ZUN - ハルトマンの妖怪少女</p></li>
+				</ul>
+			</div>
+		</section>
+		<section class="detail">
+			<div class="title">
+				<h1>DETAIL</h1>
+			</div>
 		</section>
 		<section class="social">
 			<div class="title">
@@ -234,7 +269,7 @@ import iconWebpack from 'simple-icons/icons/webpack'
 @Component({
 	name: 'Page.Aboutme',
 	head: { title: 'aboutme' },
-	transition: 'aboutme',
+	// transition: 'aboutme',
 	components: { FontAwesomeIcon }
 })
 export default class extends Vue {
@@ -332,24 +367,42 @@ article {
 	padding-bottom: 10vh;
 	grid-template-columns: 1fr auto;
 	grid-template-areas:
-		'profile social'
-		'profile donate'
+		'profile profile'
+		'detail  social'
+		'detail  donate'
 		'skills  skills';
 	grid-column-gap: 16px;
 	grid-row-gap: 16px;
+
+	@media screen and (max-width: 762px) {
+		display: flex;
+		flex-direction: column;
+	}
 }
 
 section {
-	@each $area in (profile, social, skills, history, donate) {
+	@each $area in (profile, social, skills, history, donate, detail) {
 		&.#{$area} {
 			grid-area: $area;
+		}
+	}
+	@media screen and (max-width: 762px) {
+		&:not(:last-of-type) {
+			margin-bottom: 24px;
+		}
+		&:not(.skills) {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
 		}
 	}
 }
 
 .title {
 	user-select: none;
-	margin-bottom: 12px;
+	padding-bottom: 8px;
+	margin-bottom: 8px;
+	position: relative;
 	h1 {
 		color: var(--text-black);
 		font-size: 1.25rem;
@@ -357,6 +410,115 @@ section {
 		letter-spacing: 0.05em;
 		line-height: 1em;
 		overflow: hidden;
+	}
+	&::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 24px;
+		border-bottom: 1px solid var(--text-black);
+	}
+	&.center {
+		text-align: center;
+		&::after {
+			right: 0;
+			margin: auto;
+		}
+	}
+	@media screen and (max-width: 762px) {
+		text-align: center;
+		margin-bottom: 12px;
+		&::after {
+			right: 0;
+			margin: auto;
+		}
+	}
+}
+
+.profile-text {
+	background-color: var(--text-black);
+	padding: 24px 48px;
+	margin: 24px;
+	color: var(--base-black);
+	font-family: 'Noto Sans JP', serif;
+	font-feature-settings: 'palt';
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
+	&::after {
+		content: '';
+		position: absolute;
+		size: 100%;
+		top: 0;
+		left: 0;
+		background-image: url('~assets/point_9_black.png');
+		background-attachment: fixed;
+		opacity: 0.25;
+	}
+	img {
+		size: 6rem;
+		border-radius: 50%;
+		border: var(--bg) 1px solid;
+		margin-bottom: 8px;
+		user-select: none;
+		pointer-events: none;
+	}
+	p {
+		font-size: 0.85rem;
+		&:not(:last-of-type) {
+			margin-bottom: 2px;
+		}
+	}
+	h1 {
+		font-weight: 700;
+		font-size: 1.25rem;
+		letter-spacing: 1px;
+		margin-bottom: 8px;
+		&:not(:first-of-type) {
+			margin-top: 8px;
+		}
+	}
+	ul {
+		margin: 12px 0;
+		width: 100%;
+		padding-left: 48px;
+		li {
+			display: flex;
+			&:not(:last-of-type) {
+				margin-bottom: 12px;
+			}
+			p {
+				white-space: nowrap;
+				font-family: 'Roboto', 'Noto Sans JP', serif;
+				font-size: 0.8rem;
+				line-height: 1em;
+				&::before {
+					content: '-';
+					margin-right: 8px;
+				}
+			}
+		}
+	}
+	@media screen and (max-width: 762px) {
+		padding: 24px 24px;
+		margin: 12px;
+		p {
+			font-size: 0.8rem;
+			text-align: left;
+			&:not(:last-of-type) {
+				margin-bottom: 8px;
+			}
+		}
+		h1 {
+			&:not(:first-of-type) {
+				margin-top: 12px;
+			}
+		}
+		ul {
+			padding-left: 12px;
+		}
 	}
 }
 
@@ -442,9 +604,11 @@ section {
 	h1 {
 		font-family: 'Barlow', sans-serif;
 		font-size: 0.8rem;
-		font-weight: 300;
 		color: var(--text-black);
 		letter-spacing: 2px;
+	}
+	@media screen and (max-width: 762px) {
+		text-align: center;
 	}
 }
 
@@ -452,6 +616,11 @@ section {
 	display: flex;
 	flex-wrap: wrap;
 	margin-bottom: -8px;
+	@media screen and (max-width: 762px) {
+		justify-content: center;
+		margin-left: 24px;
+		margin-right: 24px;
+	}
 }
 
 .skill-badge {
