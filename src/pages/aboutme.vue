@@ -40,6 +40,17 @@
 			<div class="title">
 				<h1>DETAIL</h1>
 			</div>
+			<div class="detail-table">
+				<div
+					v-for="(detail, i) in details"
+					:key="i"
+					class="detail-table-line"
+					:class="{ icon: i % 3 == 0, key: i % 3 == 1, content: i % 3 == 2 }"
+				>
+					<FontAwesomeIcon v-if="i % 3 == 0" :icon="detail" />
+					<p v-else>{{ detail }}</p>
+				</div>
+			</div>
 		</section>
 		<section class="social">
 			<div class="title">
@@ -239,7 +250,12 @@ import {
 	faGlassCitrus,
 	faCookieBite,
 	faTheaterMasks,
-	faPills
+	faPills,
+	faUserClock,
+	faBirthdayCake,
+	faMars,
+	faUmbrellaBeach,
+	faPastafarianism
 } from '@fortawesome/pro-solid-svg-icons'
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -311,6 +327,17 @@ export default class extends Vue {
 	}
 
 	@Provide()
+	details = Object.entries({
+		birthday: [faBirthdayCake, '2001.06.22'],
+		age: [faUserClock, 18],
+		gender: [faMars, 'Male'],
+		live: [faUmbrellaBeach, 'JP -> AICHI -> NAGOYA'],
+		religion: [faPastafarianism, 'Pastafarianism']
+	})
+		.map(({ 0: key, 1: v }) => [v[0], key.toUpperCase(), v[1]])
+		.flat()
+
+	@Provide()
 	badges: {
 		[key in string]: (
 			| { hex: string; title: string; svg: string }
@@ -341,7 +368,10 @@ export default class extends Vue {
 			['lerna', '1f1f1f', 'lerna', true],
 			['renovate', 'ffe42e', 'Renovate']
 		],
-		ci: [iconCircleCI, [iconTravisCI, true]],
+		ci: [
+			iconCircleCI,
+			['travis_ci', iconTravisCI.hex, iconTravisCI.title, true]
+		],
 		platform: [iconNetlify, [iconFirebase, true]],
 		versioning: [iconGit, iconGithub, ['gitkraken', '1d958a', 'GitKraken']],
 		editor: [iconVSCode],
@@ -438,7 +468,7 @@ section {
 
 .profile-text {
 	background-color: var(--text-black);
-	padding: 24px 48px;
+	padding: 36px 48px;
 	margin: 24px;
 	color: var(--base-black);
 	font-family: 'Noto Sans JP', serif;
@@ -519,6 +549,39 @@ section {
 		ul {
 			padding-left: 12px;
 		}
+	}
+}
+
+.detail-table {
+	display: grid;
+	grid-template-columns: auto auto 1fr;
+	align-items: center;
+	.icon {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
+		size: 36px;
+		font-size: 18px;
+		color: white;
+	}
+	.key {
+		color: var(--text-black);
+		font-family: 'Barlow', sans-serif;
+		font-size: 0.75rem;
+		line-height: 1em;
+		letter-spacing: 1px;
+		padding: 0 4px;
+		user-select: none;
+	}
+	.content {
+		color: var(--text-black);
+		flex-grow: 2;
+		text-align: left;
+		line-height: 1em;
+		font-size: 0.9rem;
+		font-family: 'Roboto Mono', sans-serif;
+		margin-left: 12px;
 	}
 }
 
