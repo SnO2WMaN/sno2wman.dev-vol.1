@@ -285,7 +285,7 @@ import iconWebpack from 'simple-icons/icons/webpack'
 @Component({
 	name: 'Page.Aboutme',
 	head: { title: 'aboutme' },
-	// transition: 'aboutme',
+	transition: 'aboutme',
 	components: { FontAwesomeIcon }
 })
 export default class extends Vue {
