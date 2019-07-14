@@ -47,7 +47,7 @@
 					<p animate>{{ text }}</p>
 				</li>
 			</div>
-			<div class="button" @click="move">
+			<div class="button" finish @click="move">
 				<div class="pattern" animate></div>
 				<div class="outlines">
 					<div v-for="i in 8" :key="i" class="outline" animate></div>
@@ -55,6 +55,7 @@
 				<p animate>more</p>
 				<div class="arrow" animate></div>
 				<div class="hoverer" finish></div>
+				<div class="link" finish @click="move" />
 			</div>
 		</div>
 	</section>
@@ -102,8 +103,12 @@ export default class extends Vue {
 		})
 	}
 
+	get finished(): boolean {
+		return this.$store.getters.isAnimated('index')
+	}
+
 	move() {
-		this.$router.push('/aboutme')
+		if (this.$store.getters.isAnimated('index')) this.$router.push('/aboutme')
 	}
 }
 </script>
@@ -487,13 +492,19 @@ section {
 	align-items: center;
 	overflow: hidden;
 	position: relative;
-	cursor: pointer;
+	&.finished {
+		cursor: pointer;
+	}
 	& > .link {
 		position: absolute;
 		size: 100%;
 		left: 0;
 		top: 0;
 		z-index: 50;
+		visibility: hidden;
+		&.finished {
+			visibility: hidden;
+		}
 	}
 	& > .pattern {
 		$size: 16;
