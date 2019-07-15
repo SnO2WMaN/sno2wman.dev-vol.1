@@ -75,7 +75,8 @@
 							'spotify',
 							'pixiv',
 							'patreon',
-							'soundcloud'
+							'soundcloud',
+							'annict'
 						]"
 						:key="i"
 						class="social-link"
@@ -311,7 +312,8 @@ export default class extends Vue {
 		kyash: 'kyash',
 		soundcloud: faSoundcloud,
 		bitcoin: faBitcoin,
-		amazon: faAmazon
+		amazon: faAmazon,
+		annict: 'annict'
 	}
 
 	@Provide()
