@@ -1,230 +1,240 @@
 <template>
-	<article>
-		<section class="profile">
-			<div class="title center">
-				<h1>PROFILE</h1>
-			</div>
-			<div class="profile-text">
-				<h1>近影</h1>
-				<img src="~/assets/icon.gif" />
-				<h1>これは何ですか？</h1>
-				<p>フロントエンド方面の活動をしていて、学生をやっているらしいです。</p>
-				<p>ピクセルアートや、ボクセルアートをしたりもしています。</p>
-				<p>得意なことはツイッターで、苦手なことはフェイスブックです。</p>
-				<h1>趣味</h1>
-				<p>主に表現の強いゲームが好きで、例えばこんなゲームが好きです。</p>
-				<ul>
-					<li><p>Hyper Light Drifter</p></li>
-					<li><p>Hotline Miami</p></li>
-					<li><p>RUINER</p></li>
-					<li><p>Katana ZERO</p></li>
-					<li><p>Doki Doki Literature Club</p></li>
-					<li><p>Factorio</p></li>
-				</ul>
-				<h1>音楽</h1>
-				<p>
-					主にエレクトロニックミュージックが好きで、例えばこんな曲が好きです。
-				</p>
-				<ul>
-					<li><p>Electrocado - Piddle Smell</p></li>
-					<li><p>Mr.Bill &amp; Loom In Essance - Abba Ridge</p></li>
-					<li><p>Tha Trickaz - Cloud City</p></li>
-					<li><p>Vulpey - Sever</p></li>
-					<li><p>Virtual Riot - Lunar</p></li>
-					<li><p>Gorillaz - Feel Good Inc.</p></li>
-					<li><p>ZUN - ハルトマンの妖怪少女</p></li>
-				</ul>
-			</div>
-		</section>
-		<section class="detail">
-			<div class="title">
-				<h1>DETAIL</h1>
-			</div>
-			<div class="detail-table">
-				<div
-					v-for="(detail, i) in details"
-					:key="i"
-					class="detail-table-line"
-					:class="{ icon: i % 3 == 0, key: i % 3 == 1, content: i % 3 == 2 }"
-				>
-					<FontAwesomeIcon v-if="i % 3 == 0" :icon="detail" />
-					<p v-else>{{ detail }}</p>
+	<article @scroll="scroll">
+		<div class="wrapper">
+			<section class="profile">
+				<div class="title center" animate>
+					<h1>PROFILE</h1>
 				</div>
-			</div>
-		</section>
-		<section class="social">
-			<div class="title">
-				<h1>SOCIAL</h1>
-			</div>
-			<ul class="social-links">
-				<li
-					v-for="i in [
-						'twitter',
-						'github',
-						'steam',
-						'discord',
-						'spotify',
-						'pixiv',
-						'patreon',
-						'soundcloud'
-					]"
-					:key="i"
-					class="social-link"
-				>
-					<div class="icon">
-						<svg-icon
-							v-if="typeof brandicons[i] === 'string'"
-							class="svg"
-							:name="brandicons[i]"
-						/>
-						<FontAwesomeIcon v-else :icon="brandicons[i]" fixed-width />
+				<div class="profile-text" animate>
+					<div class="covers">
+						<div class="cover"></div>
+						<div class="cover"></div>
+						<div class="cover"></div>
+						<div class="cover"></div>
 					</div>
-				</li>
-			</ul>
-		</section>
-		<section class="donate">
-			<div class="title">
-				<h1>DONATE</h1>
-			</div>
-			<ul class="donate-ways">
-				<li class="donate-way">
-					<div class="icon">
-						<svg-icon class="svg" :name="brandicons['kyash']" />
-					</div>
-					<div class="contents">
-						<p>Kyash</p>
-						<strong>sno2wman</strong>
-					</div>
-				</li>
-				<li class="donate-way">
-					<div class="icon">
-						<FontAwesomeIcon :icon="brandicons['bitcoin']" />
-					</div>
-					<div class="contents">
-						<p>Bitcoin</p>
-						<strong>13EKexdZYnjKaQQAVSrbtwegAN9iAeLBiG</strong>
-					</div>
-				</li>
-				<li class="donate-way">
-					<div class="icon">
-						<FontAwesomeIcon :icon="brandicons['amazon']" />
-					</div>
-					<div class="contents">
-						<p>Amazon Wishlist</p>
-						<div class="icons">
-							<FontAwesomeIcon
-								v-for="key in [
-									'book',
-									'glass-cirtus',
-									'cookie-bite',
-									'theater-masks',
-									'pills'
-								]"
-								:key="key"
-								class="icon"
-								:icon="icons[key]"
-								fixed-width
-							/>
-						</div>
-					</div>
-				</li>
-				<li class="donate-way">
-					<div class="icon">
-						<FontAwesomeIcon :icon="brandicons['steam']" />
-					</div>
-					<div class="contents">
-						<p>Steam Wishlist</p>
-						<div class="icons">
-							<FontAwesomeIcon
-								class="icon"
-								:icon="icons['gamepad']"
-								fixed-width
-							/>
-						</div>
-					</div>
-				</li>
-			</ul>
-		</section>
-		<section class="skills">
-			<div class="title">
-				<h1>SKILL</h1>
-			</div>
-			<div
-				v-for="(category, categoryName) in badges"
-				:key="categoryName"
-				class="skills-category"
-			>
-				<div class="skills-category-title">
-					<h1>{{ categoryName.toUpperCase() }}</h1>
+					<h1>近影</h1>
+					<img src="~/assets/icon.gif" />
+					<h1>これは何ですか？</h1>
+					<p>
+						フロントエンド方面の活動をしていて、学生をやっているらしいです。
+					</p>
+					<p>ピクセルアートや、ボクセルアートをしたりもしています。</p>
+					<p>得意なことはツイッターで、苦手なことはフェイスブックです。</p>
+					<h1>趣味</h1>
+					<p>主に表現の強いゲームが好きで、例えばこんなゲームが好きです。</p>
+					<ul>
+						<li><p>Hyper Light Drifter</p></li>
+						<li><p>Hotline Miami</p></li>
+						<li><p>RUINER</p></li>
+						<li><p>Katana ZERO</p></li>
+						<li><p>Doki Doki Literature Club</p></li>
+						<li><p>Factorio</p></li>
+					</ul>
+					<h1>音楽</h1>
+					<p>
+						主にエレクトロニックミュージックが好きで、例えばこんな曲が好きです。
+					</p>
+					<ul>
+						<li><p>Electrocado - Piddle Smell</p></li>
+						<li><p>Mr.Bill &amp; Loom In Essance - Abba Ridge</p></li>
+						<li><p>Tha Trickaz - Cloud City</p></li>
+						<li><p>Vulpey - Sever</p></li>
+						<li><p>Virtual Riot - Lunar</p></li>
+						<li><p>Gorillaz - Feel Good Inc.</p></li>
+						<li><p>ZUN - ハルトマンの妖怪少女</p></li>
+					</ul>
 				</div>
-				<ul class="skill-badges">
-					<li v-for="(badge, i) in category" :key="i" class="skill-badge">
-						<div
-							class="icon"
-							:style="{
-								'background-color': `#${
-									Array.isArray(badge)
-										? badge.length == 2
-											? badge[0].hex
-											: badge[1]
-										: badge.hex
-								}`
-							}"
-							:class="{
-								black:
-									0.72 <
-									luminosity(
-										`#${
-											Array.isArray(badge)
-												? badge.length == 2
-													? badge[0].hex
-													: badge[1]
-												: badge.hex
-										}`
-									)
-							}"
-						>
+			</section>
+			<section class="detail">
+				<div class="title" animate>
+					<h1>DETAIL</h1>
+				</div>
+				<div class="detail-table">
+					<div
+						v-for="(detail, i) in details"
+						:key="i"
+						class="detail-table-line"
+						:class="{ icon: i % 3 == 0, key: i % 3 == 1, content: i % 3 == 2 }"
+					>
+						<FontAwesomeIcon v-if="i % 3 == 0" :icon="detail" />
+						<p v-else>{{ detail }}</p>
+					</div>
+				</div>
+			</section>
+			<section class="social">
+				<div class="title" animate>
+					<h1>SOCIAL</h1>
+				</div>
+				<ul class="social-links">
+					<li
+						v-for="i in [
+							'twitter',
+							'github',
+							'steam',
+							'discord',
+							'spotify',
+							'pixiv',
+							'patreon',
+							'soundcloud'
+						]"
+						:key="i"
+						class="social-link"
+					>
+						<div class="icon">
 							<svg-icon
-								v-if="Array.isArray(badge) && typeof badge[0] === 'string'"
+								v-if="typeof brandicons[i] === 'string'"
 								class="svg"
-								:name="badge[0]"
+								:name="brandicons[i]"
 							/>
-							<FontAwesomeIcon
-								v-else-if="Array.isArray(badge) && badge.length !== 2"
-								:icon="badge[0]"
-							/>
-							<!-- eslint-disable vue/no-v-html-->
-							<div
-								v-else-if="Array.isArray(badge)"
-								class="svg"
-								v-html="badge[0].svg"
-							/>
-							<div v-else class="svg" v-html="badge.svg" />
-							<!-- eslint-enable -->
+							<FontAwesomeIcon v-else :icon="brandicons[i]" fixed-width />
 						</div>
-						<div class="text">
-							<p>
-								{{
-									Array.isArray(badge)
-										? badge.length === 2
-											? badge[0].title
-											: badge[2]
-										: badge.title
-								}}
-							</p>
-						</div>
-						<span
-							v-if="
-								Array.isArray(badge) &&
-									(badge.length === 2 || badge.length === 4)
-							"
-							class="perfect"
-							>*</span
-						>
 					</li>
 				</ul>
-			</div>
-		</section>
+			</section>
+			<section class="donate">
+				<div class="title" animate>
+					<h1>DONATE</h1>
+				</div>
+				<ul class="donate-ways">
+					<li class="donate-way">
+						<div class="icon">
+							<svg-icon class="svg" :name="brandicons['kyash']" />
+						</div>
+						<div class="contents">
+							<p>Kyash</p>
+							<strong>sno2wman</strong>
+						</div>
+					</li>
+					<li class="donate-way">
+						<div class="icon">
+							<FontAwesomeIcon :icon="brandicons['bitcoin']" />
+						</div>
+						<div class="contents">
+							<p>Bitcoin</p>
+							<strong>13EKexdZYnjKaQQAVSrbtwegAN9iAeLBiG</strong>
+						</div>
+					</li>
+					<li class="donate-way">
+						<div class="icon">
+							<FontAwesomeIcon :icon="brandicons['amazon']" />
+						</div>
+						<div class="contents">
+							<p>Amazon Wishlist</p>
+							<div class="icons">
+								<FontAwesomeIcon
+									v-for="key in [
+										'book',
+										'glass-cirtus',
+										'cookie-bite',
+										'theater-masks',
+										'pills'
+									]"
+									:key="key"
+									class="icon"
+									:icon="icons[key]"
+									fixed-width
+								/>
+							</div>
+						</div>
+					</li>
+					<li class="donate-way">
+						<div class="icon">
+							<FontAwesomeIcon :icon="brandicons['steam']" />
+						</div>
+						<div class="contents">
+							<p>Steam Wishlist</p>
+							<div class="icons">
+								<FontAwesomeIcon
+									class="icon"
+									:icon="icons['gamepad']"
+									fixed-width
+								/>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</section>
+			<section class="skills">
+				<div class="title center" animate>
+					<h1>SKILL</h1>
+				</div>
+				<div
+					v-for="(category, categoryName) in badges"
+					:key="categoryName"
+					class="skills-category"
+				>
+					<div class="skills-category-title">
+						<h1>{{ categoryName.toUpperCase() }}</h1>
+					</div>
+					<ul class="skill-badges">
+						<li v-for="(badge, i) in category" :key="i" class="skill-badge">
+							<div
+								class="icon"
+								:style="{
+									'background-color': `#${
+										Array.isArray(badge)
+											? badge.length == 2
+												? badge[0].hex
+												: badge[1]
+											: badge.hex
+									}`
+								}"
+								:class="{
+									black:
+										0.72 <
+										luminosity(
+											`#${
+												Array.isArray(badge)
+													? badge.length == 2
+														? badge[0].hex
+														: badge[1]
+													: badge.hex
+											}`
+										)
+								}"
+							>
+								<svg-icon
+									v-if="Array.isArray(badge) && typeof badge[0] === 'string'"
+									class="svg"
+									:name="badge[0]"
+								/>
+								<FontAwesomeIcon
+									v-else-if="Array.isArray(badge) && badge.length !== 2"
+									:icon="badge[0]"
+								/>
+								<!-- eslint-disable vue/no-v-html-->
+								<div
+									v-else-if="Array.isArray(badge)"
+									class="svg"
+									v-html="badge[0].svg"
+								/>
+								<div v-else class="svg" v-html="badge.svg" />
+								<!-- eslint-enable -->
+							</div>
+							<div class="text">
+								<p>
+									{{
+										Array.isArray(badge)
+											? badge.length === 2
+												? badge[0].title
+												: badge[2]
+											: badge.title
+									}}
+								</p>
+							</div>
+							<span
+								v-if="
+									Array.isArray(badge) &&
+										(badge.length === 2 || badge.length === 4)
+								"
+								class="perfect"
+								>*</span
+							>
+						</li>
+					</ul>
+				</div>
+			</section>
+		</div>
 	</article>
 </template>
 
@@ -381,6 +391,22 @@ export default class extends Vue {
 	luminosity(color: string) {
 		return Color(color).luminosity()
 	}
+
+	mounted() {
+		this.$nextTick(() => {
+			this.scroll()
+		})
+	}
+
+	scroll() {
+		const c = this.$el.scrollTop + window.innerHeight * 0.6
+		const animators = Array.from(
+			this.$el.querySelectorAll('[animate]:not(.animated)')
+		)
+		animators.forEach($e => {
+			if (c - $e.getBoundingClientRect().top >= 0) $e.classList.add('animated')
+		})
+	}
 }
 </script>
 
@@ -389,12 +415,17 @@ article {
 	top: 0;
 	left: 0;
 	right: 0;
-	margin: 0 auto;
-	display: grid;
+	width: 100%;
+	height: 100vh;
+	overflow-y: scroll;
+}
+.wrapper {
+	padding-top: 15vh;
+	padding-bottom: 25vh;
 	width: 100%;
 	max-width: 640px;
-	padding-top: 15vh;
-	padding-bottom: 10vh;
+	display: grid;
+	margin: auto;
 	grid-template-columns: 1fr auto;
 	grid-template-areas:
 		'profile profile'
@@ -403,7 +434,6 @@ article {
 		'skills  skills';
 	grid-column-gap: 16px;
 	grid-row-gap: 16px;
-
 	@media screen and (max-width: 762px) {
 		display: flex;
 		flex-direction: column;
@@ -433,13 +463,17 @@ section {
 	padding-bottom: 8px;
 	margin-bottom: 8px;
 	position: relative;
+	overflow: hidden;
 	h1 {
 		color: var(--text-black);
 		font-size: 1.25rem;
 		font-family: 'Barlow', sans-serif;
 		letter-spacing: 0.05em;
 		line-height: 1em;
-		overflow: hidden;
+		transform: translateY(100%);
+		opacity: 0;
+		transition: 0.25s 0.1s cubic-bezier(0.325, 0.855, 0.5, 0.925);
+		transition-property: transform, opacity;
 	}
 	&::after {
 		content: '';
@@ -448,12 +482,16 @@ section {
 		bottom: 0;
 		width: 24px;
 		border-bottom: 1px solid var(--text-black);
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform 0.125s cubic-bezier(0.925, 0.02, 0.655, 0.815);
 	}
 	&.center {
 		text-align: center;
 		&::after {
 			right: 0;
 			margin: auto;
+			transform-origin: center;
 		}
 	}
 	@media screen and (max-width: 762px) {
@@ -464,10 +502,57 @@ section {
 			margin: auto;
 		}
 	}
+	&.animated {
+		h1 {
+			opacity: 1;
+			transform: translateY(0);
+		}
+		&::after {
+			transform: scaleX(1);
+		}
+	}
+}
+
+@keyframes cover-y-1 {
+	from {
+		transform: scaleY(0);
+	}
+	to {
+		transform: scaleY(1);
+		visibility: hidden;
+	}
+}
+@keyframes cover-y-2 {
+	from {
+		transform: scaleY(1);
+		visibility: hidden;
+	}
+	to {
+		transform: scaleY(0);
+		visibility: visible;
+	}
+}
+@keyframes cover-x-1 {
+	from {
+		transform: scaleX(0);
+	}
+	to {
+		transform: scaleX(1);
+		visibility: hidden;
+	}
+}
+@keyframes cover-x-2 {
+	from {
+		transform: scaleX(1);
+		visibility: hidden;
+	}
+	to {
+		transform: scaleX(0);
+		visibility: visible;
+	}
 }
 
 .profile-text {
-	background-color: var(--text-black);
 	padding: 36px 48px;
 	margin: 24px;
 	color: var(--base-black);
@@ -477,6 +562,18 @@ section {
 	flex-direction: column;
 	align-items: center;
 	position: relative;
+	$cover-duration: 0.5s;
+	$glitchdelay: 0.15s;
+	&::before {
+		content: '';
+		position: absolute;
+		size: 100%;
+		top: 0;
+		left: 0;
+		background-color: var(--text-black);
+		visibility: hidden;
+		transition: visibility 0s $cover-duration;
+	}
 	&::after {
 		content: '';
 		position: absolute;
@@ -485,15 +582,83 @@ section {
 		left: 0;
 		background-image: url('~assets/point_9_black.png');
 		background-attachment: fixed;
-		opacity: 0.25;
+		opacity: 0;
+		transition: opacity 1s ($cover-duration * 2 + $glitchdelay)
+			cubic-bezier(0.18, 0.92, 0.415, 0.95);
+		z-index: 20;
 	}
+	& > .covers {
+		position: absolute;
+		size: 100%;
+		top: 0;
+		left: 0;
+		z-index: 25;
+		& > .cover {
+			position: absolute;
+			size: 100%;
+			top: 0;
+			left: 0;
+			animation-fill-mode: both;
+			animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+			animation-play-state: paused;
+			&:nth-of-type(2n + 1) {
+				animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+			}
+			&:nth-of-type(2n) {
+				animation-timing-function: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+			}
+			&:nth-of-type(1),
+			&:nth-of-type(2) {
+				animation-duration: $cover-duration;
+				background-color: var(--base-black);
+			}
+			&:nth-of-type(1) {
+				animation-name: cover-y-1;
+				transform-origin: top;
+			}
+			&:nth-of-type(2) {
+				animation-name: cover-y-2;
+				animation-delay: $cover-duration + $glitchdelay;
+				transform-origin: bottom;
+			}
+			&:nth-of-type(3),
+			&:nth-of-type(4) {
+				animation-duration: $cover-duration;
+				background-color: var(--accent-color);
+			}
+			&:nth-of-type(3) {
+				animation-name: cover-y-1;
+				transform-origin: top;
+				animation-delay: $glitchdelay;
+			}
+			&:nth-of-type(4) {
+				animation-name: cover-y-2;
+				animation-delay: $cover-duration;
+				transform-origin: bottom;
+			}
+		}
+	}
+	&.animated {
+		&::before {
+			visibility: visible;
+		}
+		&::after {
+			opacity: 0.4;
+		}
+		& > .covers > .cover {
+			animation-play-state: running;
+		}
+	}
+
 	img {
 		size: 6rem;
 		border-radius: 50%;
 		border: var(--bg) 1px solid;
-		margin-bottom: 8px;
 		user-select: none;
 		pointer-events: none;
+		transition: transform 0.4s ($cover-duration * 2 + $glitchdelay) + 0.125s
+			cubic-bezier(0.155, 1.175, 0.745, 1.17);
+		transform: scale(0) rotate(0.1turn);
 	}
 	p {
 		font-size: 0.85rem;
@@ -501,11 +666,35 @@ section {
 			margin-bottom: 2px;
 		}
 	}
+	& > p {
+		opacity: 0;
+		transform: translateY(-50%);
+		transition: 0.75s cubic-bezier(0.165, 0.84, 0.44, 1);
+		transition-property: opacity, transform;
+		@for $i from 1 through 5 {
+			&:nth-of-type(#{$i}) {
+				transition-delay: ($cover-duration * 2 + $glitchdelay) +
+					0.2s +
+					($i - 1) *
+					0.05s;
+			}
+		}
+	}
 	h1 {
 		font-weight: 700;
 		font-size: 1.25rem;
 		letter-spacing: 1px;
 		margin-bottom: 8px;
+		opacity: 0;
+		transition: 0.25s;
+		transform: translateY(-50%);
+		@for $i from 1 through 4 {
+			&:nth-of-type(#{$i}) {
+				transition-delay: ($cover-duration * 2 + $glitchdelay) +
+					($i - 1) *
+					0.1s;
+			}
+		}
 		&:not(:first-of-type) {
 			margin-top: 8px;
 		}
@@ -529,6 +718,40 @@ section {
 					margin-right: 8px;
 				}
 			}
+		}
+		opacity: 0;
+		transition: 0.5s;
+		transform: translateX(-10%);
+		@for $i from 1 through 2 {
+			&:nth-of-type(#{$i}) {
+				transition-delay: ($cover-duration * 2 + $glitchdelay) +
+					($i - 1) *
+					0.15s +
+					0.3s;
+			}
+		}
+	}
+	img,
+	p,
+	h1,
+	ul {
+		position: relative;
+	}
+	&.animated {
+		h1 {
+			opacity: 1;
+			transform: translateY(0);
+		}
+		& > p {
+			opacity: 1;
+			transform: translateY(0);
+		}
+		img {
+			transform: scale(1) rotate(0);
+		}
+		ul {
+			opacity: 1;
+			transform: translateY(0);
 		}
 	}
 	@media screen and (max-width: 762px) {
