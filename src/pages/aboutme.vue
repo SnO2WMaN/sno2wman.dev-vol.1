@@ -65,21 +65,12 @@
 				<div class="title" animate>
 					<h1>SOCIAL</h1>
 				</div>
-				<ul class="social-links">
+				<ul class="social-links" animate>
 					<li
-						v-for="i in [
-							'twitter',
-							'github',
-							'steam',
-							'discord',
-							'spotify',
-							'pixiv',
-							'patreon',
-							'soundcloud',
-							'annict'
-						]"
+						v-for="(link, i) in socials"
 						:key="i"
 						class="social-link"
+						:class="i"
 					>
 						<div class="icon">
 							<svg-icon
@@ -89,6 +80,8 @@
 							/>
 							<FontAwesomeIcon v-else :icon="brandicons[i]" fixed-width />
 						</div>
+						<a v-if="link.startsWith('discord:')" class="link" :href="link" />
+						<a v-else class="link" :href="link" target="_blank" />
 					</li>
 				</ul>
 			</section>
@@ -253,7 +246,9 @@ import {
 	faAmazon,
 	faSteam,
 	IconDefinition,
-	faNodeJs
+	faNodeJs,
+	faTumblr,
+	faMastodon
 } from '@fortawesome/free-brands-svg-icons'
 import {
 	faBook,
@@ -313,7 +308,9 @@ export default class extends Vue {
 		soundcloud: faSoundcloud,
 		bitcoin: faBitcoin,
 		amazon: faAmazon,
-		annict: 'annict'
+		annict: 'annict',
+		tumblr: faTumblr,
+		mastodon: faMastodon
 	}
 
 	@Provide()
@@ -332,10 +329,11 @@ export default class extends Vue {
 		github: 'https://github.com/SnO2WMaN',
 		spotify: 'https://open.spotify.com/user/sno2wman',
 		steam: 'https://steamcommunity.com/id/SnO2WMaN',
-		discord: 'SnO2WMaN#9459',
+		discord: 'discord:SnO2WMaN#9459',
 		patreon: 'https://www.patreon.com/SnO2WMaN',
 		annict: 'https://annict.jp/@SnO2WMaN',
-		soundcloud: 'https://soundcloud.com/sno2wman'
+		soundcloud: 'https://soundcloud.com/sno2wman',
+		pixiv: 'https://www.pixiv.net/member.php?id=31358190'
 	}
 
 	@Provide()
@@ -863,12 +861,15 @@ section {
 
 .social-links {
 	display: grid;
-	grid-template-columns: repeat(4, 48px);
+	grid-template-columns: repeat(5, 48px);
 }
 
 .social-link {
 	height: 48px;
-	.icon {
+	position: relative;
+	overflow: hidden;
+	& > .icon {
+		position: relative;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -876,8 +877,100 @@ section {
 		font-size: 24px;
 		color: white;
 		fill: white;
+		z-index: 1;
+		transform: scale(0);
+		transition: transform 0.25s cubic-bezier(0.215, 0.61, 0.355, 1);
 		.svg {
 			size: 24px;
+		}
+	}
+	&::before {
+		content: '';
+		position: absolute 0;
+		margin: auto;
+		border-style: solid;
+		border-width: (48px / 2);
+		border-radius: 50%;
+		transform: scale(0);
+		transition-property: transform, border-width;
+		transition-duration: 0.2s, 0.325s;
+		transition-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06),
+			cubic-bezier(0.23, 1, 0.32, 1);
+	}
+
+	&::after {
+		content: '';
+		position: absolute;
+		size: 100% * sqrt(2);
+		left: 50% * (1 - sqrt(2));
+		top: 50% * (1 - sqrt(2));
+		border-radius: 50%;
+		transform: scale(0);
+		transition: 0.2s transform cubic-bezier(0.13, 0.885, 0.405, 0.975);
+		visibility: hidden;
+	}
+	$social-colors: (
+		twitter: $brandcolors-twitter-1,
+		github: $brandcolors-github-1,
+		pixiv: $brandcolors-pixiv-1,
+		spotify: $brandcolors-spotify-1,
+		soundcloud: #ff5500,
+		patreon: $brandcolors-patreon-1,
+		discord: $brandcolors-discord-1,
+		steam: #171a21,
+		annict: #f85b73,
+		tumblr: #36465d,
+		amazon: $brandcolors-amazon-1,
+		mastodon: #3088d4
+	);
+	@each $key, $color in $social-colors {
+		&.#{$key} {
+			&::before {
+				border-color: $color;
+			}
+			&::after {
+				background-color: $color;
+			}
+		}
+	}
+	@for $i from 1 through length($social-colors) {
+		&:nth-of-type(#{$i}) {
+			$d: ($i - 1) * 0.05s;
+			& > .icon {
+				transition-delay: $d + 0.2s;
+			}
+			&::before {
+				transition-delay: $d, $d + 0.2s;
+			}
+		}
+	}
+	& > .link {
+		position: absolute;
+		size: 100%;
+		top: 0;
+		left: 0;
+		z-index: 20;
+		visibility: hidden;
+	}
+	&:hover {
+		&::after {
+			transform: scale(1);
+		}
+	}
+}
+
+.social-links.animated {
+	.social-link {
+		& > .icon {
+			transform: scale(1);
+		}
+		&::before {
+			border-width: 0;
+			transform: scale(sqrt(2));
+		}
+		&::after,
+		& > .link {
+			visibility: visible;
 		}
 	}
 }
