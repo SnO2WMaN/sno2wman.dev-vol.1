@@ -1,5 +1,5 @@
 {
-	"*.{gql}": ["prettier --write", "git add"],
+	"*.{gql,html}": ["prettier --write", "git add"],
 	"*.{js,json}": ["prettier --write", "eslint --fix", "git add"],
 	"*.{css,scss}": ["prettier --write", "stylelint --fix", "git add"],
 	"*.vue": ["prettier --write", "eslint --fix", "stylelint --fix", "git add"],
