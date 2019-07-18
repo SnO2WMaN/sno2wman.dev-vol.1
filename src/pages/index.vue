@@ -66,7 +66,7 @@ import { Vue, Component } from 'nuxt-property-decorator'
 
 @Component({
 	name: 'Page.Index',
-	transition: 'index',
+	transition: 'default',
 	head: {
 		titleTemplate: 'sno2wman.dev'
 	}

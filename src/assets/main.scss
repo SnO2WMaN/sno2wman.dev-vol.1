@@ -1,14 +1,14 @@
-.aboutme-enter-active,
-.aboutme-leave-active {
-	transition: opacity 0.5s, transform 1.5s;
+.default-enter-active,
+.default-leave-active {
+	transition: opacity 1s, transform 1s;
 }
 
-.aboutme-enter {
+.default-enter {
 	opacity: 0;
 	transform: translateX(10%);
 }
 
-.aboutme-leave-active {
+.default-leave-active {
 	opacity: 0;
-	transform: translateX(-100%);
+	transform: translateX(10%);
 }
