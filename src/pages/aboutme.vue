@@ -91,27 +91,25 @@
 				</div>
 				<ul class="donate-ways" animate>
 					<li class="donate-way kyash">
+						<a class="link" href="kyash://qr/u/3548793821849286552" />
 						<div class="icon-wrap">
 							<svg-icon class="svg icon" :name="brandicons['kyash']" />
-							<a class="link" href="kyash://qr/u/3548793821849286552" />
 						</div>
 						<div class="contents">
-							<div class="cover"></div>
 							<p>Kyash</p>
 							<strong>sno2wman</strong>
 						</div>
 					</li>
 					<li class="donate-way amazon">
+						<a
+							class="link"
+							target="_blank"
+							href="https://www.amazon.jp/hz/wishlist/ls/2NHME83WUZWSR?ref_=wl_share"
+						/>
 						<div class="icon-wrap">
 							<FontAwesomeIcon class="icon" :icon="brandicons['amazon']" />
-							<a
-								class="link"
-								target="_blank"
-								href="https://www.amazon.jp/hz/wishlist/ls/2NHME83WUZWSR?ref_=wl_share"
-							/>
 						</div>
 						<div class="contents">
-							<div class="cover"></div>
 							<p>Amazon Wishlist</p>
 							<div class="icons">
 								<FontAwesomeIcon
@@ -131,16 +129,15 @@
 						</div>
 					</li>
 					<li class="donate-way steam">
+						<a
+							class="link"
+							target="_blank"
+							href="https://store.steampowered.com/wishlist/id/SnO2WMaN"
+						/>
 						<div class="icon-wrap">
 							<FontAwesomeIcon class="icon" :icon="brandicons['steam']" />
-							<a
-								class="link"
-								target="_blank"
-								href="https://store.steampowered.com/wishlist/id/SnO2WMaN"
-							/>
 						</div>
 						<div class="contents">
-							<div class="cover"></div>
 							<p>Steam Wishlist</p>
 							<div class="icons">
 								<FontAwesomeIcon
@@ -152,15 +149,11 @@
 						</div>
 					</li>
 					<li class="donate-way bitcoin">
+						<a class="link" href="bitcoin:13EKexdZYnjKaQQAVSrbtwegAN9iAeLBiG" />
 						<div class="icon-wrap">
 							<FontAwesomeIcon class="icon" :icon="brandicons['bitcoin']" />
-							<a
-								class="link"
-								href="bitcoin:13EKexdZYnjKaQQAVSrbtwegAN9iAeLBiG"
-							/>
 						</div>
 						<div class="contents">
-							<div class="cover"></div>
 							<p>Bitcoin</p>
 							<strong>13EKexdZYnjKaQQAVSrbtwegAN9iAeLBiG</strong>
 						</div>
@@ -675,9 +668,9 @@ section {
 		border: var(--bg) 1px solid;
 		user-select: none;
 		pointer-events: none;
-		transition: transform 0.4s ($cover-duration * 2 + $glitchdelay) + 0.125s
-			cubic-bezier(0.155, 1.175, 0.745, 1.17);
-		transform: scale(0) rotate(0.1turn);
+		transition: transform 0.2s ($cover-duration * 2 + $glitchdelay) + 0.125s
+			cubic-bezier(0.7, 0.43, 0.175, 0.895);
+		transform: scale(0);
 	}
 	p {
 		font-size: 0.85rem;
@@ -766,7 +759,7 @@ section {
 			transform: translateY(0);
 		}
 		img {
-			transform: scale(1) rotate(0);
+			transform: scale(1);
 		}
 		ul {
 			opacity: 1;
@@ -834,6 +827,15 @@ section {
 
 .donate-way {
 	display: flex;
+	position: relative;
+	& > .link {
+		visibility: hidden;
+		position: absolute;
+		size: 100%;
+		z-index: 50;
+		left: 0;
+		top: 0;
+	}
 	& > .icon-wrap {
 		position: relative;
 		display: flex;
@@ -876,25 +878,18 @@ section {
 			transition: 0.2s transform cubic-bezier(0.13, 0.885, 0.405, 0.975);
 			visibility: hidden;
 		}
-		& > .link {
-			position: absolute;
-			size: 100%;
-			z-index: 50;
-			left: 0;
-			top: 0;
-		}
 	}
 	& > .contents {
 		flex-grow: 2;
-		padding-left: 6px;
-		padding-right: 6px;
+		padding: 0 12px;
 		position: relative;
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
 		justify-content: center;
 		overflow: hidden;
-		& > .cover {
+		&::before {
+			content: '';
 			position: absolute;
 			width: 100%;
 			height: 1px;
@@ -905,7 +900,19 @@ section {
 			transform: translateX(-101%);
 			transition: transform 0.4s cubic-bezier(1, 0.055, 0.19, 0.93);
 		}
-
+		&::after {
+			content: '';
+			position: absolute;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			margin: auto 0;
+			width: 1px;
+			height: (100% / (1 + sqrt(2)));
+			transform: scaleY(0);
+			transition: transform 0.2s cubic-bezier(1, 0.055, 0.19, 0.93);
+			visibility: hidden;
+		}
 		& > p {
 			font-size: 0.8rem;
 			font-family: 'Roboto', serif;
@@ -913,13 +920,11 @@ section {
 			line-height: 1em;
 			margin-bottom: 6px;
 			user-select: none;
-
 			transform: translateY(50%);
 			opacity: 0;
 			transition: 0.3s cubic-bezier(0.38, 0.505, 0.125, 0.92);
 			transition-property: opacity, transform;
 		}
-
 		& > strong {
 			color: var(--text-black);
 			font-size: 0.75rem;
@@ -939,17 +944,17 @@ section {
 		& > strong,
 		& > .icons {
 			opacity: 0;
-			transition: 0.3s cubic-bezier(0.77, 0, 0.175, 1);
+			transition: 0.3s cubic-bezier(0.135, 0.715, 0.44, 0.925);
 			transition-property: opacity, transform;
 		}
 
 		& > p {
-			transform: translateY(-50%);
+			transform: translateY(-100%);
 		}
 
 		& > strong,
 		& > .icons {
-			transform: translateY(50%);
+			transform: translateY(100%);
 		}
 	}
 	$social-colors: (
@@ -969,7 +974,8 @@ section {
 				}
 			}
 			& > .contents {
-				& > .cover {
+				&::before,
+				&::after {
 					background-color: $color;
 				}
 			}
@@ -987,10 +993,9 @@ section {
 				}
 			}
 			& > .contents {
-				& > .cover {
+				&::before {
 					transition-delay: $d + 0.25s;
 				}
-
 				& > p,
 				& > strong,
 				& > .icons {
@@ -1003,6 +1008,10 @@ section {
 
 .donate-ways.animated {
 	.donate-way {
+		cursor: pointer;
+		& > .link {
+			visibility: visible;
+		}
 		& > .icon-wrap {
 			& > .icon {
 				transform: scale(1);
@@ -1014,22 +1023,31 @@ section {
 			&::after {
 				visibility: visible;
 			}
-			&:hover {
-				&::after {
-					transform: scale(sqrt(2));
-				}
-			}
 		}
-
 		& > .contents {
-			& > .cover {
+			&::before {
 				transform: translateX(101%);
+			}
+			&::after {
+				visibility: visible;
 			}
 			& > p,
 			& > strong,
 			& > .icons {
 				transform: translateY(0);
 				opacity: 1;
+			}
+		}
+		&:hover {
+			& > .icon-wrap {
+				&::after {
+					transform: scale(sqrt(2));
+				}
+			}
+			& > .contents {
+				&::after {
+					transform: scaleY(1);
+				}
 			}
 		}
 	}
