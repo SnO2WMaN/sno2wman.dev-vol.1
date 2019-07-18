@@ -5,7 +5,7 @@ node_modules
 *.log
 
 # private files
-.npmrc
+.env
 
 # configs
 .vscode
