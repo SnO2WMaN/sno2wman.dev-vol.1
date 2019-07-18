@@ -12460,10 +12460,10 @@ simple-git@^1.85.0:
   dependencies:
     debug "^4.0.1"
 
-simple-icons@^1.10.0:
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/simple-icons/-/simple-icons-1.10.0.tgz#8e0b4a48c4bdb144c9b7617dd4ee79bac76d3a47"
-  integrity sha512-RA2rXWqWibKx+kU0b4Dce0bN8Nd3ECHXXHCGcZDJ38sE2WMQx0QjzoUqKNLwb4+oAzDTfubOvQBUnFgpLhMdyw==
+simple-icons@^1.11.0:
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/simple-icons/-/simple-icons-1.11.0.tgz#6b7b8c6dd0893e70846537292598f700f6d2199c"
+  integrity sha512-0X+oHm3KvNybsYbrTlyrK2XDn0K+4sof6PIQaco1wt9y5Hkr6QA324YmMNrqRDgaOFoKfn9OX96vrXRf/RbbGQ==
 
 simple-swizzle@^0.2.2:
   version "0.2.2"
