@@ -8,7 +8,8 @@ const nuxtConfig: NuxtConfiguration = {
 		'@bazzite/nuxt-optimized-images',
 		'@nuxtjs/pwa',
 		'@nuxtjs/svg-sprite',
-		'@nuxtjs/style-resources'
+		'@nuxtjs/style-resources',
+		'@nuxtjs/google-analytics'
 	],
 	css: ['minireset.css'],
 	styleResources: {
@@ -23,6 +24,9 @@ const nuxtConfig: NuxtConfiguration = {
 		short_name: 'sno2wman.dev', // eslint-disable-line @typescript-eslint/camelcase
 		description: '@SnO2WMaN Website',
 		orientation: 'portrait'
+	},
+	googleAnalytics: {
+		id: 'UA-103663993-3'
 	},
 	head: {
 		titleTemplate: '%s - sno2wman.dev'
