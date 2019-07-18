@@ -49,7 +49,7 @@
 				<div class="title" animate>
 					<h1>DETAIL</h1>
 				</div>
-				<div class="detail-table">
+				<div class="detail-table" animate>
 					<div
 						v-for="(detail, i) in details"
 						:key="i"
@@ -353,7 +353,7 @@ export default class extends Vue {
 		birthday: [faBirthdayCake, '2001.06.22'],
 		age: [faUserClock, 18],
 		gender: [faMars, 'Male'],
-		live: [faUmbrellaBeach, 'JP -> AICHI -> NAGOYA'],
+		live: [faUmbrellaBeach, 'Japan,Nagoya'],
 		religion: [faPastafarianism, 'Pastafarianism']
 	})
 		.map(({ 0: key, 1: v }) => [v[0], key.toUpperCase(), v[1]])
@@ -799,6 +799,10 @@ section {
 		size: 36px;
 		font-size: 18px;
 		color: white;
+		opacity: 0;
+		transform: scale(sqrt(2));
+		transition: 0.4s cubic-bezier(0.115, 0.9, 0.375, 0.895);
+		transition-property: transform, opacity;
 	}
 	.key {
 		color: var(--text-black);
@@ -808,6 +812,11 @@ section {
 		letter-spacing: 1px;
 		padding: 0 4px;
 		user-select: none;
+		opacity: 0;
+		transform: rotateZ(1rad);
+		transform-origin: left center;
+		transition: 0.2s cubic-bezier(0.115, 0.9, 0.375, 0.895);
+		transition-property: transform, opacity;
 	}
 	.content {
 		color: var(--text-black);
@@ -817,6 +826,30 @@ section {
 		font-size: 0.9rem;
 		font-family: 'Roboto Mono', sans-serif;
 		margin-left: 12px;
+		opacity: 0;
+		transform: translateX(10%);
+		transition: 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+		transition-property: transform, opacity;
+	}
+	@for $i from 1 through 3 * 5 {
+		$d: ($i - 1) * 0.05s;
+		& > *:nth-of-type(#{$i}) {
+			transition-delay: $d;
+		}
+	}
+	&.animated {
+		.icon {
+			opacity: 1;
+			transform: scale(1);
+		}
+		.key {
+			opacity: 1;
+			transform: translateX(0) rotateZ(0);
+		}
+		.content {
+			opacity: 1;
+			transform: translateX(0);
+		}
 	}
 }
 
