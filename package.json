@@ -14,6 +14,7 @@
 		"@nuxt/config": "^2.8.1",
 		"@nuxt/typescript": "^2.8.1",
 		"@nuxt/vue-app": "^2.8.1",
+		"@nuxtjs/google-analytics": "^2.2.0",
 		"@nuxtjs/pwa": "^3.0.0-beta.16",
 		"@nuxtjs/style-resources": "^0.1.2",
 		"@nuxtjs/svg-sprite": "^0.2.1",
