@@ -168,6 +168,7 @@
 					v-for="(category, categoryName) in badges"
 					:key="categoryName"
 					class="skills-category"
+					animate
 				>
 					<div class="skills-category-title">
 						<h1>{{ categoryName.toUpperCase() }}</h1>
@@ -176,36 +177,30 @@
 						<li v-for="(badge, i) in category" :key="i" class="skill-badge">
 							<div
 								class="icon"
-								:style="{
-									'background-color': `#${
-										Array.isArray(badge)
-											? badge.length == 2
-												? badge[0].hex
-												: badge[1]
-											: badge.hex
-									}`
-								}"
 								:class="{
 									black:
 										0.72 <
 										luminosity(
-											`#${
-												Array.isArray(badge)
-													? badge.length == 2
-														? badge[0].hex
-														: badge[1]
-													: badge.hex
-											}`
+											`#${Array.isArray(badge) ? badge[1] : badge.hex}`
 										)
 								}"
 							>
+								<div
+									class="cover"
+									:style="{
+										'background-color': `#${
+											Array.isArray(badge) ? badge[1] : badge.hex
+										}`
+									}"
+								/>
 								<svg-icon
 									v-if="Array.isArray(badge) && typeof badge[0] === 'string'"
 									class="svg"
 									:name="badge[0]"
 								/>
 								<FontAwesomeIcon
-									v-else-if="Array.isArray(badge) && badge.length !== 2"
+									v-else-if="Array.isArray(badge)"
+									class="icon"
 									:icon="badge[0]"
 								/>
 								<!-- eslint-disable vue/no-v-html-->
@@ -219,23 +214,9 @@
 							</div>
 							<div class="text">
 								<p>
-									{{
-										Array.isArray(badge)
-											? badge.length === 2
-												? badge[0].title
-												: badge[2]
-											: badge.title
-									}}
+									{{ Array.isArray(badge) ? badge[2] : badge.title }}
 								</p>
 							</div>
-							<span
-								v-if="
-									Array.isArray(badge) &&
-										(badge.length === 2 || badge.length === 4)
-								"
-								class="perfect"
-								>*</span
-							>
 						</li>
 					</ul>
 				</div>
@@ -363,12 +344,11 @@ export default class extends Vue {
 	badges: {
 		[key in string]: (
 			| { hex: string; title: string; svg: string }
-			| [IconDefinition | string, string, string, true?]
-			| [{ hex: string; title: string; svg: string }, true])[]
+			| [IconDefinition | string, string, string])[]
 	} = {
 		lang: [
 			iconHTML,
-			['pug', 'a86454', 'Pug', true],
+			['pug', 'a86454', 'Pug'],
 			iconCSS,
 			iconSASS,
 			['postcss', 'dd3a0a', 'PostCSS'],
@@ -387,14 +367,11 @@ export default class extends Vue {
 			['stylelint', '1f1f1f', 'Stylelint'],
 			['editorconfig', 'fefefe', 'EditorConfig'],
 			iconYarn,
-			['lerna', '1f1f1f', 'lerna', true],
+			['lerna', '1f1f1f', 'lerna'],
 			['renovate', 'ffe42e', 'Renovate']
 		],
-		ci: [
-			iconCircleCI,
-			['travis_ci', iconTravisCI.hex, iconTravisCI.title, true]
-		],
-		platform: [iconNetlify, [iconFirebase, true]],
+		ci: [iconCircleCI, ['travis_ci', iconTravisCI.hex, iconTravisCI.title]],
+		platform: [iconNetlify, iconFirebase],
 		versioning: [iconGit, iconGithub, ['gitkraken', '1d958a', 'GitKraken']],
 		editor: [iconVSCode],
 		software: [['affinity', '4ecdfa', 'Affinity Designer']]
@@ -411,7 +388,7 @@ export default class extends Vue {
 	}
 
 	scroll() {
-		const wh = window.innerHeight / 2
+		const wh = window.innerHeight * 0.75
 		const animators = Array.from(
 			this.$el.querySelectorAll('[animate]:not(.animated)')
 		)
@@ -1208,11 +1185,15 @@ section {
 .skills-category-title {
 	margin-bottom: 12px;
 	user-select: none;
-	h1 {
+	& > h1 {
 		font-family: 'Barlow', sans-serif;
 		font-size: 0.8rem;
 		color: var(--text-black);
 		letter-spacing: 2px;
+		transform: translateY(50%);
+		opacity: 0;
+		transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+		transition-property: opacity, transform;
 	}
 	@media screen and (max-width: 762px) {
 		text-align: center;
@@ -1224,9 +1205,8 @@ section {
 	flex-wrap: wrap;
 	margin-bottom: -8px;
 	@media screen and (max-width: 762px) {
-		justify-content: center;
-		margin-left: 24px;
-		margin-right: 24px;
+		justify-content: flex-start;
+		padding: 0 (50vw / (2 + sqrt(2)));
 	}
 }
 
@@ -1234,12 +1214,20 @@ section {
 	display: flex;
 	align-items: center;
 	user-select: none;
-	overflow: hidden;
 	margin-right: 8px;
 	margin-bottom: 8px;
 	padding-right: 8px;
-	background-color: #2f2f2f;
-	.icon {
+	position: relative;
+	&::after {
+		content: '';
+		position: absolute 0;
+		size: 100%;
+		background-color: #2f2f2f;
+		transform: scaleX(0);
+		transition: 0.3s cubic-bezier(0.92, 0.1, 0.02, 0.66);
+		transform-origin: left;
+	}
+	& > .icon {
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -1247,35 +1235,104 @@ section {
 		font-size: 16px;
 		color: white;
 		fill: white;
+		position: relative;
+		overflow: hidden;
+		& > .cover {
+			z-index: 1;
+			position: absolute 0;
+			size: 100%;
+			transform: scale(0);
+			transition: 0.2s cubic-bezier(0.92, 0.1, 0.21, 0.765);
+		}
 		& > .svg {
 			size: 16px;
 			font-size: 0;
+		}
+		& > .svg,
+		& > .icon {
+			position: relative;
+			z-index: 1;
+			transform: scale(0);
+			transition: 0.2s cubic-bezier(0.825, 0.06, 0.65, 0.865);
+			transition-property: opacity, transform;
 		}
 		&.black {
 			color: #1f1f1f;
 			fill: #1f1f1f;
 		}
 	}
-	.text {
+	& > .text {
 		flex-grow: 2;
 		color: white;
 		padding-left: 8px;
-		background-color: #2f2f2f;
+		overflow: hidden;
 		& > p {
+			position: relative;
+			z-index: 1;
 			font-weight: 300;
 			font-family: 'Roboto', sans-serif;
 			font-size: 0.8rem;
 			line-height: 1em;
+			transform: translateX(-50%);
+			opacity: 0;
+			transition: 0.2s cubic-bezier(0.155, 0.825, 0.145, 0.855);
+			transition-property: opacity, transform;
 		}
 	}
+}
 
-	.perfect {
-		display: block;
-		color: white;
-		font-size: 0.8rem;
-		font-family: 'Roboto', sans-serif;
-		margin-left: 4px;
-		line-height: 1em;
+.skills-category {
+	.skill-badge {
+		@for $i from 1 through 8 {
+			$d: ($i - 1) * 0.075s;
+			&:nth-of-type(#{$i}) {
+				&::after {
+					transition-delay: $d;
+				}
+				& > .icon {
+					& > .cover {
+						transition-delay: $d + 0.1s;
+					}
+					& > .svg,
+					& > .icon {
+						transition-delay: $d + 0.25s;
+					}
+				}
+				& > .text {
+					& > p {
+						transition-delay: $d + 0.25s;
+					}
+				}
+			}
+		}
+	}
+	&.animated {
+		.skills-category-title {
+			& > h1 {
+				transform: translateY(0);
+				opacity: 1;
+			}
+		}
+		.skill-badge {
+			&::after {
+				transform: scaleX(1);
+			}
+			& > .icon {
+				& > .cover {
+					transform: scale(sqrt(2));
+				}
+				& > .svg,
+				& > .icon {
+					transform: scale(1);
+				}
+			}
+			& > .text {
+				& > p {
+					transform: translateX(0);
+					opacity: 1;
+				}
+			}
+		}
 	}
 }
 </style>
