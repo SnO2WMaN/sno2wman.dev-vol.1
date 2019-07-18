@@ -411,12 +411,13 @@ export default class extends Vue {
 	}
 
 	scroll() {
-		const c = this.$el.scrollTop + window.innerHeight * 0.6
+		const wh = window.innerHeight / 2
 		const animators = Array.from(
 			this.$el.querySelectorAll('[animate]:not(.animated)')
 		)
 		animators.forEach($e => {
-			if (c - $e.getBoundingClientRect().top >= 0) $e.classList.add('animated')
+			const { top } = $e.getBoundingClientRect()
+			if (top <= wh) $e.classList.add('animated')
 		})
 	}
 }
