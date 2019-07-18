@@ -89,30 +89,29 @@
 				<div class="title" animate>
 					<h1>DONATE</h1>
 				</div>
-				<ul class="donate-ways">
-					<li class="donate-way">
-						<div class="icon">
-							<svg-icon class="svg" :name="brandicons['kyash']" />
+				<ul class="donate-ways" animate>
+					<li class="donate-way kyash">
+						<div class="icon-wrap">
+							<svg-icon class="svg icon" :name="brandicons['kyash']" />
+							<a class="link" href="kyash://qr/u/3548793821849286552" />
 						</div>
 						<div class="contents">
+							<div class="cover"></div>
 							<p>Kyash</p>
 							<strong>sno2wman</strong>
 						</div>
 					</li>
-					<li class="donate-way">
-						<div class="icon">
-							<FontAwesomeIcon :icon="brandicons['bitcoin']" />
+					<li class="donate-way amazon">
+						<div class="icon-wrap">
+							<FontAwesomeIcon class="icon" :icon="brandicons['amazon']" />
+							<a
+								class="link"
+								target="_blank"
+								href="https://www.amazon.jp/hz/wishlist/ls/2NHME83WUZWSR?ref_=wl_share"
+							/>
 						</div>
 						<div class="contents">
-							<p>Bitcoin</p>
-							<strong>13EKexdZYnjKaQQAVSrbtwegAN9iAeLBiG</strong>
-						</div>
-					</li>
-					<li class="donate-way">
-						<div class="icon">
-							<FontAwesomeIcon :icon="brandicons['amazon']" />
-						</div>
-						<div class="contents">
+							<div class="cover"></div>
 							<p>Amazon Wishlist</p>
 							<div class="icons">
 								<FontAwesomeIcon
@@ -131,11 +130,17 @@
 							</div>
 						</div>
 					</li>
-					<li class="donate-way">
-						<div class="icon">
-							<FontAwesomeIcon :icon="brandicons['steam']" />
+					<li class="donate-way steam">
+						<div class="icon-wrap">
+							<FontAwesomeIcon class="icon" :icon="brandicons['steam']" />
+							<a
+								class="link"
+								target="_blank"
+								href="https://store.steampowered.com/wishlist/id/SnO2WMaN"
+							/>
 						</div>
 						<div class="contents">
+							<div class="cover"></div>
 							<p>Steam Wishlist</p>
 							<div class="icons">
 								<FontAwesomeIcon
@@ -144,6 +149,20 @@
 									fixed-width
 								/>
 							</div>
+						</div>
+					</li>
+					<li class="donate-way bitcoin">
+						<div class="icon-wrap">
+							<FontAwesomeIcon class="icon" :icon="brandicons['bitcoin']" />
+							<a
+								class="link"
+								href="bitcoin:13EKexdZYnjKaQQAVSrbtwegAN9iAeLBiG"
+							/>
+						</div>
+						<div class="contents">
+							<div class="cover"></div>
+							<p>Bitcoin</p>
+							<strong>13EKexdZYnjKaQQAVSrbtwegAN9iAeLBiG</strong>
 						</div>
 					</li>
 				</ul>
@@ -484,7 +503,7 @@ section {
 		border-bottom: 1px solid var(--text-black);
 		transform: scaleX(0);
 		transform-origin: left;
-		transition: transform 0.125s cubic-bezier(0.925, 0.02, 0.655, 0.815);
+		transition: transform 0.125s cubic-bezier(0.77, 0, 0.175, 1);
 	}
 	&.center {
 		text-align: center;
@@ -815,7 +834,8 @@ section {
 
 .donate-way {
 	display: flex;
-	& > .icon {
+	& > .icon-wrap {
+		position: relative;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -824,24 +844,83 @@ section {
 		font-size: 24px;
 		color: white;
 		fill: white;
-		.svg {
-			size: 24px;
+		overflow: hidden;
+		& > .icon {
+			z-index: 1;
+			transform: scale(0);
+			transition: transform 0.25s cubic-bezier(0.49, 0.17, 0.135, 0.905);
+			&.svg {
+				size: 24px;
+			}
+		}
+		&::before {
+			content: '';
+			position: absolute 0;
+			margin: auto;
+			border-style: solid;
+			border-width: (48px / 2);
+			border-radius: 50%;
+			transform: scale(0);
+			transition-property: transform, border-width;
+			transition-duration: 0.2s, 0.325s;
+			transition-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06),
+				cubic-bezier(0.23, 1, 0.32, 1);
+		}
+		&::after {
+			content: '';
+			position: absolute 0;
+			margin: auto;
+			size: 48px;
+			border-radius: 50%;
+			transform: scale(0);
+			transition: 0.2s transform cubic-bezier(0.13, 0.885, 0.405, 0.975);
+			visibility: hidden;
+		}
+		& > .link {
+			position: absolute;
+			size: 100%;
+			z-index: 50;
+			left: 0;
+			top: 0;
 		}
 	}
-	.contents {
+	& > .contents {
+		flex-grow: 2;
+		padding-left: 6px;
+		padding-right: 6px;
+		position: relative;
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
 		justify-content: center;
-		p {
+		overflow: hidden;
+		& > .cover {
+			position: absolute;
+			width: 100%;
+			height: 1px;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			margin: auto;
+			transform: translateX(-101%);
+			transition: transform 0.4s cubic-bezier(1, 0.055, 0.19, 0.93);
+		}
+
+		& > p {
 			font-size: 0.8rem;
 			font-family: 'Roboto', serif;
 			color: var(--text-black);
 			line-height: 1em;
 			margin-bottom: 6px;
 			user-select: none;
+
+			transform: translateY(50%);
+			opacity: 0;
+			transition: 0.3s cubic-bezier(0.38, 0.505, 0.125, 0.92);
+			transition-property: opacity, transform;
 		}
-		strong {
+
+		& > strong {
 			color: var(--text-black);
 			font-size: 0.75rem;
 			font-family: 'Roboto', serif;
@@ -854,6 +933,103 @@ section {
 			font-size: 1rem;
 			& > .icon:not(:last-of-type) {
 				margin-right: 4px;
+			}
+		}
+		& > p,
+		& > strong,
+		& > .icons {
+			opacity: 0;
+			transition: 0.3s cubic-bezier(0.77, 0, 0.175, 1);
+			transition-property: opacity, transform;
+		}
+
+		& > p {
+			transform: translateY(-50%);
+		}
+
+		& > strong,
+		& > .icons {
+			transform: translateY(50%);
+		}
+	}
+	$social-colors: (
+		steam: #171a21,
+		amazon: $brandcolors-amazon-1,
+		kyash: #1aaae2,
+		bitcoin: #f7931a
+	);
+	@each $key, $color in $social-colors {
+		&.#{$key} {
+			& > .icon-wrap {
+				&::before {
+					border-color: $color;
+				}
+				&::after {
+					background-color: $color;
+				}
+			}
+			& > .contents {
+				& > .cover {
+					background-color: $color;
+				}
+			}
+		}
+	}
+	@for $i from 1 through length($social-colors) {
+		&:nth-of-type(#{$i}) {
+			$d: ($i - 1) * 0.075s;
+			& > .icon-wrap {
+				& > .icon {
+					transition-delay: $d + 0.55s;
+				}
+				&::before {
+					transition-delay: $d, $d + 0.25s;
+				}
+			}
+			& > .contents {
+				& > .cover {
+					transition-delay: $d + 0.25s;
+				}
+
+				& > p,
+				& > strong,
+				& > .icons {
+					transition-delay: $d + 0.4s;
+				}
+			}
+		}
+	}
+}
+
+.donate-ways.animated {
+	.donate-way {
+		& > .icon-wrap {
+			& > .icon {
+				transform: scale(1);
+			}
+			&::before {
+				transform: scale(sqrt(2));
+				border-width: 0;
+			}
+			&::after {
+				visibility: visible;
+			}
+			&:hover {
+				&::after {
+					transform: scale(sqrt(2));
+				}
+			}
+		}
+
+		& > .contents {
+			& > .cover {
+				transform: translateX(101%);
+			}
+			& > p,
+			& > strong,
+			& > .icons {
+				transform: translateY(0);
+				opacity: 1;
 			}
 		}
 	}
@@ -919,9 +1095,7 @@ section {
 		discord: $brandcolors-discord-1,
 		steam: #171a21,
 		annict: #f85b73,
-		tumblr: #36465d,
-		amazon: $brandcolors-amazon-1,
-		mastodon: #3088d4
+		amazon: $brandcolors-amazon-1
 	);
 	@each $key, $color in $social-colors {
 		&.#{$key} {
