@@ -15,11 +15,11 @@ export default class extends Vue {}
 
 <style lang="scss">
 :root {
-	$accent-hue: 175;
-	--accent-color: hsl(#{$accent-hue}, 99%, 53%);
-	--base-black: hsl(#{30 + $accent-hue}, 25%, 22%);
+	$accent-hue: 172;
+	--accent-color: hsl(#{$accent-hue}, 100%, 65%);
+	--base-black: hsl(#{30 + $accent-hue}, 15%, 19%);
 	--text-black: hsl(#{45 + $accent-hue}, 8%, 85%);
-	--bg: hsl(#{35 + $accent-hue}, 8%, 15%);
+	--bg: hsl(#{35 + $accent-hue}, 12%, 10%);
 }
 
 body,
