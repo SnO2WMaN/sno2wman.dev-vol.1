@@ -74,8 +74,12 @@ import { Vue, Component } from 'nuxt-property-decorator'
 export default class extends Vue {
 	mounted() {
 		this.$nextTick(() => {
-			const animators = Array.from(this.$el.querySelectorAll('[animate]'))
-			const finishs = Array.from(this.$el.querySelectorAll('[finish]'))
+			const animators = Array.from(
+				this.$el.querySelectorAll('[animate]:not(.animated)')
+			)
+			const finishs = Array.from(
+				this.$el.querySelectorAll('[finish]:not(.finished)')
+			)
 			if (this.$store.getters.isAnimated('index')) {
 				animators.forEach($e => {
 					$e.classList.add('animated', 'quick')
