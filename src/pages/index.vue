@@ -84,6 +84,7 @@ export default class extends Vue {
 					$e.classList.add('finished')
 				})
 			} else {
+				this.$store.commit('animated', 'index')
 				Promise.all(
 					animators.map(
 						$e =>
@@ -96,7 +97,6 @@ export default class extends Vue {
 				).then(() => {
 					finishs.forEach($e => {
 						$e.classList.add('finished')
-						this.$store.commit('animated', 'index')
 					})
 				})
 			}
