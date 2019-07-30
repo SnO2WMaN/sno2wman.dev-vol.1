@@ -852,11 +852,6 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
-"@fortawesome/fontawesome-common-types@^0.2.19":
-  version "0.2.19"
-  resolved "https://npm.fontawesome.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.19.tgz#754a0f85e1290858152e1c05700ab502b11197f1"
-  integrity sha512-nd2Ul/CUs8U9sjofQYAALzOGpgkVJQgEhIJnOHaoyVR/LeC3x2mVg4eB910a4kS6WgLPebAY0M2fApEI497raQ==
-
 "@fortawesome/fontawesome-common-types@^0.2.20":
   version "0.2.20"
   resolved "https://npm.fontawesome.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.20.tgz#b5450b07400aea96d87d24e98e22d4a3d8d59305"
@@ -869,33 +864,33 @@
   dependencies:
     "@fortawesome/fontawesome-common-types" "^0.2.20"
 
-"@fortawesome/free-brands-svg-icons@^5.9.0":
-  version "5.9.0"
-  resolved "https://npm.fontawesome.com/@fortawesome/free-brands-svg-icons/-/free-brands-svg-icons-5.9.0.tgz#4ebedba0ea026368f8c21f2c598b4458c32236e5"
-  integrity sha512-sOz1wFyslaHUak8tY6IEhSAV1mAWbCLssBR8yFQV6f065k8nUCkjyrcxW4RVl9+wiLXmeG1CJUABUJV9DiW+7Q==
+"@fortawesome/free-brands-svg-icons@^5.10.0":
+  version "5.10.0"
+  resolved "https://npm.fontawesome.com/@fortawesome/free-brands-svg-icons/-/free-brands-svg-icons-5.10.0.tgz#59c8cb53e860c79dcba98e59085abc2b03e89768"
+  integrity sha512-Wj4MSV4J4DL8+HgnRTt2mk3pE2n3RZojDAlcN2G+2yzsdkI5TbXODY9bnfxs7Ik02GMqdhTdeHj/orxJYcYGLA==
   dependencies:
-    "@fortawesome/fontawesome-common-types" "^0.2.19"
+    "@fortawesome/fontawesome-common-types" "^0.2.20"
 
-"@fortawesome/pro-light-svg-icons@^5.9.0":
-  version "5.9.0"
-  resolved "https://npm.fontawesome.com/@fortawesome/pro-light-svg-icons/-/pro-light-svg-icons-5.9.0.tgz#a10747f20772fd6246d450a2ab7a644472921c73"
-  integrity sha512-GGlzdehkwF0dMi6SMaqYZ9lS08j4IqEutOY7y4UYFpXjB176W66dnT/QNGbqBzww04Woxb/+/iVwyz9tjm85WQ==
+"@fortawesome/pro-light-svg-icons@^5.10.0":
+  version "5.10.0"
+  resolved "https://npm.fontawesome.com/@fortawesome/pro-light-svg-icons/-/pro-light-svg-icons-5.10.0.tgz#cd743cd31ee01d73b0b392fd74a2875df55d1e7f"
+  integrity sha512-cGuLjYvsyGOhd7EO7cTpsylqMyl2x/iHNOlTnwh9OU4QjrOgvkm9NXTQwYJiinoOM+AAuKUC4OjmKais+TGl9A==
   dependencies:
-    "@fortawesome/fontawesome-common-types" "^0.2.19"
+    "@fortawesome/fontawesome-common-types" "^0.2.20"
 
-"@fortawesome/pro-regular-svg-icons@^5.9.0":
-  version "5.9.0"
-  resolved "https://npm.fontawesome.com/@fortawesome/pro-regular-svg-icons/-/pro-regular-svg-icons-5.9.0.tgz#53fc28561e2ccbd7a314964a7192becc14507dfb"
-  integrity sha512-GnMBC1LMLa7vs1V3GyAHStjXShJFhMrvBVtFZtpr3gY+ALKWsMI5+966KiKp5858g98ECRo3Z/XaQvc0rMseXw==
+"@fortawesome/pro-regular-svg-icons@^5.10.0":
+  version "5.10.0"
+  resolved "https://npm.fontawesome.com/@fortawesome/pro-regular-svg-icons/-/pro-regular-svg-icons-5.10.0.tgz#ab3e5ee0905ab2ab43bc486f92835660280e615f"
+  integrity sha512-Ru0qaB5LILM3o3zmw09qn9dHZ+ok0/wt4wU3WVaEepF9pANLaZhy6gOWzvauIVVavckr/iOsVd9gzAbFE1bziA==
   dependencies:
-    "@fortawesome/fontawesome-common-types" "^0.2.19"
+    "@fortawesome/fontawesome-common-types" "^0.2.20"
 
-"@fortawesome/pro-solid-svg-icons@^5.9.0":
-  version "5.9.0"
-  resolved "https://npm.fontawesome.com/@fortawesome/pro-solid-svg-icons/-/pro-solid-svg-icons-5.9.0.tgz#c872b14d22081b50d617bea6d5b7399b6f0676dc"
-  integrity sha512-sjQNmvPEx80Kd+zJBKFrT+06oOkD5vGsHxelUJwnii3b7fkBM6nb6FnvAU+CZBHTNh5GCAI5OVcjBcMhXiXIaQ==
+"@fortawesome/pro-solid-svg-icons@^5.10.0":
+  version "5.10.0"
+  resolved "https://npm.fontawesome.com/@fortawesome/pro-solid-svg-icons/-/pro-solid-svg-icons-5.10.0.tgz#76114a3487dc809e05d006feb14fa4533aafcfa5"
+  integrity sha512-rGw1hhWDgvk0PGkEGfjFP3zsOWtjTXCPxdk7jmRM+aCEUZ1uYEgVevHyA/lBdcvbMMmn0inAqQFQ4Rz6yE5zag==
   dependencies:
-    "@fortawesome/fontawesome-common-types" "^0.2.19"
+    "@fortawesome/fontawesome-common-types" "^0.2.20"
 
 "@fortawesome/vue-fontawesome@^0.1.6":
   version "0.1.6"
