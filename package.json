@@ -5,7 +5,7 @@
 	"dependencies": {
 		"@bazzite/nuxt-optimized-images": "^0.2.1",
 		"@brandcolors/sass": "^1.4.0",
-		"@fortawesome/fontawesome-svg-core": "^1.2.19",
+		"@fortawesome/fontawesome-svg-core": "^1.2.20",
 		"@fortawesome/free-brands-svg-icons": "^5.9.0",
 		"@fortawesome/pro-light-svg-icons": "^5.9.0",
 		"@fortawesome/pro-regular-svg-icons": "^5.9.0",
