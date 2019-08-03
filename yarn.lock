@@ -883,12 +883,12 @@
   dependencies:
     "@fortawesome/fontawesome-common-types" "^0.2.20"
 
-"@fortawesome/pro-regular-svg-icons@^5.10.0":
-  version "5.10.0"
-  resolved "https://npm.fontawesome.com/@fortawesome/pro-regular-svg-icons/-/pro-regular-svg-icons-5.10.0.tgz#ab3e5ee0905ab2ab43bc486f92835660280e615f"
-  integrity sha512-Ru0qaB5LILM3o3zmw09qn9dHZ+ok0/wt4wU3WVaEepF9pANLaZhy6gOWzvauIVVavckr/iOsVd9gzAbFE1bziA==
+"@fortawesome/pro-regular-svg-icons@^5.10.1":
+  version "5.10.1"
+  resolved "https://npm.fontawesome.com/@fortawesome/pro-regular-svg-icons/-/pro-regular-svg-icons-5.10.1.tgz#914c50520ed8991bd6aa59b52a03ef5fc6d65454"
+  integrity sha512-CMOLekemx3f1FVdr50TFo7AB8sMsQTCmAyyHc3Jd3dIDSpd+rtEP+j6uYD0r4aTAPUF08ktvxHuu4Howh3cqCA==
   dependencies:
-    "@fortawesome/fontawesome-common-types" "^0.2.20"
+    "@fortawesome/fontawesome-common-types" "^0.2.21"
 
 "@fortawesome/pro-solid-svg-icons@^5.10.0":
   version "5.10.0"
