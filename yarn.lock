@@ -876,12 +876,12 @@
   dependencies:
     "@fortawesome/fontawesome-common-types" "^0.2.21"
 
-"@fortawesome/pro-light-svg-icons@^5.10.0":
-  version "5.10.0"
-  resolved "https://npm.fontawesome.com/@fortawesome/pro-light-svg-icons/-/pro-light-svg-icons-5.10.0.tgz#cd743cd31ee01d73b0b392fd74a2875df55d1e7f"
-  integrity sha512-cGuLjYvsyGOhd7EO7cTpsylqMyl2x/iHNOlTnwh9OU4QjrOgvkm9NXTQwYJiinoOM+AAuKUC4OjmKais+TGl9A==
+"@fortawesome/pro-light-svg-icons@^5.10.1":
+  version "5.10.1"
+  resolved "https://npm.fontawesome.com/@fortawesome/pro-light-svg-icons/-/pro-light-svg-icons-5.10.1.tgz#cad4424b2ad8ac2e1180665be3f7d076b319dee5"
+  integrity sha512-Z4dQ7bbvvXyEn4dWWPVZR74wWBGUhqfraf1BtS03vuaMEfc7QuMws4CJCvKNvtwolsaaj6PjEpSr2lzfsGrWsQ==
   dependencies:
-    "@fortawesome/fontawesome-common-types" "^0.2.20"
+    "@fortawesome/fontawesome-common-types" "^0.2.21"
 
 "@fortawesome/pro-regular-svg-icons@^5.10.1":
   version "5.10.1"
