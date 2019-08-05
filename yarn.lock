@@ -852,11 +852,6 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
-"@fortawesome/fontawesome-common-types@^0.2.20":
-  version "0.2.20"
-  resolved "https://npm.fontawesome.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.20.tgz#b5450b07400aea96d87d24e98e22d4a3d8d59305"
-  integrity sha512-5wo0pMNS4gWTkplFAPSfNq4poXwLcgj8+khZs9/zbWMxC0hi6qnehXOrX7i7+Y7XyTQForja2WpR7Nz6LY2BtQ==
-
 "@fortawesome/fontawesome-common-types@^0.2.21":
   version "0.2.21"
   resolved "https://npm.fontawesome.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.21.tgz#f1c26ae24761cca583de7cafd1273ab4c70a4d87"
@@ -3994,10 +3989,10 @@ commitizen@^4.0.3:
     strip-bom "4.0.0"
     strip-json-comments "3.0.1"
 
-commitlint-config-cz@^0.12.0:
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/commitlint-config-cz/-/commitlint-config-cz-0.12.0.tgz#ab338b2976ced3eccaaa3e3925097875e2260ab5"
-  integrity sha512-L66R5B5MNslnaNiw1U+5tQg2/1QU/SgcYJply1ztiy9AiWCNTJdv7t+fAybOPE6xEmQ3SxTsZowNddw4YXYb/w==
+commitlint-config-cz@^0.12.1:
+  version "0.12.1"
+  resolved "https://registry.yarnpkg.com/commitlint-config-cz/-/commitlint-config-cz-0.12.1.tgz#1d2fa261050b05370a5024a2ae537b8e74df4759"
+  integrity sha512-2LEVu3xhYWOgZAQ2unJCDmCVoMP0mWChhyF6fRU5XANP5+nv7axPnr7KJEGWQSvEdEIkjLXzf30Qlgodb0+wEw==
   dependencies:
     app-root-path "~2.2.0"
     lodash.clonedeep "~4.5.0"
