@@ -890,12 +890,12 @@
   dependencies:
     "@fortawesome/fontawesome-common-types" "^0.2.22"
 
-"@fortawesome/pro-solid-svg-icons@^5.10.1":
-  version "5.10.1"
-  resolved "https://npm.fontawesome.com/@fortawesome/pro-solid-svg-icons/-/pro-solid-svg-icons-5.10.1.tgz#37d9641baa96a76216dc72af9136f2952eb2a5f0"
-  integrity sha512-MdHMBSE40zKMHSPEwmU2nSwZRQUO1an9f+mENHqFi6apUS4q4WwrxHABsmOfk/2e+GSIEJchOVMiljqpUqbbUQ==
+"@fortawesome/pro-solid-svg-icons@^5.10.2":
+  version "5.10.2"
+  resolved "https://npm.fontawesome.com/@fortawesome/pro-solid-svg-icons/-/pro-solid-svg-icons-5.10.2.tgz#2d4084b6bf228f906ca07380d0f8b12d2dfda440"
+  integrity sha512-GRj6cU7q0B71rTJ5p7imKe24k9/puAPV/B0KYWxSQ96DAH08n+pJ3MPP5tPOtWlHFng+ZYMT+wTJkjk0nSAXdw==
   dependencies:
-    "@fortawesome/fontawesome-common-types" "^0.2.21"
+    "@fortawesome/fontawesome-common-types" "^0.2.22"
 
 "@fortawesome/vue-fontawesome@^0.1.6":
   version "0.1.6"
