@@ -13,7 +13,9 @@
 						<div class="cover"></div>
 					</div>
 					<h1>近影</h1>
-					<img src="~/assets/icon.gif" />
+					<img
+						src="https://s.gravatar.com/avatar/9a828752a7771c3bf43e3bea39d9cf57?s=360"
+					/>
 					<h1>これは何ですか？</h1>
 					<p>
 						フロントエンド方面の活動をしていて、学生をやっているらしいです。
@@ -649,6 +651,8 @@ section {
 		transition: transform 0.2s ($cover-duration * 2 + $glitchdelay) + 0.125s
 			cubic-bezier(0.7, 0.43, 0.175, 0.895);
 		transform: scale(0);
+		z-index: 30;
+		position: relative;
 	}
 	p {
 		font-size: 0.85rem;
