@@ -1,6 +1,7 @@
-import NuxtConfiguration from '@nuxt/config'
+// eslint-disable-next-line import/no-unresolved
+import { Configuration } from '@nuxt/types'
 
-const nuxtConfig: NuxtConfiguration = {
+const nuxtConfig: Configuration = {
 	mode: 'universal',
 	srcDir: 'src/',
 	loading: false,
@@ -11,9 +12,10 @@ const nuxtConfig: NuxtConfiguration = {
 		'@nuxtjs/style-resources',
 		'@nuxtjs/google-analytics'
 	],
+	buildModules: ['@nuxt/typescript-build'],
 	css: ['minireset.css'],
 	styleResources: {
-		sass: ['~/assets/main.scss', 'mathsass', '@brandcolors/sass']
+		scss: ['~/assets/main.scss', '@brandcolors/sass', 'mathsass']
 	},
 	optimizedImages: {
 		optimizeImages: true

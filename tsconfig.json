@@ -15,6 +15,7 @@
 		},
 		"esModuleInterop": true,
 		"resolveJsonModule": true,
-		"experimentalDecorators": true
+		"experimentalDecorators": true,
+		"types": ["@types/node", "@nuxt/types"]
 	}
 }

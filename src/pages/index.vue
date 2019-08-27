@@ -21,7 +21,10 @@
 			<div class="icon" animate>
 				<div class="border" animate></div>
 				<div class="border" animate></div>
-				<img src="~/assets/icon.gif" animate />
+				<img
+					src="https://s.gravatar.com/avatar/9a828752a7771c3bf43e3bea39d9cf57?s=360"
+					animate
+				/>
 			</div>
 			<div class="name" animate>
 				<h1>
