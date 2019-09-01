@@ -8794,10 +8794,10 @@ mathml-tag-names@^2.1.0:
   resolved "https://registry.yarnpkg.com/mathml-tag-names/-/mathml-tag-names-2.1.1.tgz#6dff66c99d55ecf739ca53c492e626f1d12a33cc"
   integrity sha512-pWB896KPGSGkp1XtyzRBftpTzwSOL0Gfk0wLvxt4f2mgzjY19o0LxJ3U25vNWTzsh7da+KTbuXQoQ3lOJZ8WHw==
 
-mathsass@^0.10.1:
-  version "0.10.1"
-  resolved "https://registry.yarnpkg.com/mathsass/-/mathsass-0.10.1.tgz#8768fe20210bd5daeab6d645c42c7e69a4c60008"
-  integrity sha1-h2j+ICEL1drqttZFxCx+aaTGAAg=
+mathsass@^0.11.0:
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/mathsass/-/mathsass-0.11.0.tgz#5ef6df18e37061845c0c9eaedef5ab72025885c1"
+  integrity sha512-aU4p90yvQNmIF4jLNh2ojqgwi6UmDLv11JnwhvLb731/kLPHz45i65CqKBq/W5sgPobnbG0kZszTb4TdNzywcQ==
 
 maxstache-stream@^1.0.0:
   version "1.0.4"
