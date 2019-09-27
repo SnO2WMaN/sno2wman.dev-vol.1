@@ -1,21 +1,23 @@
 {
-	"compilerOptions": {
-		"target": "esnext",
-		"module": "esnext",
-		"lib": ["dom", "esnext"],
-		"strict": true,
-		"noImplicitAny": false,
-		"moduleResolution": "node",
-		"baseUrl": ".",
-		"paths": {
-			"~/*": ["./src/*"],
-			"@/*": ["./src/*"],
-			"~~/*": ["./*"],
-			"@@/*": ["./*"]
-		},
-		"esModuleInterop": true,
-		"resolveJsonModule": true,
-		"experimentalDecorators": true,
-		"types": ["@types/node", "@nuxt/types"]
-	}
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "lib": ["dom", "esnext"],
+    "strict": true,
+    "noImplicitAny": false,
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./src/*"],
+      "@/*": ["./src/*"],
+      "~~/*": ["./*"],
+      "@@/*": ["./*"]
+    },
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
+    "types": ["@types/node", "@nuxt/types"]
+  },
+  "exclude": ["node_modules"]
 }
