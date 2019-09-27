@@ -80,12 +80,6 @@
 		"url": "https://github.com/SnO2WMaN/sno2wman.dev.git",
 		"type": "git"
 	},
-	"husky": {
-		"hooks": {
-			"commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-			"pre-commit": "lint-staged"
-		}
-	},
 	"scripts": {
 		"lint": "npm-run-all -p lint:*",
 		"lint:eslint": "eslint src --ext .vue,.ts,.js --fix",
