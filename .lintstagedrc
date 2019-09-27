@@ -1,21 +1,11 @@
 {
-	"*.html": [
-		"prettier --write",
-		"git add"
-	],
-	"*.{js,json}": [
-		"prettier --write",
-		"eslint --fix",
-		"git add"
-	],
-	"*.{css,scss}": [
-		"prettier --write",
-		"stylelint --fix",
-		"git add"
-	],
-	"*.md": [
-		"eslint --fix",
-		"prettier --write",
-		"git add"
-	]
+  "package.json": [
+    "prettier-package-json --write",
+    "prettier --write",
+    "git add"
+  ],
+  "*.html": ["prettier --write", "git add"],
+  "*.{js,ts}": ["prettier --write", "eslint --fix", "git add"],
+  "*.{css,scss}": ["prettier --write", "stylelint --fix", "git add"],
+  "*.md": ["eslint --fix", "prettier --write", "git add"]
 }
