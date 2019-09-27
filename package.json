@@ -70,7 +70,7 @@
     "prettier": "^1.18.2",
     "serve": "^11.1.0",
     "stylelint": "^10.1.0",
-    "stylelint-config-prettier": "^5.2.0",
+    "stylelint-config-prettier": "^6.0.0",
     "stylelint-config-recommended-scss": "^3.3.0",
     "stylelint-scss": "^3.10.0",
     "vue-eslint-parser": "^6.0.4"
