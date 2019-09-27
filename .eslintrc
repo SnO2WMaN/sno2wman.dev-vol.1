@@ -1,57 +1,30 @@
 {
-	"root": true,
-	"env": {
-		"browser": true,
-		"es6": true
-	},
-	"plugins": ["json", "markdown"],
-	"extends": [
-		"eslint:recommended",
-		"airbnb-base",
-		"plugin:node/recommended",
-		"plugin:eslint-comments/recommended",
-		"plugin:prettier/recommended",
-		"plugin:@typescript-eslint/recommended",
-		"prettier/@typescript-eslint",
-		"plugin:vue/recommended",
-		"prettier/vue"
-	],
-	"parserOptions": {
-		"parser": "@typescript-eslint/parser"
-	},
-	"settings": {
-		"import/resolver": {
-			"nuxt": {
-				"nuxtSrcDir": "src",
-				"extensions": [".js", ".ts", ".json", ".vue"]
-			}
-		}
-	},
-	"rules": {
-		"class-methods-use-this": 0,
-		"node/no-unsupported-features/es-syntax": 0,
-		"@typescript-eslint/explicit-function-return-type": 0,
-		"vue/component-name-in-template-casing": [
-			"error",
-			"PascalCase",
-			{
-				"ignores": [
-					"nuxt",
-					"nuxt-link",
-					"n-link",
-					"nuxt-child",
-					"no-ssr",
-					"svg-icon"
-				]
-			}
-		]
-	},
-	"overrides": [
-		{
-			"files": ["*.d.ts"],
-			"rules": {
-				"import/no-extraneous-dependencies": 0
-			}
-		}
-	]
+  "root": true,
+  "parser": "vue-eslint-parser",
+  "extends": [
+    "@conten2/eslint-config",
+    "plugin:import/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:vue/recommended",
+    "prettier/@typescript-eslint",
+    "prettier/vue"
+  ],
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser"
+  },
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [["~", "./src"], ["@", "./src"], ["~~", "."], ["@@", "."]],
+        "extensions": [".vue", ".ts", ".js", ".json"]
+      }
+    }
+  },
+  "rules": {
+    "@typescript-eslint/explicit-function-return-type": 0,
+    "@typescript-eslint/consistent-type-definitions": [1, "interface"],
+    "@typescript-eslint/no-inferrable-types": 0,
+
+    "promise/always-return": 0
+  }
 }

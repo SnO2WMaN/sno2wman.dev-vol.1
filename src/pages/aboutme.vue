@@ -55,8 +55,8 @@
 					<div
 						v-for="(detail, i) in details"
 						:key="i"
-						class="detail-table-line"
 						:class="{ icon: i % 3 == 0, key: i % 3 == 1, content: i % 3 == 2 }"
+						class="detail-table-line"
 					>
 						<FontAwesomeIcon v-if="i % 3 == 0" :icon="detail" />
 						<p v-else>{{ detail }}</p>
@@ -71,19 +71,19 @@
 					<li
 						v-for="(link, i) in socials"
 						:key="i"
-						class="social-link"
 						:class="i"
+						class="social-link"
 					>
 						<div class="icon">
 							<svg-icon
 								v-if="typeof brandicons[i] === 'string'"
-								class="svg"
 								:name="brandicons[i]"
+								class="svg"
 							/>
 							<FontAwesomeIcon v-else :icon="brandicons[i]" fixed-width />
 						</div>
-						<a v-if="link.startsWith('discord:')" class="link" :href="link" />
-						<a v-else class="link" :href="link" target="_blank" />
+						<a v-if="link.startsWith('discord:')" :href="link" class="link" />
+						<a v-else :href="link" class="link" target="_blank" />
 					</li>
 				</ul>
 			</section>
@@ -95,7 +95,7 @@
 					<li class="donate-way kyash">
 						<a class="link" href="kyash://qr/u/3548793821849286552" />
 						<div class="icon-wrap">
-							<svg-icon class="svg icon" :name="brandicons['kyash']" />
+							<svg-icon :name="brandicons['kyash']" class="svg icon" />
 						</div>
 						<div class="contents">
 							<p>Kyash</p>
@@ -109,7 +109,7 @@
 							href="https://www.amazon.jp/hz/wishlist/ls/2NHME83WUZWSR?ref_=wl_share"
 						/>
 						<div class="icon-wrap">
-							<FontAwesomeIcon class="icon" :icon="brandicons['amazon']" />
+							<FontAwesomeIcon :icon="brandicons['amazon']" class="icon" />
 						</div>
 						<div class="contents">
 							<p>Amazon Wishlist</p>
@@ -123,8 +123,8 @@
 										'pills'
 									]"
 									:key="key"
-									class="icon"
 									:icon="icons[key]"
+									class="icon"
 									fixed-width
 								/>
 							</div>
@@ -137,14 +137,14 @@
 							href="https://store.steampowered.com/wishlist/id/SnO2WMaN"
 						/>
 						<div class="icon-wrap">
-							<FontAwesomeIcon class="icon" :icon="brandicons['steam']" />
+							<FontAwesomeIcon :icon="brandicons['steam']" class="icon" />
 						</div>
 						<div class="contents">
 							<p>Steam Wishlist</p>
 							<div class="icons">
 								<FontAwesomeIcon
-									class="icon"
 									:icon="icons['gamepad']"
+									class="icon"
 									fixed-width
 								/>
 							</div>
@@ -153,7 +153,7 @@
 					<li class="donate-way bitcoin">
 						<a class="link" href="bitcoin:13EKexdZYnjKaQQAVSrbtwegAN9iAeLBiG" />
 						<div class="icon-wrap">
-							<FontAwesomeIcon class="icon" :icon="brandicons['bitcoin']" />
+							<FontAwesomeIcon :icon="brandicons['bitcoin']" class="icon" />
 						</div>
 						<div class="contents">
 							<p>Bitcoin</p>
@@ -178,7 +178,6 @@
 					<ul class="skill-badges">
 						<li v-for="(badge, i) in category" :key="i" class="skill-badge">
 							<div
-								class="icon"
 								:class="{
 									black:
 										0.72 <
@@ -186,32 +185,33 @@
 											`#${Array.isArray(badge) ? badge[1] : badge.hex}`
 										)
 								}"
+								class="icon"
 							>
 								<div
-									class="cover"
 									:style="{
 										'background-color': `#${
 											Array.isArray(badge) ? badge[1] : badge.hex
 										}`
 									}"
+									class="cover"
 								/>
 								<svg-icon
 									v-if="Array.isArray(badge) && typeof badge[0] === 'string'"
-									class="svg"
 									:name="badge[0]"
+									class="svg"
 								/>
 								<FontAwesomeIcon
 									v-else-if="Array.isArray(badge)"
-									class="icon"
 									:icon="badge[0]"
+									class="icon"
 								/>
 								<!-- eslint-disable vue/no-v-html-->
 								<div
 									v-else-if="Array.isArray(badge)"
-									class="svg"
 									v-html="badge[0].svg"
+									class="svg"
 								/>
-								<div v-else class="svg" v-html="badge.svg" />
+								<div v-else v-html="badge.svg" class="svg" />
 								<!-- eslint-enable -->
 							</div>
 							<div class="text">
@@ -630,17 +630,6 @@ section {
 			}
 		}
 	}
-	&.animated {
-		&::before {
-			visibility: visible;
-		}
-		&::after {
-			opacity: 0.4;
-		}
-		& > .covers > .cover {
-			animation-play-state: running;
-		}
-	}
 
 	img {
 		size: 6rem;
@@ -713,6 +702,7 @@ section {
 				}
 			}
 		}
+
 		opacity: 0;
 		transition: 0.5s;
 		transform: translateX(-10%);
@@ -732,6 +722,15 @@ section {
 		position: relative;
 	}
 	&.animated {
+		&::before {
+			visibility: visible;
+		}
+		&::after {
+			opacity: 0.4;
+		}
+		& > .covers > .cover {
+			animation-play-state: running;
+		}
 		h1 {
 			opacity: 1;
 			transform: translateY(0);
@@ -935,10 +934,10 @@ section {
 			line-height: 1em;
 			margin-bottom: 6px;
 			user-select: none;
-			transform: translateY(50%);
 			opacity: 0;
 			transition: 0.3s cubic-bezier(0.38, 0.505, 0.125, 0.92);
 			transition-property: opacity, transform;
+			transform: translateY(-100%);
 		}
 		& > strong {
 			color: var(--text-black);
@@ -955,16 +954,13 @@ section {
 				margin-right: 4px;
 			}
 		}
+
 		& > p,
 		& > strong,
 		& > .icons {
 			opacity: 0;
 			transition: 0.3s cubic-bezier(0.135, 0.715, 0.44, 0.925);
 			transition-property: opacity, transform;
-		}
-
-		& > p {
-			transform: translateY(-100%);
 		}
 
 		& > strong,
@@ -1123,7 +1119,7 @@ section {
 		github: $brandcolors-github-1,
 		pixiv: $brandcolors-pixiv-1,
 		spotify: $brandcolors-spotify-1,
-		soundcloud: #ff5500,
+		soundcloud: #f50,
 		patreon: $brandcolors-patreon-1,
 		discord: $brandcolors-discord-1,
 		steam: #171a21,
@@ -1182,9 +1178,6 @@ section {
 	}
 }
 
-.skills-category {
-	margin-bottom: 16px;
-}
 
 .skills-category-title {
 	margin-bottom: 12px;
@@ -1286,6 +1279,7 @@ section {
 }
 
 .skills-category {
+	margin-bottom: 16px;
 	.skill-badge {
 		@for $i from 1 through 8 {
 			$d: ($i - 1) * 0.075s;
