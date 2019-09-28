@@ -1,3 +1,15 @@
 {
-	"extends": ["github>conten2/renovate.json", "schedule:weekly"]
+  "extends": ["github>conten2/renovate.json", "schedule:weekly"],
+  "encrypted": {
+    "npmToken": "qlg+xnc0Yxyd04jcjQw7ql1h81ebNaB4pGF8lnkD0O9JXTLY5lDkqJp2Eee/rINEPGlWT6cWKiQqfpCX85XDOprpgHED4VQuSTUKNAGYEc5VL/zTkqACstf27EFsUAlKiy7zuGHbSGhjrLtw5DIR8mztUtHCAiTVVlWjiGNB6DSGBGrvYrTVl62Jjajk1eTLHaXmictvJBQminbLlbEAFniVP38LGj7xcRc1YVYHXXFafHwr54rObbV5guj82cC/jnEWACI6oRokZju4CPeKj+S5IIQTqlfW3qQ9Wkyvuxj+MpiWwEeHhwyUiW2tKlZzFUal2sxToySVcY2puPLmIg=="
+  },
+  "npmrc": "@fortawesome:registry=https://npm.fontawesome.com/\n//npm.fontawesome.com/:_authToken=${NPM_TOKEN}",
+  "packageRules": [
+    {
+      "groupName": "FontAwesome Icon Pack",
+      "packagePatterns": ["^@fortawesome/pro-", "^@fortawesome/free-"],
+      "automerge": true,
+      "updateTypes": ["minor"]
+    }
+  ]
 }
