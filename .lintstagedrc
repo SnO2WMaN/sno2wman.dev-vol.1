@@ -5,7 +5,8 @@
     "git add"
   ],
   "*.html": ["prettier --write", "git add"],
-  "*.{js,ts}": ["prettier --write", "eslint --fix", "git add"],
-  "*.{css,scss}": ["prettier --write", "stylelint --fix", "git add"],
+  "*.{js,ts}": ["eslint --fix", "prettier --write", "git add"],
+  "*.{css,scss}": ["stylelint --fix", "prettier --write", "git add"],
+  "*.vue": ["eslint --fix", "stylelint --fix", "prettier --write", "git add"],
   "*.md": ["eslint --fix", "prettier --write", "git add"]
 }
