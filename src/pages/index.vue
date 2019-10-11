@@ -28,9 +28,9 @@
       </div>
       <div class="name" animate>
         <h1>
-          <span v-for="c in 'SnO2WMaN'.split('')" :key="c" animate>{{
-            c
-          }}</span>
+          <span v-for="c in 'SnO2WMaN'.split('')" :key="c" animate>
+            {{ c }}
+          </span>
         </h1>
         <div class="border" animate></div>
       </div>
@@ -77,34 +77,32 @@ import { Vue, Component } from 'nuxt-property-decorator'
 export default class extends Vue {
   mounted() {
     this.$nextTick(() => {
-      const animators = Array.from(
-        this.$el.querySelectorAll('[animate]:not(.animated)')
-      )
-      const finishs = Array.from(
-        this.$el.querySelectorAll('[finish]:not(.finished)')
-      )
+      const animators = [
+        ...this.$el.querySelectorAll('[animate]:not(.animated)')
+      ]
+      const finishs = [...this.$el.querySelectorAll('[finish]:not(.finished)')]
       if (this.$store.getters.isAnimated('index')) {
-        animators.forEach($e => {
-          $e.classList.add('animated', 'quick')
+        animators.forEach($element => {
+          $element.classList.add('animated', 'quick')
         })
-        finishs.forEach($e => {
-          $e.classList.add('finished')
+        finishs.forEach($element => {
+          $element.classList.add('finished')
         })
       } else {
         this.$store.commit('animated', 'index')
         Promise.all(
           animators.map(
-            $e =>
+            $element =>
               new Promise(resolve => {
-                $e.classList.add('animated')
-                $e.addEventListener('transitionend', resolve)
-                $e.addEventListener('animationend', resolve)
+                $element.classList.add('animated')
+                $element.addEventListener('transitionend', resolve)
+                $element.addEventListener('animationend', resolve)
               })
           )
         )
           .then(() => {
-            finishs.forEach($e => {
-              $e.classList.add('finished')
+            finishs.forEach($element => {
+              $element.classList.add('finished')
             })
           })
           .catch(console.error)

@@ -9,6 +9,7 @@
     "@typescript-eslint/explicit-function-return-type": 0,
     "@typescript-eslint/consistent-type-definitions": [1, "interface"],
     "@typescript-eslint/no-inferrable-types": 0,
-    "promise/always-return": 0
+    "promise/always-return": 0,
+    "vue/no-parsing-error": 1
   }
 }
