@@ -14,7 +14,7 @@ indent_style = space
 [.*ignore]
 insert_final_newline = false
 
-[.*rc]
+[.node-version]
 insert_final_newline = false
 
 [.czrc]
