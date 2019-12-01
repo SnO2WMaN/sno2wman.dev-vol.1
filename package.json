@@ -55,7 +55,7 @@
     "serve": "^11.1.0",
     "stylelint": "^11.0.0",
     "typescript": "^3.5.3",
-    "vue-eslint-parser": "^6.0.4"
+    "vue-eslint-parser": "^7.0.0"
   },
   "scripts": {
     "lint": "npm-run-all -p lint:*",
