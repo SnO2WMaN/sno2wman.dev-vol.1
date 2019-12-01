@@ -35,7 +35,7 @@
     "postcss-short": "^5.0.0",
     "sass-loader": "^7.3.1",
     "simple-icons": "^1.14.0",
-    "webp-loader": "^0.5.0"
+    "webp-loader": "^0.6.0"
   },
   "devDependencies": {
     "@conten2/eslint-config": "^2.0.0",
