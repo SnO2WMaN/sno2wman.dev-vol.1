@@ -34,7 +34,7 @@
     "nuxt-property-decorator": "^2.3.0",
     "postcss-short": "^5.0.0",
     "sass-loader": "^7.3.1",
-    "simple-icons": "^1.14.0",
+    "simple-icons": "^2.0.0",
     "webp-loader": "^0.5.0"
   },
   "devDependencies": {
