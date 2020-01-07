@@ -47,7 +47,7 @@
     "@types/color": "^3.0.0",
     "@types/node": "^13.0.0",
     "eslint": "^6.2.2",
-    "husky": "^3.0.4",
+    "husky": "^4.0.0",
     "lint-staged": "^9.2.5",
     "netlify-cli": "^2.11.31",
     "npm-run-all": "^4.1.5",
