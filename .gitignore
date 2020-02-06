@@ -1,0 +1,15 @@
+# dependencies
+node_modules
+
+# output
+.next/
+
+# misc
+.env*
+
+# debug
+*.log
+
+# lefthook
+lefthook-local.yml
+/.lefthook-local/

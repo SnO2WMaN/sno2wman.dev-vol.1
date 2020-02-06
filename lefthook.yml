@@ -1,0 +1,19 @@
+pre-commit:
+  parallel: true
+  commands:
+    eslint:
+      root: src/
+      glob: '*.{js,ts,jsx,tsx}'
+      run: eslint --fix {staged_files}
+    stylelint:
+      root: src/
+      glob: '*.{css,scss,sass,jsx,tsx}'
+      run: stylelint --fix {staged_files}
+    prettier:
+      glob: '*.{js,ts,jsx,tsx,json,yml,yaml,md,html,css,scss,sass}'
+      run: prettier --loglevel silent --write {staged_files}
+
+pre-push:
+  commands:
+    packages-audit:
+      run: yarn audit

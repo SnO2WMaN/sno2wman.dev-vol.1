@@ -1,0 +1,24 @@
+{
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-rational-order",
+    "stylelint-config-prettier"
+  ],
+  "plugins": ["stylelint-prettier", "stylelint-order"],
+  "rules": {
+    "prettier/prettier": true,
+    "function-name-case": null,
+    "value-no-vendor-prefix": true,
+    "property-no-vendor-prefix": true,
+    "declaration-empty-line-before": null,
+    "no-descending-specificity": null,
+    "order/order": [
+      "less-mixins",
+      "dollar-variables",
+      "custom-properties",
+      "declarations",
+      "rules",
+      "at-rules"
+    ]
+  }
+}
