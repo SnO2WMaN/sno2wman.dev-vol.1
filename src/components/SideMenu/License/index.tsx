@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import Badge from '../../Badge'
 import { faFileCertificate } from '@fortawesome/pro-solid-svg-icons'
+import Link from 'next/link'
 
 type ContainerProps = {}
 type Props = { className: string } & ContainerProps
@@ -20,7 +21,11 @@ const Component: React.FC<Props> = ({ className }) => (
       </Badge>
     </div>
     <p>
-      Copyright 2020 <a href="/">SnO2WMaN</a>.
+      Copyright 2020{' '}
+      <Link href={'/'}>
+        <a>SnO2WMaN</a>
+      </Link>
+      .
     </p>
   </div>
 )

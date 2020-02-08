@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import { IconDefinition } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Link from 'next/link'
 
 type ContainerProps = {
   icon: IconDefinition
@@ -16,7 +17,9 @@ const Component: React.FC<Props> = ({ className, icon, children, href }) => (
       <FontAwesomeIcon icon={icon} fixedWidth />
     </div>
     <span>{children}</span>
-    <a href={href}></a>
+    <Link href={href}>
+      <a />
+    </Link>
   </li>
 )
 const StyledComponent = styled(Component)`
