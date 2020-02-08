@@ -1,0 +1,8 @@
+@import '../../node_modules/minireset.css/';
+
+:root {
+  --text: #2f2f2f;
+  --component-shadow-color: #0003;
+  --sans-serif: -apple-system, BlinkMacSystemFont, Roboto, 'Segoe UI',
+    'Hiragino Sans', 'Noto Sans CJK JP', 'Yu Gothic', sans-serif;
+}
