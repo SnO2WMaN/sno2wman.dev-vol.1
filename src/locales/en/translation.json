@@ -1,3 +1,9 @@
 {
-  "translation": {}
+  "translation": {
+    "sidenav-home": "HOME",
+    "sidenav-works": "WORKS",
+    "sidenav-profile": "PROFILE",
+    "sidenav-contact": "CONTACT",
+    "sidenav-blog": "BLOG"
+  }
 }
