@@ -4,16 +4,19 @@ import styled from 'styled-components'
 import IconAnnict from '../../../assets/annict.svg'
 import IconBookmeter from '../../../assets/bookmeter.svg'
 import IconKofi from '../../../assets/ko-fi.svg'
+import IconKyash from '../../../assets/kyash.svg'
 import IconPixiv from '../../../assets/pixiv.svg'
 import IconQiita from '../../../assets/qiita.svg'
 import SocialLink from './SocialLink'
 import {
   faBitcoin,
+  faCodepen,
   faDiscord,
   faGithub,
   faKeybase,
   faNpm,
   faPatreon,
+  faPaypal,
   faSoundcloud,
   faSpotify,
   faSteamSquare,
@@ -27,7 +30,9 @@ import Color from 'color'
 type ContainerProps = {}
 type Props = { className: string } & ContainerProps
 
-const socials = {
+const socials: {
+  [key in string]: { href: string; color: string; icon: any; disable?: true }
+} = {
   'twitter': {
     href: 'https://twitter.com/SnO2WMaN',
     icon: <FontAwesomeIcon icon={faTwitter} />,
@@ -49,13 +54,11 @@ const socials = {
     color: '#009cff',
   },
   'soundcloud': {
-    key: 'soundcloud',
     href: 'https://soundcloud.com/sno2wman',
     icon: <FontAwesomeIcon icon={faSoundcloud} />,
     color: '#ff8800',
   },
   'discord': {
-    key: 'discord',
     href: 'discord:SnO2WMaN#9459',
     icon: <FontAwesomeIcon icon={faDiscord} />,
     color: '#7289da',
@@ -99,24 +102,47 @@ const socials = {
     href: 'bitcoin:13EKexdZYnjKaQQAVSrbtwegAN9iAeLBiG',
     icon: <FontAwesomeIcon icon={faBitcoin} />,
     color: '#f7931a',
+    disable: true,
   },
   'qiita': {
     href: 'https://qiita.com/SnO2WMaN',
     icon: <IconQiita />,
     color: '#55c500',
   },
+  'paypal': {
+    href: 'https://www.twitch.tv/sno2wman',
+    icon: <FontAwesomeIcon icon={faPaypal} />,
+    color: '#003087',
+    disable: true,
+  },
   'twitch': {
     href: 'https://www.twitch.tv/sno2wman',
     icon: <FontAwesomeIcon icon={faTwitch} />,
     color: '#6441a5',
+    disable: true,
   },
   'youtube': {
     href: 'https://www.youtube.com/channel/UCz_DWmdSbXtBpi1qw3Gg5YQ',
     icon: <FontAwesomeIcon icon={faYoutube} />,
     color: '#ff0000',
+    disable: true,
+  },
+  'kyash': {
+    href: 'kyash://qr/u/3548793821849286552',
+    icon: <IconKyash />,
+    color: '#1aaae2',
+    disable: true,
+  },
+  'codepen': {
+    href: 'https://codepen.io/SnO2WMaN',
+    icon: <FontAwesomeIcon icon={faCodepen} />,
+    color: '#131417',
+    disable: true,
   },
 }
-const columns = Math.ceil(Math.sqrt(Object.keys(socials).length))
+const columns = Math.ceil(
+  Math.sqrt(Object.values(socials).filter(({ disable }) => !disable).length)
+)
 
 const Component: React.FC<Props> = ({ className }) => (
   <section className={className}>
@@ -126,6 +152,7 @@ const Component: React.FC<Props> = ({ className }) => (
           ({ 1: { color: a } }, { 1: { color: b } }) =>
             ((Color(a).hue() + 30) % 360) - ((Color(b).hue() + 30) % 360)
         )
+        .filter(({ 1: { disable } }) => !disable)
         .map(({ 0: key, 1: { icon, color, href } }, i, a) => (
           <SocialLink
             key={key}
