@@ -8,7 +8,8 @@ import Color from 'color'
 type ContainerProps = {
   href: string
   color: string
-  index: number
+  row: number
+  line: number
 }
 type Props = { className: string } & ContainerProps
 
@@ -17,9 +18,10 @@ const Component: React.FC<Props> = ({
   children,
   color,
   href,
-  index,
+  row,
+  line,
 }) => {
-  const delay = ((index ** 4 + index ** (1 / 2)) / 2) * 600
+  const delay = row ** (1 / 2) * 200 + line * 100
   return (
     <li className={className}>
       <div
@@ -27,8 +29,8 @@ const Component: React.FC<Props> = ({
         style={{
           backgroundColor: Color.hsl(Color(color).hue(), 75, 97.5).toString(),
           boxShadow: CSSShadow([
-            { x: -2, y: -2, blur: 16, color: Color('white').fade(0.25) },
-            { x: 2, y: 2, blur: 16, color: Color(color).fade(0.75) },
+            { x: -2, y: -2, blur: 8, color: Color('white').fade(0.25) },
+            { x: 2, y: 2, blur: 16, color: Color(color).fade(0.625) },
           ]),
         }}
         ref={reference =>
