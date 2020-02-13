@@ -4,6 +4,12 @@
     "sidenav-works": "WORKS",
     "sidenav-profile": "PROFILE",
     "sidenav-contact": "CONTACT",
-    "sidenav-blog": "BLOG"
+    "sidenav-license": "LICENSE",
+    "sidenav-blog": "BLOG",
+    "wishlist-books": "BOOKS",
+    "wishlist-pepsi": "PEPSI",
+    "wishlist-comics": "COMICS",
+    "wishlist-games": "GAMES",
+    "wishlist-things": "THINGS"
   }
 }
