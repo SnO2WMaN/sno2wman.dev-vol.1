@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import IconAnnict from '../../../assets/annict.svg'
-import IconBookmeter from '../../../assets/bookmeter.svg'
-import IconKofi from '../../../assets/ko-fi.svg'
-import IconKyash from '../../../assets/kyash.svg'
-import IconPixiv from '../../../assets/pixiv.svg'
-import IconQiita from '../../../assets/qiita.svg'
+import IconAnnict from '../../../assets/svg/annict.svg'
+import IconBookmeter from '../../../assets/svg/bookmeter.svg'
+import IconKofi from '../../../assets/svg/ko-fi.svg'
+import IconKyash from '../../../assets/svg/kyash.svg'
+import IconPixiv from '../../../assets/svg/pixiv.svg'
+import IconQiita from '../../../assets/svg/qiita.svg'
 import brandcolors from '../../../json/brandcolors.json'
 import SocialLink from './SocialLink'
 import {
@@ -149,6 +149,7 @@ const Component: React.FC<Props> = ({ className }) => (
           </SocialLink>
         ))}
     </ul>
+    <h2>ACCOUNTS</h2>
   </section>
 )
 
@@ -156,14 +157,21 @@ const StyledComponent = styled(Component)`
   width: 100%;
   height: 512px;
   background-color: hsl(225, 12.5%, 90%);
-  box-shadow: 0 0 24px rgba(0, 0, 0, 0.125) inset;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   > .links {
     display: grid;
     grid-template-columns: repeat(${columns}, 1fr);
     grid-gap: 24px;
+  }
+  > h2 {
+    margin-top: 32px;
+    font-size: 0.9rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.25em;
   }
 `
 
