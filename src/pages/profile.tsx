@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import DonateSection from '../components/Profile/Donate'
 import LinksSection from '../components/Profile/Links'
 
 type ContainerProps = {}
@@ -9,6 +10,7 @@ type Props = { className: string } & ContainerProps
 const Component: React.FC<Props> = ({ className }) => (
   <div className={className}>
     <LinksSection />
+    <DonateSection />
   </div>
 )
 
