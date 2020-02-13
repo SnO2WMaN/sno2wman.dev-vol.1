@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import IconPepsi from '../../../assets/svg/pepsi.svg'
+import WidgetButtonsList from './WidgetButtonsList'
 import WishList from './WishList'
 import { faHandsHeart } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -22,6 +23,7 @@ const Component: React.FC<Props> = ({ className }) => (
           </div>
           <h3>BUY ME A PEPSI</h3>
         </div>
+        <WidgetButtonsList />
       </div>
       <div className="column">
         <div className="column-title">
