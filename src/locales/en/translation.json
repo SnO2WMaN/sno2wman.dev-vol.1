@@ -17,7 +17,8 @@
         "title": "ACCOUNTS"
       },
       "aboutme": {
-        "title": "ABOUT ME"
+        "title": "ABOUT ME",
+        "lines": ["I am Nerd."]
       },
       "donate": {
         "title": {
