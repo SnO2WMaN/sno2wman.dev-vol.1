@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 
 import Column from './Column'
-import License from './License'
 import {
   faBriefcase,
   faEnvelopeOpenText,
@@ -30,7 +29,6 @@ const Component: React.FC<Props> = ({ className }) => {
           </Column>
         ))}
       </ul>
-      <License />
     </div>
   )
 }
