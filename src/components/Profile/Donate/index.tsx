@@ -7,25 +7,33 @@ import WidgetButtonsList from './WidgetButtonsList'
 import WishList from './WishList'
 import { faHandsHeart } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useTranslation } from 'react-i18next'
 
 type ContainerProps = {}
 type Props = { className: string } & ContainerProps
 
-const Component: React.FC<Props> = ({ className }) => (
-  <section className={className}>
-    <h2>
-      <span>DONATE</span> / <span>WISHLIST</span>
-    </h2>
-    <div className="columns">
-      <Column title="BUY ME A PEPSI" icon={<IconPepsi />}>
-        <WidgetButtonsList />
-      </Column>
-      <Column title="WISHLIST" icon={<FontAwesomeIcon icon={faHandsHeart} />}>
-        <WishList />
-      </Column>
-    </div>
-  </section>
-)
+const Component: React.FC<Props> = ({ className }) => {
+  const { t } = useTranslation()
+  return (
+    <section className={className}>
+      <h2>
+        <span>{t('profile.donate.title.donate')}</span> /{' '}
+        <span>{t('profile.donate.title.wishlist')}</span>
+      </h2>
+      <div className="columns">
+        <Column title={t('profile.donate.financial')} icon={<IconPepsi />}>
+          <WidgetButtonsList />
+        </Column>
+        <Column
+          title={t('profile.donate.wishlist')}
+          icon={<FontAwesomeIcon icon={faHandsHeart} />}
+        >
+          <WishList />
+        </Column>
+      </div>
+    </section>
+  )
+}
 
 const StyledComponent = styled(Component)`
   width: 100%;

@@ -3,19 +3,23 @@ import styled from 'styled-components'
 
 import LeftColumn from './LeftColumn'
 import RightColumn from './RightColumn'
+import { useTranslation } from 'react-i18next'
 
 type ContainerProps = {}
 type Props = { className: string } & ContainerProps
 
-const Component: React.FC<Props> = ({ className }) => (
-  <section className={className}>
-    <h2>ABOUT ME</h2>
-    <div className="columns">
-      <LeftColumn />
-      <RightColumn />
-    </div>
-  </section>
-)
+const Component: React.FC<Props> = ({ className }) => {
+  const { t } = useTranslation()
+  return (
+    <section className={className}>
+      <h2>{t('profile.aboutme.title')}</h2>
+      <div className="columns">
+        <LeftColumn />
+        <RightColumn />
+      </div>
+    </section>
+  )
+}
 
 const StyledComponent = styled(Component)`
   width: 100%;

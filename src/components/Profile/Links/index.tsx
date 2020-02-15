@@ -27,6 +27,7 @@ import {
 } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Color from 'color'
+import { useTranslation } from 'react-i18next'
 
 type ContainerProps = {}
 type Props = { className: string } & ContainerProps
@@ -125,33 +126,36 @@ const columns = Math.ceil(
   Math.sqrt(Object.values(socials).filter(({ disable }) => !disable).length)
 )
 
-const Component: React.FC<Props> = ({ className }) => (
-  <section className={className}>
-    <ul className="links">
-      {Object.entries(socials)
-        .sort(
-          ({ 0: a }, { 0: b }) =>
-            ((Color(brandcolors[a]).hue() + 30) % 360) -
-            ((Color(brandcolors[b]).hue() + 30) % 360)
-        )
-        .filter(({ 1: { disable } }) => !disable)
-        .map(({ 0: key, 1: { icon, href } }, i, a) => (
-          <SocialLink
-            key={key}
-            color={brandcolors[key]}
-            href={href}
-            row={(i % columns) / (columns - 1)}
-            line={
-              Math.floor(i / columns) / (Math.floor(a.length / columns) - 1)
-            }
-          >
-            {icon}
-          </SocialLink>
-        ))}
-    </ul>
-    <h2>ACCOUNTS</h2>
-  </section>
-)
+const Component: React.FC<Props> = ({ className }) => {
+  const { t } = useTranslation()
+  return (
+    <section className={className}>
+      <ul className="links">
+        {Object.entries(socials)
+          .sort(
+            ({ 0: a }, { 0: b }) =>
+              ((Color(brandcolors[a]).hue() + 30) % 360) -
+              ((Color(brandcolors[b]).hue() + 30) % 360)
+          )
+          .filter(({ 1: { disable } }) => !disable)
+          .map(({ 0: key, 1: { icon, href } }, i, a) => (
+            <SocialLink
+              key={key}
+              color={brandcolors[key]}
+              href={href}
+              row={(i % columns) / (columns - 1)}
+              line={
+                Math.floor(i / columns) / (Math.floor(a.length / columns) - 1)
+              }
+            >
+              {icon}
+            </SocialLink>
+          ))}
+      </ul>
+      <h2>{t('profile.accounts.title')}</h2>
+    </section>
+  )
+}
 
 const StyledComponent = styled(Component)`
   width: 100%;

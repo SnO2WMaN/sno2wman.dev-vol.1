@@ -6,31 +6,35 @@ import { faFileCertificate } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classnames from 'classnames'
 import Link from 'next/link'
+import { useTranslation } from 'react-i18next'
 
 type ContainerProps = {}
 type Props = { className: string } & ContainerProps
 
-const Component: React.FC<Props> = ({ className }) => (
-  <footer className={className}>
-    <div className={classnames('column', 'left')}>
-      <div className="title">
-        <p>SnO2WMaN.dev</p>
+const Component: React.FC<Props> = ({ className }) => {
+  const { t } = useTranslation()
+  return (
+    <footer className={className}>
+      <div className={classnames('column', 'left')}>
+        <div className="title">
+          <p>SnO2WMaN.dev</p>
+        </div>
+        <a>{t('footer.copyright')}</a>
+        <Link href="/license">
+          <a>{t('footer.license')}</a>
+        </Link>
       </div>
-      <a>&copy; 2020 SnO2WMaN</a>
-      <Link href="/license">
-        <a>LICENSE</a>
-      </Link>
-    </div>
-    <div className={classnames('column', 'right')}>
-      <a href="https://twitter.com/SnO2WMaN">
-        <FontAwesomeIcon icon={faTwitter} />
-      </a>
-      <a href="https://github.com/SnO2WMaN/sno2wman.dev">
-        <FontAwesomeIcon icon={faGithub} />
-      </a>
-    </div>
-  </footer>
-)
+      <div className={classnames('column', 'right')}>
+        <a href="https://twitter.com/SnO2WMaN">
+          <FontAwesomeIcon icon={faTwitter} />
+        </a>
+        <a href="https://github.com/SnO2WMaN/sno2wman.dev">
+          <FontAwesomeIcon icon={faGithub} />
+        </a>
+      </div>
+    </footer>
+  )
+}
 
 const StyledComponent = styled(Component)`
   width: 100%;

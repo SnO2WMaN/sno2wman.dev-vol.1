@@ -1,15 +1,38 @@
 {
   "translation": {
-    "sidenav-home": "HOME",
-    "sidenav-works": "WORKS",
-    "sidenav-profile": "PROFILE",
-    "sidenav-contact": "CONTACT",
-    "sidenav-license": "LICENSE",
-    "sidenav-blog": "BLOG",
-    "wishlist-books": "BOOKS",
-    "wishlist-pepsi": "PEPSI",
-    "wishlist-comics": "COMICS",
-    "wishlist-games": "GAMES",
-    "wishlist-things": "THINGS"
+    "greeting": "Hello",
+    "sidenav": {
+      "home": "HOME",
+      "works": "WORKS",
+      "profile": "PROFILE",
+      "contact": "CONTACT",
+      "license": "LICENSE"
+    },
+    "footer": {
+      "copyright": "© 2020 SnO2WMaN",
+      "license": "$t(sidenav.license)"
+    },
+    "profile": {
+      "accounts": {
+        "title": "ACCOUNTS"
+      },
+      "aboutme": {
+        "title": "ABOUT ME"
+      },
+      "donate": {
+        "title": {
+          "donate": "DONATE",
+          "wishlist": "WISHLIST"
+        },
+        "financial": "BUY ME A PEPSI",
+        "wishlist": "WISHLIST",
+        "wishlists": {
+          "books": "BOOKS",
+          "comics": "COMCIS",
+          "things": "THINGS",
+          "games": "GAMES"
+        }
+      }
+    }
   }
 }

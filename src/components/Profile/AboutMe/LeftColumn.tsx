@@ -1,16 +1,22 @@
 import React from 'react'
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 
 import TextBalloon from './TextBalloon'
+import { useTranslation } from 'react-i18next'
 
 type ContainerProps = {}
 type Props = { className: string } & ContainerProps
 
-const Component: React.FC<Props> = ({ className, children }) => (
-  <div className={className}>
-    <TextBalloon className="balloon"></TextBalloon>
-  </div>
-)
+const Component: React.FC<Props> = ({ className }) => {
+  const { t } = useTranslation()
+  return (
+    <div className={className}>
+      <TextBalloon className="balloon">
+        <p>{t('greeting')}</p>
+      </TextBalloon>
+    </div>
+  )
+}
 
 const StyledComponent = styled(Component)`
   display: flex;

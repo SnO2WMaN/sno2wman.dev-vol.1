@@ -24,28 +24,28 @@ const Component: React.FC<Props> = ({ className }) => {
         theme={brandcolors.amazon}
         href="https://www.amazon.jp/hz/wishlist/ls/BO23V3CPIPJO?ref_=wl_share"
       >
-        {t('wishlist-books')}
+        {t('profile.donate.wishlists.books')}
       </WishListColumn>
       <WishListColumn
         icon={<FontAwesomeIcon icon={faBooks} />}
         theme={brandcolors.amazon}
         href="https://www.amazon.jp/hz/wishlist/ls/1NQARLKRX8PTF?ref_=wl_share"
       >
-        {t('wishlist-comics')}
+        {t('profile.donate.wishlists.comics')}
       </WishListColumn>
       <WishListColumn
         icon={<FontAwesomeIcon icon={faCubes} />}
         theme={brandcolors.amazon}
         href="https://www.amazon.jp/hz/wishlist/ls/2NHME83WUZWSR?ref_=wl_share"
       >
-        {t('wishlist-things')}
+        {t('profile.donate.wishlists.things')}
       </WishListColumn>
       <WishListColumn
         icon={<FontAwesomeIcon icon={faGameConsoleHandheld} />}
         theme={brandcolors.steam}
         href="https://store.steampowered.com/wishlist/id/SnO2WMaN"
       >
-        {t('wishlist-games')}
+        {t('profile.donate.wishlists.games')}
       </WishListColumn>
     </ul>
   )

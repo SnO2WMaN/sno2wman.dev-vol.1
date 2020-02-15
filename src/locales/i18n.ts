@@ -13,7 +13,6 @@ i18n
     resources,
     fallbackLng: 'en',
     debug: process.env.NODE_ENV === 'development',
-    keySeparator: false,
     interpolation: { escapeValue: false },
   })
 
