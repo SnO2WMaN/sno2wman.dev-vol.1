@@ -1,0 +1,50 @@
+import React from 'react'
+import styled from 'styled-components'
+
+import ImageMe from '../../../assets/me.png'
+
+type ContainerProps = {}
+type Props = { className: string } & ContainerProps
+
+const Component: React.FC<Props> = ({ className, children }) => (
+  <div className={className}>
+    <div className="avatar">
+      <img src={ImageMe} />
+    </div>
+    <h4 className="name">SnO2WMaN</h4>
+  </div>
+)
+
+const StyledComponent = styled(Component)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .avatar {
+    width: 160px;
+    padding: 16px;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: hsl(225, 15%, 95%);
+    box-shadow: 4px 4px 24px rgba(0, 0, 0, 0.125), -4px -4px 24px white;
+    > img {
+      border-radius: 8px;
+      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.125), -2px -2px 8px white;
+    }
+  }
+  .name {
+    color: #2f2f2f;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    margin-top: 24px;
+    font-family: 'Press Start 2P', sans-serif;
+  }
+`
+
+const Column: React.FC<ContainerProps> = properties => {
+  return <StyledComponent {...properties} />
+}
+
+export default Column
