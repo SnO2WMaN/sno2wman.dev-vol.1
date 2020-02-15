@@ -15,10 +15,12 @@ import {
   faDiscord,
   faGithub,
   faKeybase,
+  faLastfmSquare,
   faNpm,
   faPatreon,
   faPaypal,
   faSoundcloud,
+  faSpeakerDeck,
   faSpotify,
   faSteamSquare,
   faTwitch,
@@ -120,6 +122,14 @@ const socials: {
     href: 'https://codepen.io/SnO2WMaN',
     icon: <FontAwesomeIcon icon={faCodepen} />,
     disable: true,
+  },
+  'lastfm': {
+    href: 'https://www.last.fm/user/SnO2WMaN',
+    icon: <FontAwesomeIcon icon={faLastfmSquare} />,
+  },
+  'speakerdeck': {
+    href: 'https://speakerdeck.com/sno2wman',
+    icon: <FontAwesomeIcon icon={faSpeakerDeck} />,
   },
 }
 const columns = Math.ceil(
