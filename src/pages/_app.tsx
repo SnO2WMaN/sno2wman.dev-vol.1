@@ -3,37 +3,37 @@ import styled from 'styled-components'
 
 import '../styles/global.css'
 import '../locales/i18n'
+import Footer from '../components/Footer'
 import SideMenu from '../components/SideMenu'
 
 export const a = ({ Component, pageProps, className }) => (
-  <>
-    <div className={className}>
-      <SideMenu />
-      <div className="page-wrapper">
-        <div className="width-fixer">
-          <Component {...pageProps} />
-        </div>
+  <div className={className}>
+    <SideMenu />
+    <div className="page-wrapper">
+      <div className="width-fixer">
+        <Component {...pageProps} />
+        <Footer />
       </div>
     </div>
-  </>
+  </div>
 )
 
 const StyledComponent = styled(a)`
   display: flex;
   overflow-y: hidden;
   .page-wrapper {
-    display: flex;
     flex-grow: 2;
-    justify-content: center;
     overflow-y: scroll;
     height: 100vh;
+    background-color: hsl(215, 50%, 92.5%);
   }
   .width-fixer {
     width: 100%;
     max-width: 920px;
-    margin: 160px 0;
-    min-height: calc(100vh - 120px);
-    box-shadow: 0 0 72px 16px rgba(0, 0, 0, 0.125);
+    margin: 160px auto;
+    box-shadow: -8px -8px 48px rgba(255, 255, 255, 0.5),
+      8px 8px 72px rgba(0, 0, 0, 0.125);
+    overflow: hidden;
   }
 `
 
