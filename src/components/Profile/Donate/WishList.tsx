@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import brandcolors from '../../../json/brandcolors.json'
+import brandcolors from '../../../data/brandcolors.json'
 import WishListColumn from './WishListColumn'
 import {
   faBook,

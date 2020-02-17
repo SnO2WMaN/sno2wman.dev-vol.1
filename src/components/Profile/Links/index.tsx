@@ -7,7 +7,7 @@ import IconKofi from '../../../assets/svg/ko-fi.svg'
 import IconKyash from '../../../assets/svg/kyash.svg'
 import IconPixiv from '../../../assets/svg/pixiv.svg'
 import IconQiita from '../../../assets/svg/qiita.svg'
-import brandcolors from '../../../json/brandcolors.json'
+import brandcolors from '../../../data/brandcolors.json'
 import SocialLink from './SocialLink'
 import {
   faBitcoin,

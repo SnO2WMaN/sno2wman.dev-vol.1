@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import IconKofi from '../../../assets/svg/ko-fi_nofill.svg'
-import brandcolors from '../../../json/brandcolors.json'
+import brandcolors from '../../../data/brandcolors.json'
 import WidgetButton from './WidgetButton'
 import {
   faAmazon,
