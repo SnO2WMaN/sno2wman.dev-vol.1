@@ -3,23 +3,56 @@ import styled from 'styled-components'
 
 import { SkillType } from '../../../data/skillset'
 import Skill from './Skill'
+import anime from 'animejs'
 
 type ContainerProps = {
   className?: string
   category: string
   skills: { [key in string]: SkillType }
+  delay: number
 }
 type Props = {} & ContainerProps
 
-const Component: React.FC<Props> = ({ className, skills, category }) => {
+const Component: React.FC<Props> = ({ className, skills, category, delay }) => {
   return (
     <div className={className}>
       <div className="title">
-        <h3>{category}</h3>
+        <h3
+          ref={reference =>
+            anime
+              .timeline({
+                targets: reference,
+              })
+              .add({
+                translateX: [`${-50}%`, 0],
+                opacity: [0, 1],
+                duration: 500,
+                easing: 'easeInOutCubic',
+                delay,
+              })
+          }
+        >
+          {category}
+        </h3>
+        <div
+          className="border"
+          ref={reference =>
+            anime
+              .timeline({
+                targets: reference,
+              })
+              .add({
+                scaleX: [0, 1],
+                duration: 500,
+                easing: 'easeOutCubic',
+                delay: delay + 500,
+              })
+          }
+        />
       </div>
       <ul>
-        {Object.entries(skills).map(([key, skill]) => (
-          <Skill skill={skill} key={key} />
+        {Object.entries(skills).map(([key, skill], i) => (
+          <Skill skill={skill} key={key} delay={delay + 500 + i ** 1.1 * 50} />
         ))}
       </ul>
     </div>
@@ -42,10 +75,11 @@ const StyledComponent = styled(Component)`
       letter-spacing: 0.25em;
       margin-right: 8px;
     }
-    &::after {
+    > .border {
       flex-grow: 2;
       content: '';
       height: 1px;
+      transform-origin: left;
       background-color: hsl(225, 12.5%, 75%);
     }
   }

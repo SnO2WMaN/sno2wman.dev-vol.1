@@ -14,8 +14,16 @@ const Component: React.FC<Props> = ({ className }) => {
     <section className={className}>
       <h2>{t('profile.skillset.title')}</h2>
       <div className="skillset">
-        {Object.entries(skillset).map(([category, skills]) => (
-          <Category category={category} skills={skills} key={category} />
+        {Object.entries(skillset).map(([category, skills], i, array) => (
+          <Category
+            category={category}
+            skills={skills}
+            key={category}
+            delay={
+              20 *
+              array.slice(0, i).reduce((p, c) => p + c.length + 1, 0) ** 1.1
+            }
+          />
         ))}
       </div>
     </section>
