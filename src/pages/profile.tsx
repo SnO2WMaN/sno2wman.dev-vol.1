@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import AboutMeSection from '../components/Profile/AboutMe'
 import DonateSection from '../components/Profile/Donate'
 import LinksSection from '../components/Profile/Links'
+import SkillsetSection from '../components/Profile/Skillset'
 
 type ContainerProps = {}
 type Props = { className: string } & ContainerProps
@@ -12,6 +13,7 @@ const Component: React.FC<Props> = ({ className }) => (
   <div className={className}>
     <AboutMeSection />
     <LinksSection />
+    <SkillsetSection />
     <DonateSection />
   </div>
 )

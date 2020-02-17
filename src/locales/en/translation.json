@@ -16,6 +16,9 @@
       "accounts": {
         "title": "ACCOUNTS"
       },
+      "skillset": {
+        "title": "USING"
+      },
       "aboutme": {
         "title": "ABOUT ME",
         "lines": ["I am Nerd."]
