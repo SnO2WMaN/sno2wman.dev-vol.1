@@ -61,8 +61,8 @@ const StyledComponent = styled(Component)`
   }
 `
 
-const Container: React.FC<ContainerProps> = properties => {
+const WishListsColumn: React.FC<ContainerProps> = properties => {
   return <StyledComponent {...properties} />
 }
 
-export default Container
+export default WishListsColumn

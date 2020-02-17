@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 type ContainerProps = { className?: string }
 type Props = {} & ContainerProps
@@ -7,7 +7,7 @@ type Props = {} & ContainerProps
 const Component: React.FC<Props> = ({ className, children }) => (
   <div className={className}>
     <div className="triangle"></div>
-    {children}
+    <div className="wrap">{children}</div>
   </div>
 )
 
@@ -22,6 +22,12 @@ const StyledComponent = styled(Component)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  > .wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
   > .triangle {
     position: absolute;
     top: 0;
@@ -35,8 +41,8 @@ const StyledComponent = styled(Component)`
   }
 `
 
-const Balloon: React.FC<ContainerProps> = properties => {
+const SpeechBalloon: React.FC<ContainerProps> = properties => {
   return <StyledComponent {...properties} />
 }
 
-export default Balloon
+export default SpeechBalloon

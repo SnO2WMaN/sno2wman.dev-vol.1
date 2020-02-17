@@ -57,8 +57,8 @@ const StyledComponent = styled(Component)`
   grid-gap: 16px;
 `
 
-const Container: React.FC<ContainerProps> = properties => {
+const WishList: React.FC<ContainerProps> = properties => {
   return <StyledComponent {...properties} />
 }
 
-export default Container
+export default WishList

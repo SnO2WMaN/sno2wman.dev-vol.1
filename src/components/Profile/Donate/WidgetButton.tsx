@@ -60,8 +60,8 @@ const StyledComponent = styled(Component)`
   }
 `
 
-const Container: React.FC<ContainerProps> = properties => {
+const WidgetButton: React.FC<ContainerProps> = properties => {
   return <StyledComponent {...properties} />
 }
 
-export default Container
+export default WidgetButton

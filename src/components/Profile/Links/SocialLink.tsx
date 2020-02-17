@@ -21,7 +21,7 @@ const Component: React.FC<Props> = ({
   row,
   line,
 }) => {
-  const delay = row ** (1 / 2) * 200 + line * 100
+  const delay = 75 * (row + line + 1) * (row + line)
   return (
     <li className={className}>
       <div
@@ -40,7 +40,7 @@ const Component: React.FC<Props> = ({
             })
             .add({
               opacity: [0, 1],
-              duration: 500,
+              duration: 1000,
               easing: 'easeOutCubic',
               delay: delay + 500,
             })
@@ -62,9 +62,9 @@ const Component: React.FC<Props> = ({
             })
             .add({
               scale: [0, 1],
-              duration: 500,
+              duration: 750,
               easing: 'easeOutElastic(1, .625)',
-              delay: delay + 600,
+              delay: delay + 500,
             })
         }
       >
@@ -87,11 +87,12 @@ const Component: React.FC<Props> = ({
             })
             .add({
               scale: [0, 1],
-              duration: 500,
+              duration: 350,
               easing: 'easeInExpo',
               delay,
             })
             .add({
+              delay: 50,
               borderWidth: 0,
               opacity: { value: 0, easing: 'easeInOutExpo' },
               duration: 500,
@@ -172,8 +173,8 @@ const StyledComponent = styled(Component)`
   }
 `
 
-const Container: React.FC<ContainerProps> = properties => {
+const SocialLink: React.FC<ContainerProps> = properties => {
   return <StyledComponent {...properties} />
 }
 
-export default Container
+export default SocialLink

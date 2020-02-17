@@ -56,8 +56,8 @@ const StyledComponent = styled(Component)`
   }
 `
 
-const Column: React.FC<ContainerProps> = properties => {
+const TextColumn: React.FC<ContainerProps> = properties => {
   return <StyledComponent {...properties} />
 }
 
-export default Column
+export default TextColumn

@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import LeftColumn from './LeftColumn'
-import RightColumn from './RightColumn'
+import TextColumn from './LeftColumn'
+import AvatarColumn from './RightColumn'
 import { useTranslation } from 'react-i18next'
 
 type ContainerProps = {}
@@ -14,8 +14,8 @@ const Component: React.FC<Props> = ({ className }) => {
     <section className={className}>
       <h2>{t('profile.aboutme.title')}</h2>
       <div className="columns">
-        <LeftColumn />
-        <RightColumn />
+        <TextColumn />
+        <AvatarColumn />
       </div>
     </section>
   )
@@ -45,8 +45,8 @@ const StyledComponent = styled(Component)`
   }
 `
 
-const Container: React.FC<ContainerProps> = properties => {
+const AboutMeSection: React.FC<ContainerProps> = properties => {
   return <StyledComponent {...properties} />
 }
 
-export default Container
+export default AboutMeSection

@@ -6,7 +6,7 @@ import ImageMe from '../../../assets/me.png'
 type ContainerProps = {}
 type Props = { className: string } & ContainerProps
 
-const Component: React.FC<Props> = ({ className, children }) => (
+const Component: React.FC<Props> = ({ className }) => (
   <div className={className}>
     <div className="avatar">
       <img src={ImageMe} />
@@ -43,8 +43,8 @@ const StyledComponent = styled(Component)`
   }
 `
 
-const Column: React.FC<ContainerProps> = properties => {
+const AvatarColumn: React.FC<ContainerProps> = properties => {
   return <StyledComponent {...properties} />
 }
 
-export default Column
+export default AvatarColumn

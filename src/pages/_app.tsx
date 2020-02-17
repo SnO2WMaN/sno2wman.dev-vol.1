@@ -6,7 +6,7 @@ import '../locales/i18n'
 import Footer from '../components/Footer'
 import SideMenu from '../components/SideMenu'
 
-export const a = ({ Component, pageProps, className }) => (
+export const App = ({ Component, pageProps, className }) => (
   <div className={className}>
     <SideMenu />
     <div className="page-wrapper">
@@ -18,7 +18,7 @@ export const a = ({ Component, pageProps, className }) => (
   </div>
 )
 
-const StyledComponent = styled(a)`
+const StyledComponent = styled(App)`
   display: flex;
   overflow-y: hidden;
   .page-wrapper {

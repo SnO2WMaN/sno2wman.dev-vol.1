@@ -217,8 +217,8 @@ const StyledComponent = styled(Component)`
   }
 `
 
-const Container: React.FC<ContainerProps> = properties => {
+const Skill: React.FC<ContainerProps> = properties => {
   return <StyledComponent {...properties} />
 }
 
-export default Container
+export default Skill
