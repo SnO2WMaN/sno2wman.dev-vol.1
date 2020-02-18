@@ -1,10 +1,11 @@
 import React from 'react'
 
+import ImageConnpass from '../assets/connpass.png'
+import ImagePixiv from '../assets/pixiv.png'
 import IconAnnict from '../assets/svg/annict.svg'
 import IconBookmeter from '../assets/svg/bookmeter.svg'
 import IconKofi from '../assets/svg/ko-fi.svg'
 import IconKyash from '../assets/svg/kyash.svg'
-import IconPixiv from '../assets/svg/pixiv.svg'
 import IconQiita from '../assets/svg/qiita.svg'
 import {
   faBitcoin,
@@ -47,7 +48,7 @@ const socials: {
   },
   'pixiv': {
     href: 'https://www.pixiv.net/member.php?id=31358190',
-    icon: <IconPixiv />,
+    icon: <img src={ImagePixiv} />,
   },
   'soundcloud': {
     href: 'https://soundcloud.com/sno2wman',
@@ -127,10 +128,15 @@ const socials: {
     href: 'https://speakerdeck.com/sno2wman',
     icon: <FontAwesomeIcon icon={faSpeakerDeck} />,
   },
+  'connpass': {
+    href: 'https://connpass.com/user/SnO2WMaN/',
+    icon: <img src={ImageConnpass} />,
+    disable: true,
+  },
 }
 
 export default Object.fromEntries(
   Object.entries(socials)
-    // .filter(([, { disable }]) => !disable)
+    .filter(([, { disable }]) => !disable)
     .map(([key, { href, icon }]) => [key, { href, icon }])
 )
