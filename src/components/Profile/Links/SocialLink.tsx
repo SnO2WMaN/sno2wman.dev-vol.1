@@ -28,8 +28,7 @@ const Component: React.FC<Props> = ({
   const backRef = React.createRef<HTMLDivElement>()
   const iconRef = React.createRef<HTMLDivElement>()
   const maskRef = React.createRef<HTMLDivElement>()
-  let timelines: (() => void)[]
-
+  let timelines: anime.AnimeTimelineInstance[]
   useEffect(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     timelines = [
@@ -43,7 +42,7 @@ const Component: React.FC<Props> = ({
           duration: 1000,
           easing: 'easeOutCubic',
           delay: delay + 500,
-        }).play,
+        }),
       anime
         .timeline({
           targets: iconRef.current,
@@ -54,7 +53,7 @@ const Component: React.FC<Props> = ({
           duration: 750,
           easing: 'easeOutElastic(1, .625)',
           delay: delay + 500,
-        }).play,
+        }),
       anime
         .timeline({
           targets: maskRef.current,
@@ -72,13 +71,13 @@ const Component: React.FC<Props> = ({
           opacity: { value: 0, easing: 'easeInOutExpo' },
           duration: 500,
           easing: 'easeOutExpo',
-        }).play,
+        }),
     ]
   }, [animated])
 
   useEffect(
     () => {
-      if (animated) timelines.forEach(f => f())
+      if (animated) timelines.forEach(timeline => timeline.play())
     },
     [animated] // eslint-disable-line react-hooks/exhaustive-deps
   )
@@ -158,9 +157,13 @@ const StyledComponent = styled(Component)`
     font-size: 24px;
     color: white;
     z-index: 2;
-    > svg {
+    > svg,
+    > img {
       width: 24px;
       height: 24px;
+    }
+    > img {
+      object-fit: contain;
     }
   }
   > a {

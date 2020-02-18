@@ -1,17 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 import skillset from '../../../data/skillset'
+import { ScrollContainer } from '../../../store'
 import Category from './Category'
 import { useTranslation } from 'react-i18next'
+import { useWindowSize } from 'react-use'
 
 type ContainerProps = { className?: string }
 type Props = {} & ContainerProps
 
 const Component: React.FC<Props> = ({ className }) => {
   const { t } = useTranslation()
+  const scrollContainer = ScrollContainer.useContainer()
+  const { height: windowHeight } = useWindowSize()
+  const sectionRef = React.createRef<HTMLDivElement>()
+  const [anime, setAnime] = useState(false)
+
+  useEffect(() => {
+    if (
+      sectionRef.current.offsetTop + sectionRef.current.offsetHeight <=
+      windowHeight + scrollContainer.scrollY
+    )
+      setAnime(true)
+  }, [sectionRef, scrollContainer.scrollY, windowHeight])
   return (
-    <section className={className}>
+    <section className={className} ref={sectionRef}>
       <h2>{t('profile.skillset.title')}</h2>
       <div className="skillset">
         {Object.entries(skillset).map(([category, skills], i, array) => (
@@ -19,6 +33,7 @@ const Component: React.FC<Props> = ({ className }) => {
             category={category}
             skills={skills}
             key={category}
+            animated={anime}
             delay={
               20 *
               array.slice(0, i).reduce((p, c) => p + c.length + 1, 0) ** 1.1

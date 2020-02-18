@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import socials from '../../../data/accounts'
 import brandcolors from '../../../data/brandcolors.json'
-import { ScrollContainer } from '../../../pages/store'
+import { ScrollContainer } from '../../../store'
 import SocialLink from './SocialLink'
 import Color from 'color'
 import { useTranslation } from 'react-i18next'
@@ -17,19 +17,17 @@ const columns = Math.ceil(Math.sqrt(Object.values(socials).length))
 const Component: React.FC<Props> = ({ className }) => {
   const { t } = useTranslation()
   const scrollContainer = ScrollContainer.useContainer()
-
   const { height: windowHeight } = useWindowSize()
   const ref = React.createRef<HTMLDivElement>()
   const [anime, setAnime] = useState(false)
 
   useEffect(() => {
-    setAnime(
-      anime ||
-        ref.current.offsetTop + ref.current.offsetHeight <=
-          windowHeight + scrollContainer.scrollY
+    if (
+      ref.current.offsetTop + ref.current.offsetHeight <=
+      windowHeight + scrollContainer.scrollY
     )
-  }, [anime, ref, scrollContainer.scrollY, windowHeight])
-
+      setAnime(true)
+  }, [ref, scrollContainer.scrollY, windowHeight])
   return (
     <section className={className} ref={ref}>
       <ul className="links">
@@ -66,7 +64,7 @@ const StyledComponent = styled(Component)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 64px 0;
+  padding: 72px 0;
   > .links {
     display: grid;
     grid-template-columns: repeat(${columns}, 1fr);

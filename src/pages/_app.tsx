@@ -5,7 +5,7 @@ import '../styles/global.css'
 import '../locales/i18n'
 import Footer from '../components/Footer'
 import SideMenu from '../components/SideMenu'
-import { ScrollContainer } from './store'
+import { ScrollContainer } from '../store'
 import { useScroll } from 'react-use'
 
 const Scroller: React.FC<{ className?: string }> = ({

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 
 import { SkillType } from '../../../data/skillset'
@@ -10,49 +10,71 @@ type ContainerProps = {
   category: string
   skills: { [key in string]: SkillType }
   delay: number
+  animated: boolean
 }
 type Props = {} & ContainerProps
 
-const Component: React.FC<Props> = ({ className, skills, category, delay }) => {
+const Component: React.FC<Props> = ({
+  className,
+  skills,
+  category,
+  delay,
+  animated,
+}) => {
+  const titleRef = React.createRef<HTMLDivElement>()
+  const titleBorderRef = React.createRef<HTMLDivElement>()
+
+  let timelines: anime.AnimeTimelineInstance[]
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    timelines = [
+      anime
+        .timeline({
+          targets: titleRef.current,
+          autoplay: false,
+        })
+        .add({
+          translateX: [`${-50}%`, 0],
+          opacity: [0, 1],
+          duration: 500,
+          easing: 'easeInOutCubic',
+          delay,
+        }),
+      anime
+        .timeline({
+          targets: titleBorderRef.current,
+          autoplay: false,
+        })
+        .add({
+          scaleX: [0, 1],
+          duration: 500,
+          easing: 'easeOutCubic',
+          delay: delay + 500,
+        }),
+    ]
+  }, [animated])
+
+  useEffect(
+    () => {
+      if (animated) timelines.forEach(timeline => timeline.play())
+    },
+    [animated] // eslint-disable-line react-hooks/exhaustive-deps
+  )
+
   return (
     <div className={className}>
       <div className="title">
-        <h3
-          ref={reference =>
-            anime
-              .timeline({
-                targets: reference,
-              })
-              .add({
-                translateX: [`${-50}%`, 0],
-                opacity: [0, 1],
-                duration: 500,
-                easing: 'easeInOutCubic',
-                delay,
-              })
-          }
-        >
-          {category}
-        </h3>
-        <div
-          className="border"
-          ref={reference =>
-            anime
-              .timeline({
-                targets: reference,
-              })
-              .add({
-                scaleX: [0, 1],
-                duration: 500,
-                easing: 'easeOutCubic',
-                delay: delay + 500,
-              })
-          }
-        />
+        <h3 ref={titleRef}>{category}</h3>
+        <div className="border" ref={titleBorderRef} />
       </div>
       <ul>
         {Object.entries(skills).map(([key, skill], i) => (
-          <Skill skill={skill} key={key} delay={delay + 500 + i ** 1.1 * 50} />
+          <Skill
+            skill={skill}
+            key={key}
+            delay={delay + 500 + i ** 1.1 * 50}
+            animated={animated}
+          />
         ))}
       </ul>
     </div>
