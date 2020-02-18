@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 
 import CSSShadow from '../../../utils/cssShadow'
@@ -6,12 +6,14 @@ import anime from 'animejs'
 import Color from 'color'
 
 type ContainerProps = {
+  className?: string
+  animated: boolean
   href: string
   color: string
   row: number
   line: number
 }
-type Props = { className: string } & ContainerProps
+type Props = {} & ContainerProps
 
 const Component: React.FC<Props> = ({
   className,
@@ -20,8 +22,67 @@ const Component: React.FC<Props> = ({
   href,
   row,
   line,
+  animated,
 }) => {
   const delay = 75 * (row + line + 1) * (row + line)
+  const backRef = React.createRef<HTMLDivElement>()
+  const iconRef = React.createRef<HTMLDivElement>()
+  const maskRef = React.createRef<HTMLDivElement>()
+  let timelines: (() => void)[]
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    timelines = [
+      anime
+        .timeline({
+          targets: backRef.current,
+          autoplay: animated,
+        })
+        .add({
+          opacity: [0, 1],
+          duration: 1000,
+          easing: 'easeOutCubic',
+          delay: delay + 500,
+        }).play,
+      anime
+        .timeline({
+          targets: iconRef.current,
+          autoplay: animated,
+        })
+        .add({
+          scale: [0, 1],
+          duration: 750,
+          easing: 'easeOutElastic(1, .625)',
+          delay: delay + 500,
+        }).play,
+      anime
+        .timeline({
+          targets: maskRef.current,
+          autoplay: animated,
+        })
+        .add({
+          scale: [0, 1],
+          duration: 350,
+          easing: 'easeInExpo',
+          delay,
+        })
+        .add({
+          delay: 50,
+          borderWidth: 0,
+          opacity: { value: 0, easing: 'easeInOutExpo' },
+          duration: 500,
+          easing: 'easeOutExpo',
+        }).play,
+    ]
+  }, [animated])
+
+  useEffect(
+    () => {
+      if (animated) timelines.forEach(f => f())
+    },
+    [animated] // eslint-disable-line react-hooks/exhaustive-deps
+  )
+
   return (
     <li className={className}>
       <div
@@ -33,18 +94,7 @@ const Component: React.FC<Props> = ({
             { x: 2, y: 2, blur: 16, color: Color(color).fade(0.625) },
           ]),
         }}
-        ref={reference =>
-          anime
-            .timeline({
-              targets: reference,
-            })
-            .add({
-              opacity: [0, 1],
-              duration: 1000,
-              easing: 'easeOutCubic',
-              delay: delay + 500,
-            })
-        }
+        ref={backRef}
       />
       <div
         className="hoverer"
@@ -52,22 +102,7 @@ const Component: React.FC<Props> = ({
           borderColor: color,
         }}
       />
-      <div
-        className="icon-wrap"
-        style={{ color, fill: color }}
-        ref={reference =>
-          anime
-            .timeline({
-              targets: reference,
-            })
-            .add({
-              scale: [0, 1],
-              duration: 750,
-              easing: 'easeOutElastic(1, .625)',
-              delay: delay + 500,
-            })
-        }
-      >
+      <div className="icon-wrap" style={{ color, fill: color }} ref={iconRef}>
         {children}
       </div>
       {href.startsWith('https') ? (
@@ -80,25 +115,7 @@ const Component: React.FC<Props> = ({
           borderColor: color,
         }}
         className="mask"
-        ref={reference =>
-          anime
-            .timeline({
-              targets: reference,
-            })
-            .add({
-              scale: [0, 1],
-              duration: 350,
-              easing: 'easeInExpo',
-              delay,
-            })
-            .add({
-              delay: 50,
-              borderWidth: 0,
-              opacity: { value: 0, easing: 'easeInOutExpo' },
-              duration: 500,
-              easing: 'easeOutExpo',
-            })
-        }
+        ref={maskRef}
       />
     </li>
   )

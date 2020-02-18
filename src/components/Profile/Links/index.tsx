@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 import IconAnnict from '../../../assets/svg/annict.svg'
@@ -8,6 +8,7 @@ import IconKyash from '../../../assets/svg/kyash.svg'
 import IconPixiv from '../../../assets/svg/pixiv.svg'
 import IconQiita from '../../../assets/svg/qiita.svg'
 import brandcolors from '../../../data/brandcolors.json'
+import { ScrollContainer } from '../../../pages/store'
 import SocialLink from './SocialLink'
 import {
   faBitcoin,
@@ -30,6 +31,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Color from 'color'
 import { useTranslation } from 'react-i18next'
+import { useWindowSize } from 'react-use'
 
 type ContainerProps = {}
 type Props = { className: string } & ContainerProps
@@ -138,8 +140,22 @@ const columns = Math.ceil(
 
 const Component: React.FC<Props> = ({ className }) => {
   const { t } = useTranslation()
+  const scrollContainer = ScrollContainer.useContainer()
+
+  const { height: windowHeight } = useWindowSize()
+  const ref = React.createRef<HTMLDivElement>()
+  const [anime, setAnime] = useState(false)
+
+  useEffect(() => {
+    setAnime(
+      anime ||
+        ref.current.offsetTop + ref.current.offsetHeight <=
+          windowHeight + scrollContainer.scrollY
+    )
+  }, [anime, ref, scrollContainer.scrollY, windowHeight])
+
   return (
-    <section className={className}>
+    <section className={className} ref={ref}>
       <ul className="links">
         {Object.entries(socials)
           .sort(
@@ -157,6 +173,7 @@ const Component: React.FC<Props> = ({ className }) => {
               line={
                 Math.floor(i / columns) / (Math.floor(a.length / columns) - 1)
               }
+              animated={anime}
             >
               {icon}
             </SocialLink>

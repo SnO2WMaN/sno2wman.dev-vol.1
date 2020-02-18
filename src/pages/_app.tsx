@@ -5,18 +5,41 @@ import '../styles/global.css'
 import '../locales/i18n'
 import Footer from '../components/Footer'
 import SideMenu from '../components/SideMenu'
+import { ScrollContainer } from './store'
+import { useScroll } from 'react-use'
 
-export const App = ({ Component, pageProps, className }) => (
-  <div className={className}>
-    <SideMenu />
-    <div className="page-wrapper">
-      <div className="width-fixer">
-        <Component {...pageProps} />
-        <Footer />
-      </div>
+const Scroller: React.FC<{ className?: string }> = ({
+  children,
+  className,
+}) => {
+  const a = ScrollContainer.useContainer()
+  const main = React.createRef<HTMLDivElement>()
+  const { y } = useScroll(main)
+
+  a.setScrollY(y)
+
+  return (
+    <div className={className} ref={main}>
+      {children}
     </div>
-  </div>
-)
+  )
+}
+
+export const App = ({ Component, pageProps, className }) => {
+  return (
+    <div className={className}>
+      <SideMenu />
+      <ScrollContainer.Provider>
+        <Scroller className="page-wrapper">
+          <div className="width-fixer">
+            <Component {...pageProps} scrollY={2} />
+            <Footer />
+          </div>
+        </Scroller>
+      </ScrollContainer.Provider>
+    </div>
+  )
+}
 
 const StyledComponent = styled(App)`
   display: flex;
