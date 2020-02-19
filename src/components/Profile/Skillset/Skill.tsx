@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 
+import colors from '../../../colors'
 import { SkillType } from '../../../data/skillset'
-import colors from '../colors'
 import anime from 'animejs'
 import Color from 'color'
 

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 
+import colors from '../../../colors'
 import { SkillType } from '../../../data/skillset'
 import Skill from './Skill'
 import anime from 'animejs'
@@ -91,7 +92,7 @@ const StyledComponent = styled(Component)`
     align-items: center;
     user-select: none;
     h3 {
-      color: hsl(225, 12.5%, 65%);
+      color: ${colors.grey1};
       font-size: 0.7rem;
       font-weight: 500;
       font-family: 'Montserrat', sans-serif;
@@ -103,7 +104,7 @@ const StyledComponent = styled(Component)`
       content: '';
       height: 1px;
       transform-origin: left;
-      background-color: hsl(225, 12.5%, 75%);
+      background-color: ${colors.grey1};
     }
   }
   ul {

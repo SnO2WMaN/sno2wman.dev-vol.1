@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import IconPepsi from '../../../assets/svg/pepsi.svg'
 import { ScrollContainer } from '../../../store'
-import colors from '../colors'
+import colors from '../../../colors'
 import Column from './Column'
 import WidgetButtonsList from './WidgetButtonsList'
 import WishList from './WishListsList'

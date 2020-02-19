@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import ImageMe from '../../../assets/me.png'
-import colors from '../colors'
+import colors from '../../../colors'
 
 type ContainerProps = {}
 type Props = { className: string } & ContainerProps

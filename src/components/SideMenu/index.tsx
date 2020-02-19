@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import colors from '../../colors'
 import Column from './Column'
 import {
   faBriefcase,
@@ -11,8 +12,8 @@ import {
 import Link from 'next/link'
 import { useTranslation } from 'react-i18next'
 
-type ContainerProps = {}
-type Props = { className: string } & ContainerProps
+type ContainerProps = { className?: string }
+type Props = {} & ContainerProps
 
 const Component: React.FC<Props> = ({ className }) => {
   const { t } = useTranslation()
@@ -31,7 +32,7 @@ const Component: React.FC<Props> = ({ className }) => {
           { icon: faEnvelopeOpenText, key: 'contact' },
           { icon: faFileCertificate, key: 'license' },
         ].map(({ icon, key }) => (
-          <Column key={key} icon={icon} href={`/${key}`}>
+          <Column className="column" key={key} icon={icon} href={`/${key}`}>
             {t(`sidenav.${key}`)}
           </Column>
         ))}
@@ -46,34 +47,40 @@ const StyledComponent = styled(Component)`
   min-width: 320px;
   height: 100vh;
   overflow: hidden;
-  background-color: #fff;
-  box-shadow: 0 0 72px 4px rgba(0, 0, 0, 0.125);
+  background-color: ${colors.whity4};
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.125);
   & > .home {
-    width: 100%;
-    height: 128px;
-    background: white;
-    box-shadow: 0 0 72px 4px rgba(0, 0, 0, 0.125);
+    position: relative;
+    z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    height: 128px;
+    background-color: ${colors.whity3};
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+    margin-bottom: 12px;
     user-select: none;
-    position: relative;
-    z-index: 1;
     > a {
       position: absolute;
       width: 100%;
       height: 100%;
     }
     > span {
-      letter-spacing: 0.125em;
+      color: ${colors.blacky3};
       font-size: 1rem;
-      color: #2f2f2f;
       font-family: 'Press Start 2P', monospace;
+      letter-spacing: 0.125em;
     }
   }
   > .columns {
     flex-grow: 2;
     overflow: hidden;
+    > .column {
+      &:not(:last-of-type) {
+        margin-bottom: 12px;
+      }
+    }
   }
 `
 

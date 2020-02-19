@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import colors from '../colors'
+import colors from '../../../colors'
 import TextColumn from './LeftColumn'
 import AvatarColumn from './RightColumn'
 import { useTranslation } from 'react-i18next'

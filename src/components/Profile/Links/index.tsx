@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
+import colors from '../../../colors'
 import socials from '../../../data/accounts'
 import brandcolors from '../../../data/brandcolors.json'
 import { ScrollContainer } from '../../../store'
-import colors from '../colors'
 import SocialLink from './SocialLink'
 import Color from 'color'
 import { useTranslation } from 'react-i18next'

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import skillset from '../../../data/skillset'
 import { ScrollContainer } from '../../../store'
-import colors from '../colors'
+import colors from '../../../colors'
 import Category from './Category'
 import { useTranslation } from 'react-i18next'
 import { useWindowSize } from 'react-use'

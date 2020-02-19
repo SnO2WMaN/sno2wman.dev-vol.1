@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import colors from '../../colors'
 import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { faFileCertificate } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -37,12 +38,12 @@ const Component: React.FC<Props> = ({ className }) => {
 }
 
 const StyledComponent = styled(Component)`
+  display: grid;
+  grid-template-columns: 2fr 1fr;
   width: 100%;
   height: 96px;
   padding: 16px 48px;
-  background-color: hsl(242, 15%, 18%);
-  display: grid;
-  grid-template-columns: 2fr 1fr;
+  background-color: ${colors.blacky4};
   .column {
     display: flex;
     align-items: center;
@@ -50,31 +51,31 @@ const StyledComponent = styled(Component)`
   .title {
     margin-right: 24px;
     > p {
-      color: hsl(242, 7%, 60%);
-      font-family: 'Press Start 2P', sans-serif;
+      color: ${colors.grey1};
       font-size: 0.9rem;
+      font-family: 'Press Start 2P', sans-serif;
       letter-spacing: 0.1em;
     }
   }
   .left a {
-    color: hsl(242, 7%, 60%);
-    letter-spacing: 0.05em;
+    color: ${colors.grey1};
     font-size: 0.75rem;
     font-family: 'Roboto', sans-serif;
     line-height: 3em;
+    letter-spacing: 0.05em;
     text-decoration: none;
     :not(:last-of-type) {
       margin-right: 16px;
     }
   }
   .right a {
-    color: hsl(242, 7%, 60%);
-    width: 36px;
-    height: 36px;
-    font-size: 1.25rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 36px;
+    height: 36px;
+    color: ${colors.grey1};
+    font-size: 1.25rem;
     :not(:last-of-type) {
       margin-right: 8px;
     }
