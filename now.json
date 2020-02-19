@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "env": {
+    "FONTAWESOME_NPM_AUTH_TOKEN": "@fontawesome-npm-auth-token"
+  },
+  "build": {
+    "env": {
+      "FONTAWESOME_NPM_AUTH_TOKEN": "@fontawesome-npm-auth-token"
+    }
+  },
+  "builds": [
+    {
+      "src": "next.config.js",
+      "use": "@now/next"
+    }
+  ]
+}
