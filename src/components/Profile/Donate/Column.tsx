@@ -1,18 +1,75 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 
-type ContainerProps = { icon: JSX.Element; title: string }
-type Props = { className: string } & ContainerProps
+import anime from 'animejs'
 
-const Component: React.FC<Props> = ({ className, icon, title, children }) => (
-  <div className={className}>
-    <div className="title">
-      <div className="icon-wrap">{icon}</div>
-      <h3>{title}</h3>
+type ContainerProps = {
+  className?: string
+  animated: boolean
+  icon: JSX.Element
+  title: string
+}
+type Props = {} & ContainerProps
+
+const Component: React.FC<Props> = ({
+  className,
+  icon,
+  title,
+  children,
+  animated,
+}) => {
+  const iconRef = React.createRef<HTMLDivElement>()
+  const titleRef = React.createRef<HTMLHeadingElement>()
+
+  let timelines: anime.AnimeTimelineInstance[]
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    timelines = [
+      anime
+        .timeline({
+          targets: iconRef.current,
+          autoplay: false,
+        })
+        .add({
+          scale: [0, 1],
+          opacity: [0, 1],
+          duration: 500,
+          easing: 'easeOutBack',
+        }),
+      anime
+        .timeline({
+          targets: titleRef.current,
+          autoplay: false,
+        })
+        .add({
+          rotateZ: [`${30}deg`, 0],
+          opacity: [0, 1],
+          duration: 500,
+          delay: 250,
+          easing: 'easeOutElastic(1, 1.125)',
+        }),
+    ]
+  }, [animated])
+
+  useEffect(
+    () => {
+      if (animated) timelines.forEach(timeline => timeline.play())
+    },
+    [animated] // eslint-disable-line react-hooks/exhaustive-deps
+  )
+
+  return (
+    <div className={className}>
+      <div className="title">
+        <div ref={iconRef} className="icon-wrap">
+          {icon}
+        </div>
+        <h3 ref={titleRef}>{title}</h3>
+      </div>
+      {children}
     </div>
-    {children}
-  </div>
-)
+  )
+}
 
 const StyledComponent = styled(Component)`
   display: flex;
@@ -42,6 +99,7 @@ const StyledComponent = styled(Component)`
       font-family: 'Montserrat', sans-serif;
       font-weight: 500;
       letter-spacing: 0.25em;
+      transform-origin: left;
     }
   }
 `

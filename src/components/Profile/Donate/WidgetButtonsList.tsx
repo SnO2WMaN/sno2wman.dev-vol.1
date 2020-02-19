@@ -11,8 +11,11 @@ import {
 } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-type ContainerProps = {}
-type Props = { className: string } & ContainerProps
+type ContainerProps = {
+  className?: string
+  animated: boolean
+}
+type Props = {} & ContainerProps
 
 const widgets = {
   'ko-fi': {
@@ -37,22 +40,26 @@ const widgets = {
   },
 }
 
-const Component: React.FC<Props> = ({ className }) => (
-  <div className={className}>
-    <ul>
-      {Object.entries(widgets).map(({ 0: key, 1: { title, href, icon } }) => (
-        <WidgetButton
-          icon={icon}
-          href={href}
-          theme={brandcolors[key]}
-          key={key}
-        >
-          {title}
-        </WidgetButton>
-      ))}
-    </ul>
-  </div>
-)
+const Component: React.FC<Props> = ({ className, animated }) => {
+  return (
+    <div className={className}>
+      <ul>
+        {Object.entries(widgets).map(([key, { title, href, icon }], i) => (
+          <WidgetButton
+            icon={icon}
+            href={href}
+            theme={brandcolors[key]}
+            key={key}
+            animated={animated}
+            delay={i * 100}
+          >
+            {title}
+          </WidgetButton>
+        ))}
+      </ul>
+    </div>
+  )
+}
 
 const StyledComponent = styled(Component)`
   display: flex;

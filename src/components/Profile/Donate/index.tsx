@@ -1,34 +1,54 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 import IconPepsi from '../../../assets/svg/pepsi.svg'
+import { ScrollContainer } from '../../../store'
 import Column from './Column'
 import WidgetButtonsList from './WidgetButtonsList'
 import WishList from './WishList'
 import { faHandsHeart } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useTranslation } from 'react-i18next'
+import { useWindowSize } from 'react-use'
 
 type ContainerProps = {}
 type Props = { className: string } & ContainerProps
 
 const Component: React.FC<Props> = ({ className }) => {
   const { t } = useTranslation()
+  const scrollContainer = ScrollContainer.useContainer()
+  const { height: windowHeight } = useWindowSize()
+  const sectionRef = React.createRef<HTMLDivElement>()
+  const [anime, setAnime] = useState(false)
+
+  useEffect(() => {
+    if (
+      sectionRef.current.offsetTop + sectionRef.current.offsetHeight <=
+      windowHeight + scrollContainer.scrollY
+    )
+      setAnime(true)
+  }, [sectionRef, scrollContainer.scrollY, windowHeight])
+
   return (
-    <section className={className}>
+    <section className={className} ref={sectionRef}>
       <h2>
         <span>{t('profile.donate.title.donate')}</span> /{' '}
         <span>{t('profile.donate.title.wishlist')}</span>
       </h2>
       <div className="columns">
-        <Column title={t('profile.donate.financial')} icon={<IconPepsi />}>
-          <WidgetButtonsList />
+        <Column
+          title={t('profile.donate.financial')}
+          icon={<IconPepsi />}
+          animated={anime}
+        >
+          <WidgetButtonsList animated={anime} />
         </Column>
         <Column
           title={t('profile.donate.wishlist')}
           icon={<FontAwesomeIcon icon={faHandsHeart} />}
+          animated={anime}
         >
-          <WishList />
+          <WishList animated={anime} />
         </Column>
       </div>
     </section>

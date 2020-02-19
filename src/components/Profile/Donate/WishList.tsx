@@ -12,42 +12,51 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useTranslation } from 'react-i18next'
 
-type ContainerProps = {}
-type Props = { className: string } & ContainerProps
+type ContainerProps = {
+  className?: string
+  animated: boolean
+}
+type Props = {} & ContainerProps
 
-const Component: React.FC<Props> = ({ className }) => {
+const list = {
+  books: {
+    icon: <FontAwesomeIcon icon={faBook} />,
+    theme: brandcolors.amazon,
+    href: 'https://www.amazon.jp/hz/wishlist/ls/BO23V3CPIPJO?ref_=wl_share',
+  },
+  comics: {
+    icon: <FontAwesomeIcon icon={faBooks} />,
+    theme: brandcolors.amazon,
+    href: 'https://www.amazon.jp/hz/wishlist/ls/1NQARLKRX8PTF?ref_=wl_share',
+  },
+  things: {
+    icon: <FontAwesomeIcon icon={faCubes} />,
+    theme: brandcolors.amazon,
+    href: 'https://www.amazon.jp/hz/wishlist/ls/2NHME83WUZWSR?ref_=wl_share',
+  },
+  games: {
+    theme: brandcolors.steam,
+    icon: <FontAwesomeIcon icon={faGameConsoleHandheld} />,
+    href: 'https://store.steampowered.com/wishlist/id/SnO2WMaN',
+  },
+}
+
+const Component: React.FC<Props> = ({ className, animated }) => {
   const { t } = useTranslation()
   return (
-    <ul className={className}>
-      <WishListColumn
-        icon={<FontAwesomeIcon icon={faBook} />}
-        theme={brandcolors.amazon}
-        href="https://www.amazon.jp/hz/wishlist/ls/BO23V3CPIPJO?ref_=wl_share"
-      >
-        {t('profile.donate.wishlists.books')}
-      </WishListColumn>
-      <WishListColumn
-        icon={<FontAwesomeIcon icon={faBooks} />}
-        theme={brandcolors.amazon}
-        href="https://www.amazon.jp/hz/wishlist/ls/1NQARLKRX8PTF?ref_=wl_share"
-      >
-        {t('profile.donate.wishlists.comics')}
-      </WishListColumn>
-      <WishListColumn
-        icon={<FontAwesomeIcon icon={faCubes} />}
-        theme={brandcolors.amazon}
-        href="https://www.amazon.jp/hz/wishlist/ls/2NHME83WUZWSR?ref_=wl_share"
-      >
-        {t('profile.donate.wishlists.things')}
-      </WishListColumn>
-      <WishListColumn
-        icon={<FontAwesomeIcon icon={faGameConsoleHandheld} />}
-        theme={brandcolors.steam}
-        href="https://store.steampowered.com/wishlist/id/SnO2WMaN"
-      >
-        {t('profile.donate.wishlists.games')}
-      </WishListColumn>
-    </ul>
+    <div className={className}>
+      {Object.entries(list).map(([key, { icon, theme, href }], i) => (
+        <WishListColumn
+          key={key}
+          animated={animated}
+          icon={icon}
+          theme={theme}
+          href={href}
+          title={t(`profile.donate.wishlists.${key}`)}
+          delay={i * 100}
+        />
+      ))}
+    </div>
   )
 }
 
