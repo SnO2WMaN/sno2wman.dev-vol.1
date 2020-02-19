@@ -2,7 +2,11 @@
 /* eslint-disable unicorn/filename-case */
 import Color from 'color'
 
-const whity1 = Color({ h: 222, s: 32, l: 90 })
+const baseHue = 222
+
+const bg = Color({ h: baseHue, s: 32, l: 92 })
+
+const whity1 = Color({ h: baseHue, s: 32, l: 90 })
 const whity2 = Color({ h: whity1.hue(), s: 25, l: 92.5 })
 const whity3 = Color({ h: whity1.hue(), s: 32, l: 95 })
 const whity4 = Color({ h: whity1.hue(), s: 48, l: 97.5 })
@@ -18,6 +22,7 @@ const grey1 = Color({ h: whity1.hue(), s: 22, l: 70 })
 const accent1 = Color({ h: whity1.hue(), s: 75, l: 58 })
 
 const colors = {
+  bg: bg.toString(),
   whity1: whity1.toString(),
   whity2: whity2.toString(),
   whity3: whity3.toString(),

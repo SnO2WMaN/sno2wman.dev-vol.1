@@ -8,7 +8,7 @@ type Props = { className: string } & ContainerProps
 
 const Component: React.FC<Props> = ({ className }) => (
   <div className={className}>
-    <Hero background="#afcfcf">SnO2WMaN.dev</Hero>
+    <Hero background="#afcfcf">LICENSE</Hero>
   </div>
 )
 
