@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 
+import colors from '../colors'
 import anime from 'animejs'
 import Color from 'color'
 
@@ -127,11 +128,11 @@ const StyledComponent = styled(Component)`
   align-items: center;
   padding: 12px;
   border-radius: 8px;
-  filter: drop-shadow(4px 4px 16px rgba(0, 0, 0, 0.125))
-    drop-shadow(-4px -4px 16px white);
+  filter: drop-shadow(4px 4px 12px rgba(0, 0, 0, 0.125))
+    drop-shadow(-4px -4px 12px white);
   overflow: hidden;
   > .bg {
-    background-color: hsl(225, 12.5%, 97.5%);
+    background-color: ${colors.whity4};
     position: absolute;
     width: 100%;
     top: 0;

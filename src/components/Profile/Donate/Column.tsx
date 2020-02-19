@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 
+import colors from '../colors'
 import anime from 'animejs'
 
 type ContainerProps = {
@@ -81,20 +82,20 @@ const StyledComponent = styled(Component)`
     margin: 0 auto;
     margin-bottom: 36px;
     > .icon-wrap {
-      color: #2f2f2f;
       display: flex;
       align-items: center;
       justify-content: center;
       width: 24px;
       height: 24px;
       margin-right: 16px;
+      color: ${colors.blacky2};
       > svg {
         width: 100%;
         height: 100%;
       }
     }
     h3 {
-      color: #2f2f2f;
+      color: ${colors.blacky2};
       font-size: 0.75rem;
       font-family: 'Montserrat', sans-serif;
       font-weight: 500;

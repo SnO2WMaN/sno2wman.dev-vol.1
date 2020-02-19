@@ -87,10 +87,10 @@ const Component: React.FC<Props> = ({
       <div
         className="back"
         style={{
-          backgroundColor: Color.hsl(Color(color).hue(), 75, 97.5).toString(),
+          backgroundColor: Color.hsl(Color(color).hue(), 15, 95.5).toString(),
           boxShadow: CSSShadow([
-            { x: -2, y: -2, blur: 8, color: Color('white').fade(0.25) },
-            { x: 2, y: 2, blur: 16, color: Color(color).fade(0.625) },
+            { x: 2, y: 2, blur: 16, color: Color(color).fade(0.75) },
+            { x: -2, y: -2, blur: 16, color: Color('white').fade(0.125) },
           ]),
         }}
         ref={backRef}

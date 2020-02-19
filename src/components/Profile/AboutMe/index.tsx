@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import colors from '../colors'
 import TextColumn from './LeftColumn'
 import AvatarColumn from './RightColumn'
 import { useTranslation } from 'react-i18next'
@@ -27,11 +28,11 @@ const StyledComponent = styled(Component)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: hsl(225, 12.5%, 92.5%);
+  background-color: ${colors.whity1};
   padding: 48px 0;
   > h2 {
     margin-bottom: 32px;
-    color: #2f2f2f;
+    color: ${colors.blacky1};
     font-size: 0.9rem;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;

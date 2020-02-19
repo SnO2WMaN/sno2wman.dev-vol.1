@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 
+import colors from '../colors'
 import anime from 'animejs'
 
 type ContainerProps = {
@@ -145,14 +146,14 @@ const Component: React.FC<Props> = ({
 const StyledComponent = styled(Component)`
   display: flex;
   align-items: center;
-  filter: drop-shadow(4px 4px 24px rgba(0, 0, 0, 0.125))
-    drop-shadow(-4px -4px 24px white);
+  filter: drop-shadow(4px 4px 12px rgba(0, 0, 0, 0.125))
+    drop-shadow(-4px -4px 12px white);
   padding: 8px;
   border-radius: 4px;
   position: relative;
   overflow: hidden;
   > .bg {
-    background-color: hsl(225, 12.5%, 97.5%);
+    background-color: ${colors.whity4};
     position: absolute;
     width: 100%;
     top: 0;
@@ -190,6 +191,7 @@ const StyledComponent = styled(Component)`
     }
   }
   > span {
+    color: ${colors.blacky4};
     font-weight: 500;
     font-size: 0.75rem;
     letter-spacing: 0.25em;

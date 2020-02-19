@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import colors from '../colors'
 import TextBalloon from './TextBalloon'
 import { useTranslation } from 'react-i18next'
 
@@ -33,13 +34,8 @@ const StyledComponent = styled(Component)`
     width: 100%;
     min-height: 160px;
   }
-  .text {
-    font-family: 'Press Start 2P', sans-serif;
-    color: #2f2f2f;
-    letter-spacing: 0.1em;
-  }
   .greeting {
-    color: #2f2f2f;
+    color: ${colors.blacky4};
     font-family: var(--sans-serif);
     font-size: 1.25rem;
     font-weight: 700;
@@ -48,7 +44,7 @@ const StyledComponent = styled(Component)`
   }
   .lines {
     > p {
-      color: #2f2f2f;
+      color: ${colors.blacky4};
       font-family: var(--sans-serif);
       font-size: 0.9rem;
       font-feature-settings: 'palt';

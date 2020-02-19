@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import styled from 'styled-components'
 
 import { SkillType } from '../../../data/skillset'
+import colors from '../colors'
 import anime from 'animejs'
 import Color from 'color'
 
@@ -156,16 +157,17 @@ const StyledComponent = styled(Component)`
   align-items: center;
   padding: 4px 4px;
   position: relative;
+
   .bg {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: hsl(225, 12.5%, 97.5%);
     z-index: 0;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.125),
-      -2px -2px 8px rgba(255, 255, 255, 0.5);
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.125), -2px -2px 12px white;
+    background-color: ${colors.whity4};
+    border-radius: 2px;
   }
   .covers {
     position: absolute;
@@ -220,7 +222,7 @@ const StyledComponent = styled(Component)`
     }
   }
   > span {
-    color: #2f2f2f;
+    color: ${colors.blacky4};
     font-family: 'Montserrat', sans-serif;
     font-size: 0.75rem;
     flex-grow: 2;

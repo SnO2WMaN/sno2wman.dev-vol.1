@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import socials from '../../../data/accounts'
 import brandcolors from '../../../data/brandcolors.json'
 import { ScrollContainer } from '../../../store'
+import colors from '../colors'
 import SocialLink from './SocialLink'
 import Color from 'color'
 import { useTranslation } from 'react-i18next'
@@ -59,7 +60,7 @@ const Component: React.FC<Props> = ({ className }) => {
 
 const StyledComponent = styled(Component)`
   width: 100%;
-  background-color: hsl(225, 12.5%, 90%);
+  background-color: ${colors.whity3};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -71,6 +72,7 @@ const StyledComponent = styled(Component)`
     grid-gap: 24px;
   }
   > h2 {
+    color: ${colors.blacky3};
     margin-top: 32px;
     font-size: 0.9rem;
     font-family: 'Montserrat', sans-serif;

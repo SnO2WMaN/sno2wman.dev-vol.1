@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import brandcolors from '../../../data/brandcolors.json'
-import WishListColumn from './WishListColumn'
+import WishListColumn from './WishListButton'
 import {
   faBook,
   faBooks,

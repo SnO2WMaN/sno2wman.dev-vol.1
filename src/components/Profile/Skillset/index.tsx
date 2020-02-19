@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import skillset from '../../../data/skillset'
 import { ScrollContainer } from '../../../store'
+import colors from '../colors'
 import Category from './Category'
 import { useTranslation } from 'react-i18next'
 import { useWindowSize } from 'react-use'
@@ -47,7 +48,7 @@ const Component: React.FC<Props> = ({ className }) => {
 
 const StyledComponent = styled(Component)`
   width: 100%;
-  background-color: hsl(225, 12.5%, 85%);
+  background-color: ${colors.whity1};
   display: flex;
   flex-direction: column;
   align-items: center;

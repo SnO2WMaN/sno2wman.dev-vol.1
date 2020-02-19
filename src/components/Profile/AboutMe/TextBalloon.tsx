@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import colors from '../colors'
+
 type ContainerProps = { className?: string }
 type Props = {} & ContainerProps
 
@@ -13,7 +15,7 @@ const Component: React.FC<Props> = ({ className, children }) => (
 
 const StyledComponent = styled(Component)`
   position: relative;
-  background-color: hsl(225, 15%, 95%);
+  background-color: ${colors.whity4};
   filter: drop-shadow(4px 4px 24px rgba(0, 0, 0, 0.125))
     drop-shadow(-4px -4px 24px white);
   padding: 16px;
@@ -36,7 +38,7 @@ const StyledComponent = styled(Component)`
     width: 32px;
     height: 32px;
     right: -16px;
-    background-color: hsl(225, 15%, 95%);
+    background-color: ${colors.whity4};
     transform: rotateZ(45deg);
   }
 `

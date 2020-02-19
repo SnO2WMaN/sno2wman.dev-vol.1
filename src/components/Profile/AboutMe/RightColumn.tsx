@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import ImageMe from '../../../assets/me.png'
+import colors from '../colors'
 
 type ContainerProps = {}
 type Props = { className: string } & ContainerProps
@@ -27,15 +28,16 @@ const StyledComponent = styled(Component)`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: hsl(225, 15%, 95%);
+    background-color: ${colors.whity4};
     box-shadow: 4px 4px 24px rgba(0, 0, 0, 0.125), -4px -4px 24px white;
     > img {
+      user-select: none;
       border-radius: 8px;
       box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.125), -2px -2px 8px white;
     }
   }
   .name {
-    color: #2f2f2f;
+    color: ${colors.blacky1};
     font-size: 0.9rem;
     letter-spacing: 0.1em;
     margin-top: 24px;

@@ -3,9 +3,10 @@ import styled from 'styled-components'
 
 import IconPepsi from '../../../assets/svg/pepsi.svg'
 import { ScrollContainer } from '../../../store'
+import colors from '../colors'
 import Column from './Column'
 import WidgetButtonsList from './WidgetButtonsList'
-import WishList from './WishList'
+import WishList from './WishListsList'
 import { faHandsHeart } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useTranslation } from 'react-i18next'
@@ -61,10 +62,10 @@ const StyledComponent = styled(Component)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: hsl(225, 12.5%, 92.5%);
+  background-color: ${colors.whity2};
   padding: 48px 0;
   > h2 {
-    color: #2f2f2f;
+    color: ${colors.blacky2};
     margin-bottom: 32px;
     font-size: 0.9rem;
     font-family: 'Montserrat', sans-serif;

@@ -89,6 +89,7 @@ const StyledComponent = styled(Component)`
     height: 32px;
     display: flex;
     align-items: center;
+    user-select: none;
     h3 {
       color: hsl(225, 12.5%, 65%);
       font-size: 0.7rem;
